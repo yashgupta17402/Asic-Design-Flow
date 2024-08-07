@@ -57,7 +57,10 @@ The picture below represents the C code and its output
   
 
 * Now create the object file (.o) that is the output of the compiler as shown in the procedure shown below.
-![Screenshot 2024-07-17 145313](https://github.com/user-attachments/assets/120bef44-0acf-4fcd-88b9-02b48cc71609)
+  
+![Screenshot from 2024-08-08 01-01-25](https://github.com/user-attachments/assets/a991b66e-bcf8-4676-8127-4657a8882f16)
+![Screenshot from 2024-08-08 01-01-29](https://github.com/user-attachments/assets/4aef3604-22b4-4854-83e2-08a9d06ee7a8)
+
 
 ### Step 2
 * Run the executable program and see the output in the terminal window.
