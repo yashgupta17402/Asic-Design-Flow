@@ -42,16 +42,20 @@ The picture below represents the C code and its output
     #include <stdio.h>
 
     int main() {
-        int i, n=5, sum=0;
-        for(i=1; i<=n; i++){
+        int i, n=200, sum=0;
+        for(i=1; i<=n; ){
           sum = sum + i;
+          i=i+1;
         }
         printf("The sum from 1 to %d is %d\n", n, sum);
         return 0;
     }
     ```
 * Compile the C code on RISC-V compiler
-![Screenshot 2024-07-17 145045](https://github.com/user-attachments/assets/1440d896-d10e-4be8-84a3-2274caaeefb3)
+  ![Screenshot from 2024-08-08 01-01-01](https://github.com/user-attachments/assets/fcf7aa98-0f4a-43c9-9416-c131f6cb734f)
+
+  
+
 * Now create the object file (.o) that is the output of the compiler as shown in the procedure shown below.
 ![Screenshot 2024-07-17 145313](https://github.com/user-attachments/assets/120bef44-0acf-4fcd-88b9-02b48cc71609)
 
