@@ -82,10 +82,9 @@ The picture below represents the compiling  C code using gcc and  running  its o
 * Assembly code generated with **-Ofast** compiler flag
 ![Screenshot from 2024-08-08 01-03-04](https://github.com/user-attachments/assets/682644af-f0db-4c8d-b393-2bc8fee9ec28)
 
-### Observation
-Here we can observe that the number of instructions are reduced to 12 as compared to 15 in the previous case
-* -O1 is moderate in it's code optimization while -Ofast is highly aggressive to achieve highest possible performance
-* -O1 maintains strict adherence to standards while -Ofast may violate some standards to achieve better performance
+
+*We can see that the number of instructions has decreased from 15 to 12 compared to the previous case.
+The -O1 optimization flag provides moderate code optimization, adhering closely to standards, while the -Ofast flag offers more aggressive optimization, aiming for the highest possible performance but potentially deviating from some standards to achieve better results.
 
   
 ## Assignment 2
