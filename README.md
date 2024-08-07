@@ -85,7 +85,9 @@ Here we can observe that the number of instructions are reduced to 12 as compare
 * -O1 is moderate in it's code optimization while -Ofast is highly aggressive to achieve highest possible performance
 * -O1 maintains strict adherence to standards while -Ofast may violate some standards to achieve better performance
 
-  ## RISC-V COMPILER OUTPUT and DEBUGGING
+  
+## Assignment 2
+## RISC-V COMPILER OUTPUT and DEBUGGING
 
 Find the output of the C program on the RISC V Compiler using the Spike command and debug the code
 
