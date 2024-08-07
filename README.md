@@ -1,7 +1,10 @@
 # Asic-Design-Flow
 ## Menu
 - [Assignment 1](#assignment-1)
+  - [GCC Compilation: C Program](#gcc-compilation-c-program)
+  - [RISC-V Compilation: C Program](#risc-v-compilation-c-program)
 - [Assignment 2](#assignment-2)
+  - [RISC-V Compiler Output and Debugging](#risc-v-compiler-output-and-debugging)
 ## Assignment 1
 
 ## GCC Compilation: C Program
