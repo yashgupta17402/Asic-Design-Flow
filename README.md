@@ -97,10 +97,10 @@ In our previous lab, we compiled our C code using both gcc and a RISC-V compiler
 spike pk sum1ton.o
 ```
 ### The compiled code using SPIKE command along with object dump file
-![Similar result for GCC and RISCV compiler when run the program](https://github.com/user-attachments/assets/7a290394-20ed-4082-a01b-4ce624035b23)
+![Similar result for GCC and RISCV compiler when run the program] ![Screenshot from 2024-08-08 01-50-32](https://github.com/user-attachments/assets/54c475c9-cd8c-4e37-896f-f8e2b89fcf8c)
+
 * Here we can see that we get the same output in both the process.
 
-![objectdump that is to be debugged](https://github.com/user-attachments/assets/4f80656e-beaa-4453-b348-0072af306c4a)
 
 ## Debug using SPIKE debugger
 
@@ -117,7 +117,8 @@ Next, we will manually debug the next instruction i.e., addi sp, sp, -16. This i
 reg 0 sp
 ```
 In the assembly code we can see that the value of the stack pointer is being reduced by 10 in hexadecimal we is equivalent to being reduced by 16 in decimal notation.
-![Screenshot 2024-07-21 213722](https://github.com/user-attachments/assets/48ca0385-d9e0-43f4-aa4f-d420becdc79d)
+![Screenshot from 2024-08-08 02-02-21](https://github.com/user-attachments/assets/3720c1a1-8ecb-4ce7-b016-ef805c53e284)
+
 
 ## The same thing happens for -O1 as well
 
