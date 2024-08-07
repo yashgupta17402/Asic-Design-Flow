@@ -91,7 +91,7 @@ Here we can observe that the number of instructions are reduced to 12 as compare
 Find the output of the C program on the RISC V Compiler using the Spike command and debug the code
 
 ## Check the Output and compare with previous output.
-In our previous lab, we compiled our C code using both gcc and a RISC-V compiler. In assignment 3 we are going to have find the result of n numbers on the RISCV compiler using the SPIKE command.
+We are going to have find the result of n numbers on the RISCV compiler using the SPIKE command instead of gcc and risc-v compiler.
 
 ### Code for compiling the objdump file
 ```bash
