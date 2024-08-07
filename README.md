@@ -30,7 +30,8 @@ Run the executable program and see the output in the terminal window.
 ### Output
 The picture below represents the C code and its output
 
-![Screenshot 2024-07-16 220224](https://github.com/user-attachments/assets/4dbde6dc-0ff0-43c4-92a3-2d6c839e3f7e)
+![Screenshot from 2024-08-08 00-59-32](https://github.com/user-attachments/assets/08e41098-b476-4f8a-ab9b-3fc5b6038c44)
+
 
 
 
