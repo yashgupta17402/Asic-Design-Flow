@@ -21,7 +21,9 @@
     ```
 * Save the program and compile your code in the terminal window using GCC compiler.
   
-![Screenshot 2024-07-16 230409](https://github.com/user-attachments/assets/84f6f628-42a9-4a0d-8139-8605f1749a35)
+  
+![Screenshot from 2024-08-08 00-57-50](https://github.com/user-attachments/assets/0d5b0ae4-f21d-4d82-a1cb-e196cfcc9c6c)
+
 
 ### Step 2
 Run the executable program and see the output in the terminal window.
