@@ -1,96 +1,74 @@
 # Asic-Design-Flow
 
 ## Assignment 1
-markdown
-# Compilation and Execution of a Simple C Program
 
-## Step 1: Create a New C Program File
+## GCC Compilation Of a simple C Program
+### Step 1
+* In the Linux Environment, create a new C Program file using any editor. Here the leafpad editor is used.
+  1. **Code Snippet:**
+    ```c
+    #include <stdio.h>
 
-In the Linux environment, create a new C program file using any editor. Here, the leafpad editor is used.
-
-### Code Snippet:
-c
-#include <stdio.h>
-
-int main() {
-    int i, n = 200, sum = 0;
-    for (i = 1; i <= n; ) {
-        sum = sum + i;
-        i= i+1;
+    int main() {
+        int i, n=200, sum=0;
+        for(i=1; i<=n; ){
+          sum = sum + i;
+          i=i+1;
+        }
+        printf("The sum from 1 to %d is %d\n", n, sum);
+        return 0;
     }
-    printf("The sum from 1 to %d is %d\n", n, sum);
-    return 0;
-}
-![Screenshot from 2024-08-08 00-57-50](https://github.com/user-attachments/assets/c8577b71-e4f4-4082-82f8-6f1a99ba631d)
+    ```
+* Save the program and compile your code in the terminal window using GCC compiler.
+  
+![Screenshot 2024-07-16 230409](https://github.com/user-attachments/assets/84f6f628-42a9-4a0d-8139-8605f1749a35)
 
-
-Save the program and compile your code in the terminal window using the GCC compiler.
-
-
-## Step 2: Run the Executable Program
-
+### Step 2
 Run the executable program and see the output in the terminal window.
-
 ### Output
+The picture below represents the C code and its output
 
-The picture below represents the C code and its output.
+![Screenshot 2024-07-16 220224](https://github.com/user-attachments/assets/4dbde6dc-0ff0-43c4-92a3-2d6c839e3f7e)
 
-![Screenshot](path/to/your/image2.png)
 
-# RISC-V Compilation of a Simple C Program
 
-## Step 1: Code Snippet
-c
-#include <stdio.h>
+## RISC-V Compilation Of a simple C Program
+### Step 1
+1. **Code Snippet:**
+    ```c
+    #include <stdio.h>
 
-int main() {
-    int i, n = 5, sum = 0;
-    for (i = 1; i <= n; i++) {
-        sum = sum + i;
+    int main() {
+        int i, n=5, sum=0;
+        for(i=1; i<=n; i++){
+          sum = sum + i;
+        }
+        printf("The sum from 1 to %d is %d\n", n, sum);
+        return 0;
     }
-    printf("The sum from 1 to %d is %d\n", n, sum);
-    return 0;
-}
+    ```
+* Compile the C code on RISC-V compiler
+![Screenshot 2024-07-17 145045](https://github.com/user-attachments/assets/1440d896-d10e-4be8-84a3-2274caaeefb3)
+* Now create the object file (.o) that is the output of the compiler as shown in the procedure shown below.
+![Screenshot 2024-07-17 145313](https://github.com/user-attachments/assets/120bef44-0acf-4fcd-88b9-02b48cc71609)
 
+### Step 2
+* Run the executable program and see the output in the terminal window.
+![Screenshot 2024-07-17 145751](https://github.com/user-attachments/assets/34bd3441-d2da-49b2-914b-6672252fda8e)
 
-Compile the C code on the RISC-V compiler.
+* For the "main" section, we can calculate the number of instructions either by counting each individual instruction or we can subtract the address of the first instruction in the next section with the first instruction of the main section and divide the difference with 4 since it is a byte addressable memory, so 4 memory block form one instruction
+![Screenshot 2024-07-17 150053](https://github.com/user-attachments/assets/a2d28e2d-07e8-4aec-9f56-e94585f9cc2d)
 
-![Screenshot](path/to/your/image3.png)
+* E.g.: No. of instruction in main block = (0x101C0 - 0x10184)/4 = 0x3C/4 = 0xF = 15 instructions
+![Screenshot 2024-07-17 150210](https://github.com/user-attachments/assets/bec2004a-440f-4d5b-af8f-8b9d12efb600)
+### Step 3
+* Compile the code again with the compiler flag set as **-Ofast** and observe the generated assembly code
+![Screenshot 2024-07-17 150613](https://github.com/user-attachments/assets/c808bb07-659a-44c3-b75f-1e51c5e27ea8)
 
-Now create the object file (.o) that is the output of the compiler as shown in the procedure below.
-
-![Screenshot](path/to/your/image4.png)
-
-## Step 2: Run the Executable Program
-
-Run the executable program and see the output in the terminal window.
-
-![Screenshot](path/to/your/image5.png)
-
-### Calculation of Number of Instructions
-
-For the "main" section, we can calculate the number of instructions either by counting each individual instruction or by subtracting the address of the first instruction in the next section with the first instruction of the main section and dividing the difference by 4, since it is a byte-addressable memory, so 4 memory blocks form one instruction.
-
-Example:
-
-No. of instructions in main block = (0x101C0 - 0x10184) / 4 = 0x3C / 4 = 0xF = 15 instructions
-
-
-![Screenshot](path/to/your/image6.png)
-
-## Step 3: Compile the Code with -Ofast Flag
-
-Compile the code again with the compiler flag set as `-Ofast` and observe the generated assembly code.
-
-![Screenshot](path/to/your/image7.png)
-![Screenshot](path/to/your/image8.png)
-
-## Observation
-
-Here we can observe that the number of instructions are reduced to 12 as compared to 15 in the previous case.
-
-- `-O1` is moderate in its code optimization while `-Ofast` is highly aggressive to achieve the highest possible performance.
-- `-O1` maintains strict adherence to standards while `-Ofast` may violate some standards to achieve better performance.
-
-
-Replace the path/to/your/imageX.png with the actual paths to your images. This README provides a clear step-by-step guide with code snippets and observations, suitable for a GitHub repository.
+* Assembly code generated with **-Ofast** compiler flag
+![Screenshot 2024-07-17 150839](https://github.com/user-attachments/assets/33aa5b33-b0cf-4198-ac25-97d080ea8a75)
+![Screenshot 2024-07-17 150920](https://github.com/user-attachments/assets/726b7516-90fa-45fb-ba2e-39ef6f1735f1)
+### Observation
+Here we can observe that the number of instructions are reduced to 12 as compared to 15 in the previous case
+* -O1 is moderate in it's code optimization while -Ofast is highly aggressive to achieve highest possible performance
+* -O1 maintains strict adherence to standards while -Ofast may violate some standards to achieve better performance
