@@ -21,11 +21,11 @@ int main() {
     printf("The sum from 1 to %d is %d\n", n, sum);
     return 0;
 }
+![Screenshot from 2024-08-08 00-57-50](https://github.com/user-attachments/assets/c8577b71-e4f4-4082-82f8-6f1a99ba631d)
 
 
 Save the program and compile your code in the terminal window using the GCC compiler.
 
-![Screenshot](path/to/your/image1.png)
 
 ## Step 2: Run the Executable Program
 
