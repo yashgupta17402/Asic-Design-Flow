@@ -83,7 +83,7 @@ The picture below represents the compiling  C code using gcc and  running  its o
 ![Screenshot from 2024-08-08 01-03-04](https://github.com/user-attachments/assets/682644af-f0db-4c8d-b393-2bc8fee9ec28)
 
 
-*We can see that the number of instructions has decreased from 15 to 12 compared to the previous case.
+We can see that the number of instructions has decreased from 15 to 12 compared to the previous case.
 The -O1 optimization flag provides moderate code optimization, adhering closely to standards, while the -Ofast flag offers more aggressive optimization, aiming for the highest possible performance but potentially deviating from some standards to achieve better results.
 
   
