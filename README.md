@@ -77,8 +77,8 @@ The picture below represents the C code and its output
 
 
 * Assembly code generated with **-Ofast** compiler flag
-![Screenshot 2024-07-17 150839](https://github.com/user-attachments/assets/33aa5b33-b0cf-4198-ac25-97d080ea8a75)
-![Screenshot 2024-07-17 150920](https://github.com/user-attachments/assets/726b7516-90fa-45fb-ba2e-39ef6f1735f1)
+![Screenshot from 2024-08-08 01-03-04](https://github.com/user-attachments/assets/682644af-f0db-4c8d-b393-2bc8fee9ec28)
+
 ### Observation
 Here we can observe that the number of instructions are reduced to 12 as compared to 15 in the previous case
 * -O1 is moderate in it's code optimization while -Ofast is highly aggressive to achieve highest possible performance
