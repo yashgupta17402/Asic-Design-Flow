@@ -98,7 +98,7 @@ We are going to have find the result of n numbers on the RISCV compiler using th
 
 ### Code for compiling the objdump file
 ```bash
-spike pk sum1ton.o
+spike pk 1tonsum.o
 ```
 ### The compiled code using SPIKE command along with object dump file
 ![Similar result for GCC and RISCV compiler when run the program] ![Screenshot from 2024-08-08 01-50-32](https://github.com/user-attachments/assets/54c475c9-cd8c-4e37-896f-f8e2b89fcf8c)
@@ -110,7 +110,7 @@ spike pk sum1ton.o
 
 ### Code for debugging the assembly code 
 ```bash
-spike -d pk sum1ton.o
+spike -d pk 1tonsum.o
 ```
 We will allow the Spike debugger to run until the main function, specifically until the 100b0 instruction. After that, we will manually continue debugging and inspect the a0 register before and after the execution. We observe that the instruction lui a0, 0x21 updates the a0 register from 0x0000000000000000 to 0x000000000005000
 ```bash
