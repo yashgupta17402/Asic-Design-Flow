@@ -122,7 +122,7 @@ In the assembly code we can see that the value of the stack pointer is being red
 ![Screenshot from 2024-08-08 02-02-21](https://github.com/user-attachments/assets/3720c1a1-8ecb-4ce7-b016-ef805c53e284)
 
 
-## The same thing happens for -O1 as well
+## The same thing repeats  for -O1(as done for -Ofast earlier) 
 
 ```bash
 until pc 0 10184
