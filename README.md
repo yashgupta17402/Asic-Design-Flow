@@ -2,9 +2,9 @@
 
 ## Assignment 1
 
-## GCC Compilation Of a simple C Program
+## GCC Compilation: C Program
 ### Step 1
-* In the Linux Environment, create a new C Program file using any editor. Here the leafpad editor is used.
+* In the Linux Environment, create a new C Program file using any editor.
   1. **Code Snippet:**
     ```c
     #include <stdio.h>
@@ -28,14 +28,14 @@
 ### Step 2
 Run the executable program and see the output in the terminal window.
 ### Output
-The picture below represents the C code and its output
+The picture below represents the compiling  C code using gcc and  running  its output using a.out
 
 ![Screenshot from 2024-08-08 00-59-32](https://github.com/user-attachments/assets/08e41098-b476-4f8a-ab9b-3fc5b6038c44)
 
 
 
 
-## RISC-V Compilation Of a simple C Program
+## RISC-V Compilation:C Program
 ### Step 1
 1. **Code Snippet:**
     ```c
