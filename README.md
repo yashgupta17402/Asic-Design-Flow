@@ -5,9 +5,8 @@
 ## GCC Compilation: C Program
 ### Step 1
 * In the Linux Environment, create a new C Program file using any editor.
-*  < br / > 
-  command used to create c program: gedit filename.c 
-  1. **Code Snippet:**
+* Command used to create c program: gedit filename.c 
+  1. **Code :**
     ```c
     #include <stdio.h>
 
