@@ -103,7 +103,6 @@ spike pk 1tonsum.o
 Similar result for GCC and RISCV compiler when run the program
 ![Screenshot from 2024-08-08 01-50-32](https://github.com/user-attachments/assets/54c475c9-cd8c-4e37-896f-f8e2b89fcf8c)
 
-* Here we can see that we get the same output in both the process.
 
 
 ## Debug using SPIKE debugger
