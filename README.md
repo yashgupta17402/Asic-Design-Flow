@@ -100,7 +100,7 @@ We are going to have find the result of n numbers on the RISCV compiler using th
 spike pk 1tonsum.o
 ```
 ### The compiled code using SPIKE command along with object dump file
-![Similar result for GCC and RISCV compiler when run the program] ![Screenshot from 2024-08-08 01-50-32](https://github.com/user-attachments/assets/54c475c9-cd8c-4e37-896f-f8e2b89fcf8c)
+![Similar result for GCC and RISCV compiler when run the program]![Screenshot from 2024-08-08 01-50-32](https://github.com/user-attachments/assets/54c475c9-cd8c-4e37-896f-f8e2b89fcf8c)
 
 * Here we can see that we get the same output in both the process.
 
