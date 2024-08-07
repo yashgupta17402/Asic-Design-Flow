@@ -67,8 +67,7 @@ The picture below represents the compiling  C code using gcc and  running  its o
 * Run the executable program and see the output in the terminal window.
 ![Screenshot from 2024-08-08 01-02-03](https://github.com/user-attachments/assets/88d0d7dc-2457-4412-afc5-436743236450)
 
-* For the "main" section, we can calculate the number of instructions either by counting each individual instruction or we can subtract the address of the first instruction in the next section with the first instruction of the main section and divide the difference with 4 since it is a byte addressable memory, so 4 memory block form one instruction
-
+* For the "main" section, we can calculate the number of instructions  by counting each individual instruction.
 
 * E.g.: No. of instruction in main block = 15 instructions
 
@@ -110,7 +109,7 @@ spike pk sum1ton.o
 ```bash
 spike -d pk sum1ton.o
 ```
-We will allow the Spike debugger to run until the main function, specifically until the 100b0 instruction. After that, we will manually continue debugging and inspect the a0 register before and after the execution. We observe that the instruction lui a0, 0x21 updates the a0 register from 0x0000000000000001 to 0x0000000000021000
+We will allow the Spike debugger to run until the main function, specifically until the 100b0 instruction. After that, we will manually continue debugging and inspect the a0 register before and after the execution. We observe that the instruction lui a0, 0x21 updates the a0 register from 0x0000000000000000 to 0x0000000000021000
 ```bash
 until pc 0 100b0
 ```
