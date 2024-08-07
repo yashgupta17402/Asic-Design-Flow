@@ -5,7 +5,7 @@
 ## GCC Compilation: C Program
 ### Step 1
 * In the Linux Environment, create a new C Program file using any editor.
-* Command used to create c program: gedit filename.c 
+* Command used to create C program: gedit filename.c 
   1. **Code :**
     ```c
     #include <stdio.h>
@@ -57,7 +57,7 @@ The picture below represents the compiling  C code using gcc and  running  its o
 
   
 
-* Now create the object file (.o) that is the output of the compiler as shown in the procedure shown below.
+* Now create the object file (.o) ,which is the output of the compiler as shown in the procedure shown below.
   
 ![Screenshot from 2024-08-08 01-01-25](https://github.com/user-attachments/assets/a991b66e-bcf8-4676-8127-4657a8882f16)
 ![Screenshot from 2024-08-08 01-01-29](https://github.com/user-attachments/assets/4aef3604-22b4-4854-83e2-08a9d06ee7a8)
@@ -70,7 +70,7 @@ The picture below represents the compiling  C code using gcc and  running  its o
 * For the "main" section, we can calculate the number of instructions either by counting each individual instruction or we can subtract the address of the first instruction in the next section with the first instruction of the main section and divide the difference with 4 since it is a byte addressable memory, so 4 memory block form one instruction
 
 
-* E.g.: No. of instruction in main block = (0x101C0 - 0x10184)/4 = 0x3C/4 = 0xF = 15 instructions
+* E.g.: No. of instruction in main block = 15 instructions
 
 ### Step 3
 * Compile the code again with the compiler flag set as **-Ofast** and observe the generated assembly code
