@@ -1,5 +1,7 @@
 # Asic-Design-Flow
-
+## Menu
+- [Assignment 1](#assignment-1)
+- [Assignment 2](#assignment-2)
 ## Assignment 1
 
 ## GCC Compilation: C Program
