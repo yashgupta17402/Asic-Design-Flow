@@ -1,5 +1,5 @@
 # Asic-Design-Flow
-## Menu
+## Table of Contents
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
   
