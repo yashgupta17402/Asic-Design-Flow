@@ -148,6 +148,8 @@ Instruction formats can be considered as a 'contract' betwwen the assembly langu
 
 There exists 6 types of instruction formats in RISCV.
 
+![instruction_types_f](https://github.com/user-attachments/assets/523f7129-a80d-42c4-9c7b-6a5305139459)
+
 * R type
 
     + 'R' here stands for register. 
@@ -155,9 +157,6 @@ There exists 6 types of instruction formats in RISCV.
     +  They are used for operations that involve 3 registers.
     +  The format of R-type instructions is consistent and includes fields for specifying two source registers, one destination register, a function code to specify the operation, and an opcode.
     +  Examples: ADD, SUB, OR, XOR, etc.
-    +  The instruction format is as follows: 
-  
-  <img src="imagessessionthree\rtype.png" alt="Step 1.1" width="400"/> <br>
     + funct7 (7 bits): Function code for additional instruction differentiation.
     + rs2 (5 bits): Second source register.
     + rs1 (5 bits): First source register.
@@ -169,9 +168,7 @@ There exists 6 types of instruction formats in RISCV.
     + I-type instructions in the RISC-V architecture are used for operations that involve an immediate value along with one or two registers.
     +  These instructions typically perform operations such as arithmetic with immediate values, load operations, and certain branch instructions.
     +  The format of I-type instructions includes fields for a source register, destination register, an immediate value, a function code, and an opcode.
-    +  The instruction format is as follows:
   
-  <img src="imagessessionthree\itype.png" alt="Step 1.1" width="400"/> <br>
     + immediate (12 bits): Immediate value used for operations.
     + rs1 (5 bits): Source register.
     + funct3 (3 bits): Function code for instruction differentiation.
@@ -182,9 +179,6 @@ There exists 6 types of instruction formats in RISCV.
   
     + S-type instructions in the RISC-V architecture are used for store operations, where data is stored from a register into memory.
    + The format of S-type instructions includes fields for two source registers, an immediate value that determines the memory offset, a function code, and an opcode.
-   +  The format is as follows: 
-
-  <img src="imagessessionthree\stype.png" alt="Step 1.1" width="400"/> <br>
     + imm[11:5] (7 bits): Upper 7 bits of the immediate value.
     + rs2 (5 bits): Second source register (contains the data to be stored).
     + rs1 (5 bits): First source register (base address register).
@@ -197,9 +191,6 @@ There exists 6 types of instruction formats in RISCV.
     + B-type instructions in the RISC-V architecture are used for conditional branch operations.
     +  These instructions are designed to alter the flow of execution based on comparisons between two registers. 
     +  The format of B-type instructions includes fields for two source registers, an immediate value that determines the branch offset, a function code, and an opcode.
-    +  Following is the instruction format:
-    
-     <img src="imagessessionthree\btype.png" alt="Step 1.1" width="400"/> <br>
     + imm[12] (1 bit): The 12th bit of the immediate value.
     + imm[10:5] (6 bits): The 10th to 5th bits of the immediate value.
     + rs2 (5 bits): Second source register.
@@ -212,10 +203,7 @@ There exists 6 types of instruction formats in RISCV.
 * U Type
 
     + U-type instructions in the RISC-V architecture are used for operations involving large immediate values, typically for loading upper immediate values or computing addresses.
-    +  The format of U-type instructions includes fields for a destination register, a large immediate value, and an opcode.
-    +  The instruction format is as follows:
-  
-     <img src="imagessessionthree\utype.png" alt="Step 1.1" width="400"/> <br>
+    +  The format of U-type instructions includes fields for a destination register, a large immediate value, and an opcode.    
     + immediate[31:12] (20 bits): The upper 20 bits of the immediate value.
     + rd (5 bits): Destination register.
     + opcode (7 bits): Operation code for U-type instructions.
@@ -224,9 +212,6 @@ There exists 6 types of instruction formats in RISCV.
 * J type
     + J-type instructions in the RISC-V architecture are used for jump operations, allowing for altering the program control flow by jumping to a specified address.
     + These instructions are typically used for unconditional jumps, like calling functions or implementing loops.
-    + Following is the instruction format: 
-     
-    <img src="imagessessionthree\jtype.png" alt="Step 1.1" width="400"/> <br>
     + imm[20] (1 bit): The 20th bit of the immediate value.
     + imm[10:1] (10 bits): The 10th to 1st bits of the immediate value.
     + imm[11] (1 bit): The 11th bit of the immediate value.
