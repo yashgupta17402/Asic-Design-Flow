@@ -136,9 +136,9 @@ until pc 0 10184
 
 ## Assignment 3
 
-#  Identifying Instruction Types
+###  Identifying Instruction Types
 
-## As the activity suggests, intruction types are being indentified for the instructions provided. The 32bit code is identified to do so. Each instruction type has it's own instruction format. 
+#### As the activity suggests, intruction types are being indentified for the instructions provided. The 32bit code is identified to do so. Each instruction type has it's own instruction format. 
 
 
 
