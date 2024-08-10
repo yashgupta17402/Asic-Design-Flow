@@ -147,74 +147,54 @@ There exists 6 types of instruction formats in RISCV.
 
 ![instruction_types_f](https://github.com/user-attachments/assets/523f7129-a80d-42c4-9c7b-6a5305139459)
 
-* R type
+## RISC-V Instruction Formats
 
-    + 'R' here stands for register. 
-    + This type inculcates all arithmetic and logical operations.
-    +  They are used for operations that involve 3 registers.
-    +  The format of R-type instructions is consistent and includes fields for specifying two source registers, one destination register, a function code to specify the operation, and an opcode.
-    +  Examples: ADD, SUB, OR, XOR, etc.
-    + funct7 (7 bits): Function code for additional instruction differentiation.
-    + rs2 (5 bits): Second source register.
-    + rs1 (5 bits): First source register.
-    + funct3 (3 bits): Function code for primary instruction differentiation.
-    + rd (5 bits): Destination register.
-    + opcode (7 bits): Basic operation code for R-type instructions (0110011 for integer operations).
-* I type
+RISC-V architecture uses various instruction formats to efficiently encode and interpret instructions. Here are six key instruction formats:
 
-    + I-type instructions in the RISC-V architecture are used for operations that involve an immediate value along with one or two registers.
-    +  These instructions typically perform operations such as arithmetic with immediate values, load operations, and certain branch instructions.
-    +  The format of I-type instructions includes fields for a source register, destination register, an immediate value, a function code, and an opcode.
-  
-    + immediate (12 bits): Immediate value used for operations.
-    + rs1 (5 bits): Source register.
-    + funct3 (3 bits): Function code for instruction differentiation.
-    + rd (5 bits): Destination register.
-    + opcode (7 bits): Basic operation code for I-type instructions.
-  
-* S Type 
-  
-    + S-type instructions in the RISC-V architecture are used for store operations, where data is stored from a register into memory.
-   + The format of S-type instructions includes fields for two source registers, an immediate value that determines the memory offset, a function code, and an opcode.
-    + imm[11:5] (7 bits): Upper 7 bits of the immediate value.
-    + rs2 (5 bits): Second source register (contains the data to be stored).
-    + rs1 (5 bits): First source register (base address register).
-    + funct3 (3 bits): Function code for instruction differentiation.
-    + imm[4:0] (5 bits): Lower 5 bits of the immediate value.
-    + opcode (7 bits): Basic operation code for S-type instructions.
+### 1. R-Type (Register Type)
+- **Purpose**: Used for arithmetic and logical operations between registers.
+- **Fields**:
+  - **Opcode**: Operation code that specifies the instruction type.
+  - **Source Registers**: Two registers involved in the operation.
+  - **Destination Register**: Register where the result is stored.
+  - **Function Code**: Specifies the exact operation to be performed.
 
-* B Type
+### 2. I-Type (Immediate Type)
+- **Purpose**: Supports operations involving a constant value (immediate) and a register.
+- **Fields**:
+  - **Opcode**: Operation code.
+  - **Source Register**: Register used in the operation.
+  - **Immediate Value**: Constant value used in the operation.
+  - **Destination Register**: Register where the result is stored or loaded.
 
-    + B-type instructions in the RISC-V architecture are used for conditional branch operations.
-    +  These instructions are designed to alter the flow of execution based on comparisons between two registers. 
-    +  The format of B-type instructions includes fields for two source registers, an immediate value that determines the branch offset, a function code, and an opcode.
-    + imm[12] (1 bit): The 12th bit of the immediate value.
-    + imm[10:5] (6 bits): The 10th to 5th bits of the immediate value.
-    + rs2 (5 bits): Second source register.
-    + rs1 (5 bits): First source register.
-    + funct3 (3 bits): Function code for instruction differentiation.
-    + imm[4:1] (4 bits): The 4th to 1st bits of the immediate value.
-    + imm[11] (1 bit): The 11th bit of the immediate value.
-    + opcode (7 bits): Basic operation code for B-type instructions
+### 3. S-Type (Store Type)
+- **Purpose**: Used for storing data from a register into memory.
+- **Fields**:
+  - **Opcode**: Operation code.
+  - **Source Registers**: Register containing the data to be stored.
+  - **Offset (Immediate)**: Specifies the memory address offset for storing the data.
 
-* U Type
+### 4. B-Type (Branch Type)
+- **Purpose**: Handles conditional branching based on register comparison.
+- **Fields**:
+  - **Opcode**: Operation code.
+  - **Source Registers**: Two registers compared to determine the branch condition.
+  - **Immediate Value**: Branch target address relative to the current position.
 
-    + U-type instructions in the RISC-V architecture are used for operations involving large immediate values, typically for loading upper immediate values or computing addresses.
-    +  The format of U-type instructions includes fields for a destination register, a large immediate value, and an opcode.    
-    + immediate[31:12] (20 bits): The upper 20 bits of the immediate value.
-    + rd (5 bits): Destination register.
-    + opcode (7 bits): Operation code for U-type instructions.
-    + The immediate value is stored in the upper 20 bits of a 32-bit word, with the lower 12 bits set to zero when used in calculations.
+### 5. U-Type (Upper Immediate Type)
+- **Purpose**: Loads large immediate values into a register.
+- **Fields**:
+  - **Opcode**: Operation code.
+  - **Immediate Value**: 20-bit value shifted to the upper 20 bits of the destination register.
 
-* J type
-    + J-type instructions in the RISC-V architecture are used for jump operations, allowing for altering the program control flow by jumping to a specified address.
-    + These instructions are typically used for unconditional jumps, like calling functions or implementing loops.
-    + imm[20] (1 bit): The 20th bit of the immediate value.
-    + imm[10:1] (10 bits): The 10th to 1st bits of the immediate value.
-    + imm[11] (1 bit): The 11th bit of the immediate value.
-    + imm[19:12] (8 bits): The 19th to 12th bits of the immediate value.
-    + rd (5 bits): Destination register where the return address is stored.
-    + opcode (7 bits): Operation code for J-type instructions.
+### 6. J-Type (Jump Type)
+- **Purpose**: Executes jumps to a specified address.
+- **Fields**:
+  - **Opcode**: Operation code.
+  - **Immediate Value**: 20-bit address specifying the jump target.
+
+Each instruction format in RISC-V is designed to streamline instruction encoding and processing, enabling efficient execution of a wide range of operations.
+
    
   
   ## Decoding each instruction type provided: 
