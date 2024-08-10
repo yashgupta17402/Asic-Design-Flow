@@ -3,6 +3,7 @@
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
 - [Assignment 3](#assignment-3)
+- [Assignment 4](#assignment-4)
   
 ## Assignment 1
 
@@ -219,6 +220,7 @@ This table provides details for various RISC-V instructions, including their for
 
 **Note**: The 32-bit encodings are represented in binary and grouped for readability.
 
+## Assignment 4
 
 
 
