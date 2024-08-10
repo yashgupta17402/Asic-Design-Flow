@@ -147,9 +147,6 @@ There exists 6 types of instruction formats in RISCV.
 
 ![instruction_types_f](https://github.com/user-attachments/assets/523f7129-a80d-42c4-9c7b-6a5305139459)
 
-## RISC-V Instruction Formats
-
-RISC-V architecture uses various instruction formats to efficiently encode and interpret instructions. Here are six key instruction formats:
 
 ### 1. R-Type (Register Type)
 - **Purpose**: Used for arithmetic and logical operations between registers.
