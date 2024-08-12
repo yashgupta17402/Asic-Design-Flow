@@ -402,6 +402,15 @@ Create a verilog file and testbench.Then create the dump file.Then run  GTKWave.
 <br>
 ![Screenshot from 2024-08-12 15-05-31](https://github.com/user-attachments/assets/a87b6994-e690-4f62-aac4-c294d7fa7419)
 
+
+ ```
+gedit 32rv.v
+gedit 32rv_test_bench.v
+iverilog -o 32rv 32rv.v 32rv_test_bench.v
+```
+ ```
+./32rv
+```
  ```
 gtkwave iiitb_rv32i.vcd
 ```
