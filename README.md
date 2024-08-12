@@ -405,7 +405,7 @@ Create a verilog file and testbench.Then create the dump file.Then run  GTKWave.
  ```
 gtkwave iiitb_rv32i.vcd
 ```
-# Output of instruction in Waveform:
+# Output of instruction in Waveform(GTKWAVE):
 
 ADD R6, R2, R1    <br>
 
@@ -446,6 +446,10 @@ SW R3, R1, 2      <br>
 LW R13, R1, 2     <br>
 ![Screenshot from 2024-08-12 17-48-39](https://github.com/user-attachments/assets/5a58aa2b-dcf6-4afc-8795-091ffa507d17)
 
+OVERALL WAVEFORM <br>
+
+
+![Screenshot from 2024-08-12 17-50-54](https://github.com/user-attachments/assets/1582786d-1cac-4989-a777-d75bee547527)
 
 
 
