@@ -395,5 +395,9 @@ verilog code of Testbench:
 Steps to run code :
 ![Screenshot from 2024-08-12 15-05-31](https://github.com/user-attachments/assets/a87b6994-e690-4f62-aac4-c294d7fa7419)
 
+ ```
+gtkwave iiitb_rv32i.vcd
+```
+
 
 
