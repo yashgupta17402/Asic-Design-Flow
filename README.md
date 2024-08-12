@@ -373,7 +373,7 @@ Verilog code where instructions are defined:
 
 Below are hardcoded ISA's and Bit Patterns of instructions in provided  verilog code.
 
-# ISA Operation Table
+
 
 This table maps the standard RISC-V ISA to the hardcoded ISA values used in the project, including the bit patterns.
 
@@ -405,6 +405,58 @@ Create a verilog file and testbench.Then create the dump file.Then run  GTKWave.
  ```
 gtkwave iiitb_rv32i.vcd
 ```
+# Output of instruction in Waveform:
+
+ADD R6, R2, R1    <br>
+
+![Screenshot from 2024-08-12 17-47-12](https://github.com/user-attachments/assets/10d3af07-dfa7-4217-ad92-392c552e7480)
+
+SUB R7, R1, R2     <br>
+
+ ![Screenshot from 2024-08-12 17-47-34](https://github.com/user-attachments/assets/3018d5fa-2ee2-4eae-97bf-83f2d76b4257)
+
+AND R8, R1, R3    <br>
+ 
+![Screenshot from 2024-08-12 17-47-41](https://github.com/user-attachments/assets/8c67f57c-af31-45a9-887a-f56ee488f504)
+
+OR R9, R2, R5      <br>
+
+![Screenshot from 2024-08-12 17-47-53](https://github.com/user-attachments/assets/1ec3201c-e398-4836-b6c2-3640b4d69388)
+
+XOR R10, R1, R4   <br>
+ 
+ ![Screenshot from 2024-08-12 17-48-06](https://github.com/user-attachments/assets/6f7bbcf7-7bb9-4395-9559-9e3be667ad78)
+
+SLT R1, R2, R4     <br>
+
+ ![Screenshot from 2024-08-12 17-48-13](https://github.com/user-attachments/assets/616bce1b-d634-49b5-ab11-2601d8fa1d2b)
+
+ADDI R12, R4, 5   <br>
+
+![Screenshot from 2024-08-12 17-48-20](https://github.com/user-attachments/assets/83a9b641-3c95-408a-a920-05a5c67432c5)
+
+BEQ R0, R0, 15     <br>
+
+![Screenshot from 2024-08-12 17-48-26](https://github.com/user-attachments/assets/3119ee7d-c025-4ed8-85c6-c10aa28455d5)
+
+SW R3, R1, 2      <br>
+ 
+![Screenshot from 2024-08-12 17-48-39](https://github.com/user-attachments/assets/5a58aa2b-dcf6-4afc-8795-091ffa507d17)
+
+LW R13, R1, 2     <br>
+
+![Screenshot from 2024-08-12 17-49-03](https://github.com/user-attachments/assets/e1a9ee4c-7557-4755-9623-7c81f5b0d17b)
+
+
+
+
+
+
+ 
+
+
+
+
 
 
 
