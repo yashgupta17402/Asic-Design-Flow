@@ -393,6 +393,8 @@ verilog code of Testbench:
 ![Screenshot from 2024-08-12 15-04-03](https://github.com/user-attachments/assets/b559b677-1649-4ae2-8cb7-eae060c66beb)
 
 Steps to run code :
+Create a verilog file and testbench.Then create the dump file.Then run  GTKWave.
+<br/>
 ![Screenshot from 2024-08-12 15-05-31](https://github.com/user-attachments/assets/a87b6994-e690-4f62-aac4-c294d7fa7419)
 
  ```
