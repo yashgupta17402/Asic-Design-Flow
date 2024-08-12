@@ -211,7 +211,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `000`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00110 00010 000 00001 0110011`
-- **Hexadecimal Code:** `0x00C30333`
+- **Hexadecimal Code:** `0x006100B3
 
 #### SUB `r3, r1, r2`
 - **Instruction Type:** R-Type
@@ -222,7 +222,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `000`
 - **Function Code (func7):** `0100000`
 - **Binary Instruction:** `0100000 00010 00001 000 00110 0110011`
-- **Hexadecimal Code:** `0x400302B3`
+- **Hexadecimal Code:** `0x40208333`
 
 #### AND `r2, r1, r3`
 - **Instruction Type:** R-Type
@@ -233,7 +233,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `111`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00011 00001 111 00010 0110011`
-- **Hexadecimal Code:** `0x003202B3`
+- **Hexadecimal Code:** `0x0030F133`
 
 #### OR `r8, r2, r5`
 - **Instruction Type:** R-Type
@@ -244,7 +244,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `110`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00101 00010 110 01000 0110011`
-- **Hexadecimal Code:** `0x005323B3`
+- **Hexadecimal Code:** `0x00516433
 
 #### XOR `r8, r1, r4`
 - **Instruction Type:** R-Type
@@ -255,7 +255,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `100`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00100 00001 100 01000 0110011`
-- **Hexadecimal Code:** `0x004323B3`
+- **Hexadecimal Code:** `0x0040C433
 
 #### SLT `r10, r2, r4`
 - **Instruction Type:** R-Type
@@ -266,7 +266,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `010`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00100 00010 010 01100 0110011`
-- **Hexadecimal Code:** `0x002302B3`
+- **Hexadecimal Code:** `0x00412633
 
 #### ADDI `r12, r3, 5`
 - **Instruction Type:** I-Type
@@ -276,7 +276,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Immediate (imm[11:0]):** `5 (000000000101)`
 - **Function Code (func3):** `000`
 - **Binary Instruction:** `000000000101 00110 000 01100 0010011`
-- **Hexadecimal Code:** `0x00532313`
+- **Hexadecimal Code:** `0x00530613
 
 #### SW `r3, r1, 4`
 - **Instruction Type:** S-Type
@@ -286,7 +286,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Immediate (imm[11:0]):** `4 (000000000100)`
 - **Function Code (func3):** `010`
 - **Binary Instruction:** `0000000 00100 00001 010 00100 0100011`
-- **Hexadecimal Code:** `0x00412023`
+- **Hexadecimal Code:** `0x0040A223
 
 #### SRL `r16, r11, r2`
 - **Instruction Type:** R-Type
@@ -297,7 +297,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `101`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00010 01011 101 10000 0110011`
-- **Hexadecimal Code:** `0x002B5B33`
+- **Hexadecimal Code:** `0x0025D833
 
 #### BNE `r0, r1, 20`
 - **Instruction Type:** B-Type
@@ -307,7 +307,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Immediate (imm[12:1]):** `20 (000000010100)`
 - **Function Code (func3):** `001`
 - **Binary Instruction:** `0 000001 00001 00000 001 0100 0 1100011`
-- **Hexadecimal Code:** `0x00100063`
+- **Hexadecimal Code:** `0x02101463`
 
 #### BEQ `r0, r0, 15`
 - **Instruction Type:** B-Type
@@ -327,7 +327,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Immediate (imm[11:0]):** `2 (000000000010)`
 - **Function Code (func3):** `010`
 - **Binary Instruction:** `000000000010 01011 010 01101 0000011`
-- **Hexadecimal Code:** `0x0022A683`
+- **Hexadecimal Code:** `0x0025A683
 
 #### SLL `r15, r11, r2`
 - **Instruction Type:** R-Type
@@ -338,7 +338,7 @@ Below is a detailed representation of various RISC-V instructions, including the
 - **Function Code (func3):** `001`
 - **Function Code (func7):** `0000000`
 - **Binary Instruction:** `0000000 00010 01011 001 01111 0110011`
-- **Hexadecimal Code:** `0x002B7B33`
+- **Hexadecimal Code:** `0x002597B3
 
 
 
