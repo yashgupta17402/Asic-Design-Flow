@@ -366,7 +366,7 @@ This table provides details for various RISC-V instructions, including their for
 
 ## Assignment 4
 
-Verilog code defined:
+Verilog code where instructions are defined:
 ![Untitled design](https://github.com/user-attachments/assets/ad0ce846-85b5-4919-8730-ff67c673294d)
 
 
@@ -389,12 +389,13 @@ Below are hardcoded ISA's and Bit Patterns of instructions in provided  verilog 
 |SLL R15, R1, R2 |	      32'h00208783  |   0000000 00010 00001 000 01111 0000011
 
 
-verilog code of Testbench:
+Verilog code of Testbench:
 ![Screenshot from 2024-08-12 15-04-03](https://github.com/user-attachments/assets/b559b677-1649-4ae2-8cb7-eae060c66beb)
 
 Steps to run code :
+<br>
 Create a verilog file and testbench.Then create the dump file.Then run  GTKWave.
-<br/>
+<br>
 ![Screenshot from 2024-08-12 15-05-31](https://github.com/user-attachments/assets/a87b6994-e690-4f62-aac4-c294d7fa7419)
 
  ```
