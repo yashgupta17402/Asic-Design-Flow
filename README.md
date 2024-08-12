@@ -366,6 +366,10 @@ This table provides details for various RISC-V instructions, including their for
 
 ## Assignment 4
 
+![Untitled design](https://github.com/user-attachments/assets/ad0ce846-85b5-4919-8730-ff67c673294d)
+
+
+
 Below are hardcoded ISA's and Bit Patterns of instructions in provided  verilog code.
 
 |Operation	     |        Hardcoded ISA |   Bit Pattern (Hardcoded)
