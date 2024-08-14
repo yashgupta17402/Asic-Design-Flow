@@ -577,11 +577,20 @@ The picture below represents the compiling  C code using gcc and  running  its o
 *  Now create the object file (.o) ,which is the output of the compiler as shown in the procedure shown below.
     
   ![Screenshot from 2024-08-14 23-16-57](https://github.com/user-attachments/assets/69208ed5-05af-4b9d-bce3-794debf1d5f8)
-![Screenshot from 2024-08-14 23-19-39](https://github.com/user-attachments/assets/be803ac3-ef4a-4f58-a176-62e77e8bc496)
+
+![Screenshot from 2024-08-14 23-21-35](https://github.com/user-attachments/assets/b24542b9-cac9-4929-86bd-3053e50d22a3)
 
 * Run the executable program and see the output in the terminal window.
-
   
+![Screenshot from 2024-08-14 23-23-58](https://github.com/user-attachments/assets/822e5765-fd95-4bcf-8cda-80f527563201)
+
+*We are going to have find the result of multiplication on the RISCV compiler using the SPIKE command instead of gcc and risc-v compiler.
+
+  ![Screenshot from 2024-08-14 23-19-39](https://github.com/user-attachments/assets/5b2514cb-b41a-49e0-997b-1dfe67a7175f)
+
+  ![Screenshot from 2024-08-14 23-27-18](https://github.com/user-attachments/assets/3804aaa2-f437-4faf-a1f0-ca2781b4e78b)
+
+
 
 
 
