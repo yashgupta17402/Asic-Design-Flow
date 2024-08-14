@@ -556,15 +556,30 @@ long binaryToDecimal(long binary)
 
  ```
 * Save the program and compile your code in the terminal window using GCC compiler.
-* 
+  
 ![Screenshot from 2024-08-14 23-10-03](https://github.com/user-attachments/assets/9b60c65c-9c8f-46ac-bb11-264a7ec7e5a3)
 
 ### Step 2
 Run the executable program and see the output in the terminal window.
+
 ### Output
 The picture below represents the compiling  C code using gcc and  running  its output using a.out
 
 ![Screenshot from 2024-08-14 23-11-57](https://github.com/user-attachments/assets/45950fc5-30ef-421d-9e2e-116f6ecb7291)
+
+## RISC-V Compilation:C Program
+### Step 1
+1. **Code :**
+   ![Screenshot from 2024-08-14 23-12-35](https://github.com/user-attachments/assets/6763abd8-6772-41a5-9773-22a630d0409b)
+
+
+* Compile the C code on RISC-V compiler
+*  Now create the object file (.o) ,which is the output of the compiler as shown in the procedure shown below.
+    
+  ![Screenshot from 2024-08-14 23-16-57](https://github.com/user-attachments/assets/69208ed5-05af-4b9d-bce3-794debf1d5f8)
+![Screenshot from 2024-08-14 23-19-39](https://github.com/user-attachments/assets/be803ac3-ef4a-4f58-a176-62e77e8bc496)
+
+* Run the executable program and see the output in the terminal window.
 
   
 
