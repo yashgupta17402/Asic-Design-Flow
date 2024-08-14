@@ -469,7 +469,7 @@ OVERALL WAVEFORM <br>
 * In the Linux Environment, create a new C Program file using any editor.
 * Command used to create C program: gedit filename.c 
   1. **Code :**
-    ```c
+ ```c
     #include <stdio.h>
 #include <math.h>
 
@@ -554,7 +554,7 @@ long binaryToDecimal(long binary)
     return decimal;
 }
 
-    ```
+ ```
 * Save the program and compile your code in the terminal window using GCC compiler.
 * 
 ![Screenshot from 2024-08-14 23-10-03](https://github.com/user-attachments/assets/9b60c65c-9c8f-46ac-bb11-264a7ec7e5a3)
