@@ -4,6 +4,7 @@
 - [Assignment 2](#assignment-2)
 - [Assignment 3](#assignment-3)
 - [Assignment 4](#assignment-4)
+- [Assignment 5](#assignment-5)
   
 ## Assignment 1
 
@@ -460,6 +461,112 @@ OVERALL WAVEFORM <br>
 
 ![Screenshot from 2024-08-12 17-50-54](https://github.com/user-attachments/assets/1582786d-1cac-4989-a777-d75bee547527)
 
+
+  
+## Assignment 5
+
+### Step 1
+* In the Linux Environment, create a new C Program file using any editor.
+* Command used to create C program: gedit filename.c 
+  1. **Code :**
+    ```c
+    #include <stdio.h>
+#include <math.h>
+
+// Function prototypes
+int binaryProduct(int, int);
+long binaryToDecimal(long binary);
+
+int main()
+{
+    long binary1, binary2, multiply = 0;
+    int digit, factor = 1;
+
+    //printf("Enter the first binary number: ");
+    //scanf("%ld", &binary1);
+    binary1=11;
+    binary2=10;
+    //printf("Enter the second binary number: ");
+    //scanf("%ld", &binary2);
+
+    // Store the original binary numbers for later use
+    long originalBinary1 = binary1;
+    long originalBinary2 = binary2;
+
+    while (binary2 != 0)
+    {
+        digit =  binary2 % 10;
+        if (digit == 1)
+        {
+            binary1 = binary1 * factor;
+            multiply = binaryProduct(binary1, multiply);
+        }
+        else
+            binary1 = binary1 * factor;
+        binary2 = binary2 / 10;
+        factor = 10;
+    }
+
+    printf("Binary1: %ld (Decimal: %ld)\n", originalBinary1, binaryToDecimal(originalBinary1));
+    printf("Binary2: %ld (Decimal: %ld)\n", originalBinary2, binaryToDecimal(originalBinary2));
+    printf("Product of two binary numbers: %ld (Decimal: %ld)\n", multiply, binaryToDecimal(multiply));
+
+    return 0;
+}
+
+int binaryProduct(int binary1, int binary2)
+{
+    int i = 0, remainder = 0, sum[20];
+    int binaryProd = 0;
+
+    while (binary1 != 0 || binary2 != 0)
+    {
+        sum[i++] = (binary1 % 10 + binary2 % 10 + remainder) % 2;
+        remainder = (binary1 % 10 + binary2 % 10 + remainder) / 2;
+        binary1 = binary1 / 10;
+        binary2 = binary2 / 10;
+    }
+
+    if (remainder != 0)
+        sum[i++] = remainder;
+
+    --i;
+
+    while (i >= 0)
+        binaryProd = binaryProd * 10 + sum[i--];
+
+    return binaryProd;
+}
+
+// Function to convert binary to decimal
+long binaryToDecimal(long binary)
+{
+    long decimal = 0, base = 1;
+
+    while (binary > 0)
+    {
+        int lastDigit = binary % 10;
+        decimal += lastDigit * base;
+        base *= 2;
+        binary /= 10;
+    }
+
+    return decimal;
+}
+
+    ```
+* Save the program and compile your code in the terminal window using GCC compiler.
+* 
+![Screenshot from 2024-08-14 23-10-03](https://github.com/user-attachments/assets/9b60c65c-9c8f-46ac-bb11-264a7ec7e5a3)
+
+### Step 2
+Run the executable program and see the output in the terminal window.
+### Output
+The picture below represents the compiling  C code using gcc and  running  its output using a.out
+
+![Screenshot from 2024-08-14 23-11-57](https://github.com/user-attachments/assets/45950fc5-30ef-421d-9e2e-116f6ecb7291)
+
+  
 
 
 
