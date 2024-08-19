@@ -592,6 +592,7 @@ The picture below represents the compiling  C code using gcc and  running  its o
   ![Screenshot from 2024-08-14 23-27-18](https://github.com/user-attachments/assets/3804aaa2-f437-4faf-a1f0-ca2781b4e78b)
 
   ## Assignment 6
+  ##  Combinational Logic-TL Verilog and Makerchip
 
 
 
