@@ -622,6 +622,14 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 ###   Vectors's Arithmetic Operation 
 ![arithmetic_vectors](https://github.com/user-attachments/assets/206c0e86-0ab0-4a61-9db8-2ea93ccca137)
 
+### 2:1 MUX Using Vectors
+
+![2_mux_vector](https://github.com/user-attachments/assets/1869b167-0bcf-4c44-b7c3-b2e2ca6d0b75)
+
+###  Combinational Calculator
+![calcuator_comb](https://github.com/user-attachments/assets/501ba612-43a0-40ce-9933-92ca158e39b4)
+
+
 
 
 
