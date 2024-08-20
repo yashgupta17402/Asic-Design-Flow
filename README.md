@@ -593,7 +593,11 @@ The picture below represents the compiling  C code using gcc and  running  its o
 
   ## Assignment 6
   ##  Combinational Logic-TL Verilog and Makerchip
+Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which represents a significant advancement by removing the need for the legacy features of traditional Verilog and introducing a more streamlined syntax. TL-Verilog enhances design efficiency by adding powerful constructs for pipelines and transactions, making it easier to develop complex digital circuits.
 
+###Logic gates
+
+![logic gates](https://github.com/user-attachments/assets/556f5e87-5831-4c4d-bfbe-db429ef59258)
 
 
 
