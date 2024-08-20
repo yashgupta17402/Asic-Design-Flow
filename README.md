@@ -629,6 +629,34 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 ###  Combinational Calculator
 ![calcuator_comb](https://github.com/user-attachments/assets/501ba612-43a0-40ce-9933-92ca158e39b4)
 
+## Sequential Circuits
+
+### Fibbonacci Series
+![FIB_SEQ](https://github.com/user-attachments/assets/c48d2e91-f212-421f-ac48-6ffb106adc15)
+
+###  Free Running Counter
+![FREE_COUNTER_SEQ](https://github.com/user-attachments/assets/48f1d7e7-67ab-48e0-a909-b5b8b444a3ae)
+
+ ### Sequential Calculator
+ ![SEQ_CAL](https://github.com/user-attachments/assets/542ad0d9-0672-40a1-a1ec-981da9c6654a)
+
+ ## Pipelined Logic
+
+ ### Producing the Pipeline Design
+ ![pipe_1](https://github.com/user-attachments/assets/1bd76344-280b-4e48-985a-ab6d6f6eb3fe)
+
+ ### 2 Cycle Calculator
+ 
+![2_cyle_calc](https://github.com/user-attachments/assets/b845f033-ba01-484f-92da-1a16a51f61a8)
+
+![2_cycle_calc_2](https://github.com/user-attachments/assets/fdb857af-87ac-4fda-b26a-b39b37bbc6da)
+
+
+
+ 
+
+
+
 
 
 
