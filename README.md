@@ -601,9 +601,7 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 
 ### Inverter(NOT GATE)
 
-
-
-![invertor](https://github.com/user-attachments/assets/777b7f80-2c8d-4482-bf39-2550c6fbd521)
+![invertor](https://github.com/user-attachments/assets/b0b58788-9dfd-4f6d-b7ee-9a92454067c7)
 
 
 
