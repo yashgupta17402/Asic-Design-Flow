@@ -726,11 +726,55 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
  ![SEQ_CAL](https://github.com/user-attachments/assets/542ad0d9-0672-40a1-a1ec-981da9c6654a)
 
  ## Pipelined Logic
+Pipelined logic is a design technique used in digital circuits, particularly in processors and other high-performance computing systems, to improve throughput and performance by dividing a task into multiple stages, with each stage performing a part of the task concurrently.
 
  ### Producing the Pipeline Design
+ Code:
+ ```tl-verilog
+$reset = *reset;// To produce the Pipeline Design
+$clk_yas = *clk;
+|comp
+  @1
+    $err1 = $bad_input || $illegal_op;
+  @3
+    $err2 = $over_flow || $err1;
+  @6
+    $err3 = $div_by_zero || $err2;
+```
  ![pipe_1](https://github.com/user-attachments/assets/1bd76344-280b-4e48-985a-ab6d6f6eb3fe)
 
  ### 2 Cycle Calculator
+ Code:
+ ```tl-verilog
+|calc
+  @1
+    $reset = *reset;// 2 Cycle Calculator
+    $clk_yas = *clk;
+   
+    $val1[31:0] = >>2$out[31:0];
+    $val2[31:0] = $rand2[3:0];
+    $sel[1:0] = $rand3[1:0];
+   
+    $sum[31:0] = $val1[31:0] + $val2[31:0];
+    $diff[31:0] = $val1[31:0] - $val2[31:0];
+    $prod[31:0] = $val1[31:0] * $val2[31:0];
+    $quot[31:0] = $val1[31:0] / $val2[31:0];
+         
+    $count = $reset ? 0 : >>1$count + 1;
+         
+  @2
+    $valid = $count;
+    $inv_valid = !$valid;
+    $calc_reset = $reset | $inv_valid;
+    $out[31:0] = $calc_reset ? 32'b0 : ($op[1] ? ($op[0] ? $quot[31:0] : $prod[31:0])
+                                             : ($op[0] ? $diff[31:0] 
+                                                        : $sum[31:0]));
+
+
+```
+ 
+![2_cycle_Calc](https://github.com/user-attachments/assets/1c6cbff4-28b5-4b1a-9cdf-5409215ccbe2)
+
  
 ![2_cyle_calc](https://github.com/user-attachments/assets/b845f033-ba01-484f-92da-1a16a51f61a8)
 
