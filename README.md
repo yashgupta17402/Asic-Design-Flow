@@ -681,6 +681,17 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 
 ![read](https://github.com/user-attachments/assets/67d93833-cf31-4a84-bf30-4be465a3f1b7)
 
+### Arithmetic Logic Unit (ALU)
+
+![alu](https://github.com/user-attachments/assets/64303e3d-9217-4273-8704-e8a5edf37d09)
+
+### Register File Write
+
+![write_register](https://github.com/user-attachments/assets/832144bf-5b5c-443d-b139-115d9ca14a3f)
+
+### Branch instruction
+![branch_instruc](https://github.com/user-attachments/assets/a8448934-f17e-4665-b36f-66b62f080ec6)
+
 
 
 
