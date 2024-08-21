@@ -713,9 +713,13 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
 
 
 ### Fibbonacci Series
+![fibo](https://github.com/user-attachments/assets/079c7f68-ee03-4e2d-abd4-fbb2d878d28d)
+
 ![FIB_SEQ](https://github.com/user-attachments/assets/c48d2e91-f212-421f-ac48-6ffb106adc15)
 
 ###  Free Running Counter
+![free_counter](https://github.com/user-attachments/assets/50ea124e-8053-4072-a629-f9a3d0a48c31)
+
 ![FREE_COUNTER_SEQ](https://github.com/user-attachments/assets/48f1d7e7-67ab-48e0-a909-b5b8b444a3ae)
 
  ### Sequential Calculator
