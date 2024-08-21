@@ -781,10 +781,110 @@ $clk_yas = *clk;
 ![2_cycle_calc_2](https://github.com/user-attachments/assets/fdb857af-87ac-4fda-b26a-b39b37bbc6da)
 
 ## Validity
+When generating a waveform, results are captured for every clock cycle. Even if the code compiles without errors, logical errors can still occur, making them difficult to spot by just analyzing the waveforms. Additionally, some conditions labeled as "don't care" might be irrelevant to the design and can be ignored. This is where the concept of validity comes in.
+In digital circuits, the global clock drives operations continuously, even when those operations aren't necessary, leading to unnecessary power consumption. Since clocks in physical circuits are powered by voltage or current sources, they consume energy with each cycle. In complex systems, allowing unnecessary operations to continue without intervention can lead to significant energy waste. To enhance power efficiency, a technique called clock gating is used, which disables the clock signal during cycles where operations aren't needed. Validity is key to implementing clock gating effectively, ensuring that only the necessary operations are performed, reducing power consumption.
+
+
+
+
+
+
+
 
 ### Validity- Total Distance Calculator
 
+Code(Main Part): 
+```tl-verilog
+|calc
+  @1
+    $reset = *reset;//Total Distance Calculator
+    $clk_yas = *clk;
+            
+    ?$vaild      
+      @1
+        $aa_seq[31:0] = $aa[3:0] * $aa;
+        $bb_seq[31:0] = $bb[3:0] * $bb;;
+      
+      @2
+        $cc_seq[31:0] = $aa_seq + $bb_seq;;
+      
+      @3
+        $cc[31:0] = sqrt($cc_seq);
+            
+      @4
+         $total_distance[63:0] = 
+            $reset ? '0 :
+            $valid ? >>1$total_distance + $cc :
+                     >>1$total_distance;
+
+```
+
 ![total_distance_calc_validity](https://github.com/user-attachments/assets/39794969-9d51-47e6-8278-8212fd041e8b)
+
+### 2 Cycle Calulator with validity
+Code:
+```tl-verilog
+\m4_TLV_version 1d: tl-x.org
+\SV
+   // This code can be found in: https://github.com/stevehoover/RISC-V_MYTH_Workshop
+   
+   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/RISC-V_MYTH_Workshop/bd1f186fde018ff9e3fd80597b7397a1c862cf15/tlv_lib/calculator_shell_lib.tlv'])
+
+\SV
+   m4_makerchip_module   // (Expanded in Nav-TLV pane.)
+
+\TLV   
+   |calc
+      @0
+         $reset = *reset;
+         $clk_yog = *clk;
+         
+      @1
+         $val1 [31:0] = >>2$out [31:0];
+         $val2 [31:0] = $rand2[3:0];
+         
+         $valid = $reset ? 1'b0 : >>1$valid + 1'b1 ;
+         $valid_or_reset = $valid || $reset;
+         
+      ?$vaild_or_reset
+         @1   
+            $sum [31:0] = $val1 + $val2;
+            $diff[31:0] = $val1 - $val2;
+            $prod[31:0] = $val1 * $val2;
+            $quot[31:0] = $val1 / $val2;
+            
+         @2   
+            $out [31:0] = $reset ? 32'b0 :
+                          ($op[1:0] == 2'b00) ? $sum :
+                          ($op[1:0] == 2'b01) ? $diff :
+                          ($op[1:0] == 2'b10) ? $prod :
+                                                $quot ;
+            
+            
+
+      // Macro instantiations for calculator visualization(disabled by default).
+      // Uncomment to enable visualisation, and also,
+      // NOTE: If visualization is enabled, $op must be defined to the proper width using the expression below.
+      //       (Any signals other than $rand1, $rand2 that are not explicitly assigned will result in strange errors.)
+      //       You can, however, safely use these specific random signals as described in the videos:
+      //  o $rand1[3:0]
+      //  o $rand2[3:0]
+      //  o $op[x:0]
+      
+   //m4+cal_viz(@3) // Arg: Pipeline stage represented by viz, should be atleast equal to last stage of CALCULATOR logic.
+
+   
+   // Assert these to end simulation (before Makerchip cycle limit).
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+   
+
+\SV
+   endmodule
+
+```
+![2cycle_valid](https://github.com/user-attachments/assets/49539645-3c8c-4158-8745-1f815d4a6038)
+
 
 ## Assignment 7
 ## Implementation of the RISC-V CPU Core
