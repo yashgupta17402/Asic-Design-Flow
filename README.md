@@ -713,6 +713,9 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 ![day5_2](https://github.com/user-attachments/assets/8de87d0c-cac7-4c51-936f-92f7505b201c)
 
 
+![day5_6](https://github.com/user-attachments/assets/ed66b7ef-787f-44f2-bdf1-29aa3f5cd8c1)
+
+
 ![day5_3](https://github.com/user-attachments/assets/6f7c5730-309d-43af-a07f-b6e6bc2097ff)
 
 
