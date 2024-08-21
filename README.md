@@ -1190,27 +1190,30 @@ The simulation will pass only if the value stored in r10 = sum of numbers from 1
 
 ![TEST_BENCH](https://github.com/user-attachments/assets/b3da6065-a0fe-410a-ae56-7695b3976f62)
 
-
+The simulation passed as  message can be seen in the "Log" tab.
 ![TEST_1](https://github.com/user-attachments/assets/95065231-ee52-4aec-bbf8-c697953e7f50)
 
 ##  Implementation of Final RISC-V CPU Core 
 
-
+Output:
 ![day5_1](https://github.com/user-attachments/assets/6ef4438f-e3ba-4d47-b5ca-be96bebee269)
 
 
+Final Block Diagram:
 
 ![day5_2](https://github.com/user-attachments/assets/8de87d0c-cac7-4c51-936f-92f7505b201c)
 
-
+Waveform of Clock :
 ![day5_6](https://github.com/user-attachments/assets/ed66b7ef-787f-44f2-bdf1-29aa3f5cd8c1)
 
-
+Waveform of Reset :
 ![day5_3](https://github.com/user-attachments/assets/6f7c5730-309d-43af-a07f-b6e6bc2097ff)
 
-
+Viz:
+You can see that the value of reg 10 and reg 14 will reach to 45 after 57 cycles.
 ![day5_4](https://github.com/user-attachments/assets/8eb1fe0d-0169-43c1-bd5c-86acf26aca17)
 
+We can observe that values are  Gradual increased and final value is h2d which is 45.
 ![day5_5](https://github.com/user-attachments/assets/8e7da521-5396-4dec-a212-a4fa4cc13a8e)
 
  
