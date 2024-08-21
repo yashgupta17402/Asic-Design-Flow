@@ -1152,8 +1152,38 @@ This step is crucial for handling instructions that require storing the output i
 The final step is to incorporate support for branch instructions. In the RISC-V ISA, branches are conditional, meaning that a branch is executed only if a specific condition is met. Additionally, the branch target address (PC) must be calculated, and if the branch condition is satisfied, the PC is updated to this new branch target address. This ensures that the program counter correctly points to the intended instruction when a branch is taken.
 ![branch_instruc](https://github.com/user-attachments/assets/a8448934-f17e-4665-b36f-66b62f080ec6)
 
+### Pipelining the RISC-V CPU Core
+
+The RISC-V core designed is splited into 5 pipeline stages. Pipelining in Makerchip is extremely simple. To define a pipeline use the following syntax:
+
+```tl-verilog
+|<pipeline_name>
+  @<pipeline_stage>
+    instruction1 in the current stage
+    instruction2 in the current stage
+    .
+    .
+  @<pipeline_stage>
+    instruction1 in the current stage
+    instruction2 in the current stage
+    .
+    .
+
+```
+ Staging in a pipeline is a physical attribute with no impact to behaviour. At this point support for register file bypass is provided. 
+
+ ### Load/Store Instructions
+ Load/store and jump support is added along with the following two extra lines of code to test load and store.
+ 
+```tl-verilog
+m4_asm(SW, r0, r10, 10000)
+m4_asm(LW, r17, r0, 10000)
+```
+
+
 ### Testbench
 
+The simulation will pass only if the value stored in r10 = sum of numbers from 1 to 9(45).
 ```bash
 *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
 ```
