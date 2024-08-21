@@ -772,6 +772,8 @@ $clk_yas = *clk;
 
 
 ```
+![2cycle_valid](https://github.com/user-attachments/assets/516dbee0-845e-43c8-a924-ddc5718c214e)
+
  
 ![2_cycle_Calc](https://github.com/user-attachments/assets/1c6cbff4-28b5-4b1a-9cdf-5409215ccbe2)
 
@@ -779,6 +781,9 @@ $clk_yas = *clk;
 ![2_cyle_calc](https://github.com/user-attachments/assets/b845f033-ba01-484f-92da-1a16a51f61a8)
 
 ![2_cycle_calc_2](https://github.com/user-attachments/assets/fdb857af-87ac-4fda-b26a-b39b37bbc6da)
+
+###  2 Calculator with Single Value Memory
+
 
 ## Validity
 When generating a waveform, results are captured for every clock cycle. Even if the code compiles without errors, logical errors can still occur, making them difficult to spot by just analyzing the waveforms. Additionally, some conditions labeled as "don't care" might be irrelevant to the design and can be ignored. This is where the concept of validity comes in.
