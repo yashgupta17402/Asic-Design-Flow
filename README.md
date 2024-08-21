@@ -703,6 +703,22 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 
 ![TEST_1](https://github.com/user-attachments/assets/95065231-ee52-4aec-bbf8-c697953e7f50)
 
+##  Implementation of Final RISC-V CPU Core 
+
+
+![day5_1](https://github.com/user-attachments/assets/6ef4438f-e3ba-4d47-b5ca-be96bebee269)
+
+
+
+![day5_2](https://github.com/user-attachments/assets/8de87d0c-cac7-4c51-936f-92f7505b201c)
+
+
+![day5_3](https://github.com/user-attachments/assets/6f7c5730-309d-43af-a07f-b6e6bc2097ff)
+
+
+![day5_4](https://github.com/user-attachments/assets/8eb1fe0d-0169-43c1-bd5c-86acf26aca17)
+
+![day5_5](https://github.com/user-attachments/assets/8e7da521-5396-4dec-a212-a4fa4cc13a8e)
 
  
 
