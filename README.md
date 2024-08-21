@@ -663,13 +663,19 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 ### Program Counter(PC) and next PC Logic
 
 
+![pc_counter](https://github.com/user-attachments/assets/581e3ddb-083d-40ca-b4d0-34ab196a4048)
 
-![pc_counter](https://github.com/user-attachments/assets/0b75d84e-76aa-4a56-a3de-8eca4db2bdf6)
+
 
 ### Instruction Fetch
 
 
 ![fetch_code](https://github.com/user-attachments/assets/e27816f5-5915-4f8b-9319-6e6f8eef155e)
+
+### Instruction Decode
+
+![instruction_decode](https://github.com/user-attachments/assets/c8ba41a7-b9c7-4c58-9cc1-e61604c7e5d0)
+
 
 
 
