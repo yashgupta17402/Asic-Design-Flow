@@ -654,7 +654,13 @@ $out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2:1 MUX Using Vectors
 ![2_mux_vector](https://github.com/user-attachments/assets/1869b167-0bcf-4c44-b7c3-b2e2ca6d0b75)
 
 ###  Combinational Calculator
+In this example, we illustrate the implementation of a simple combinational calculator using TL-Verilog on the Makerchip platform. This calculator is capable of executing four basic arithmetic operations: addition, subtraction, multiplication, and division.
+In the provided code, two randomly generated 4-bit values, $rand1[3:0] and $rand2[3:0], are assigned to 32-bit variables $val1[31:0] and $val2[31:0], respectively. The calculator then applies the four arithmetic operations to these values.
+The outcome of one of these operations is selected by a multiplexer (MUX), which is controlled by the selection bits $sel[1:0]. The MUX determines which of the operation results is assigned to the output variable $out[31:0].
+The following screenshot illustrates the combinational circuit's implementation using this code on the Makerchip platform. It also includes the generated block diagram and the simulation waveform, offering a detailed view of how the circuit operates.
+</br>
 ![calcuator_comb](https://github.com/user-attachments/assets/501ba612-43a0-40ce-9933-92ca158e39b4)
+
 
 ## Sequential Circuits
 
