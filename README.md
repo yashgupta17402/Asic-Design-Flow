@@ -692,8 +692,16 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 ### Branch instruction
 ![branch_instruc](https://github.com/user-attachments/assets/a8448934-f17e-4665-b36f-66b62f080ec6)
 
+### Testbench
+
+```bash
+*passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+```
+
+![TEST_BENCH](https://github.com/user-attachments/assets/b3da6065-a0fe-410a-ae56-7695b3976f62)
 
 
+![TEST_1](https://github.com/user-attachments/assets/95065231-ee52-4aec-bbf8-c697953e7f50)
 
 
  
