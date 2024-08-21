@@ -600,6 +600,32 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 
 ![logic gates](https://github.com/user-attachments/assets/556f5e87-5831-4c4d-bfbe-db429ef59258)
 
+
+### CODE
+
+```tl-verilog
+$out = ! $in; //invertor
+```
+```tl-verilog
+$out = $in1 || $in2; // OR Gate
+```
+```tl-verilog
+$out = $in1 && $in2; //  AND Gate
+```
+```tl-verilog
+$out = $in1 ^ $in2;  // XOR Gate
+```
+```tl-verilog
+$out[4:0] = $in1[3:0] + $in2[3:0]; // Arithmetic Operation on Vectors
+```
+```tl-verilog
+$out = $sel ? $in1 : $in0; // 2:1 MUX
+```
+```tl-verilog
+$out[7:0] = $sel ? $in1[7:0] : $in0[7:0]; // 2:1 MUX Using Vectors
+```
+
+
 ### Inverter(NOT GATE)
 
 ![invertor](https://github.com/user-attachments/assets/b0b58788-9dfd-4f6d-b7ee-9a92454067c7)
