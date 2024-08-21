@@ -679,6 +679,39 @@ The following screenshot illustrates the combinational circuit's implementation 
 
 ## Sequential Circuits
 
+A sequential circuit is a type of digital circuit in which the output not only depends on the current inputs but also on the history of past inputs. This means that sequential circuits have memory elements, such as flip-flops or latches, which store information about previous states.
+Key Characteristics of Sequential Circuits:
+Memory: Sequential circuits retain information about previous input states, enabling them to "remember" and use this information for future operations.
+State: The circuit's output is determined by both the present input and the current state of the memory elements.
+Clock Signal: Many sequential circuits use a clock signal to synchronize changes in the state, making the circuit change its state only at specific times (e.g., on the rising or falling edge of the clock signal).
+
+Codes(Main parts):
+
+```tl-verilog
+$reset = *reset;
+$num[31:0] = $reset ? 1 : (>>1$num + >>2$num);//Fibbonacci Series
+```
+```tl-verilog
+$reset = *reset;// Sequential Calculator
+   
+$val1[31:0] = >>1$out;
+$val2[31:0] = $rand[3:0];
+   
+$sum[31:0] =  $val1[31:0] +  $val2[31:0];
+$diff[31:0] =  $val1[31:0] -  $val2[31:0];
+$prod[31:0] =  $val1[31:0] *  $val2[31:0];
+$quot[31:0] =  $val1[31:0] /  $val2[31:0];
+   
+   
+$out[31:0] = $reset ? 32'h0 : ($choose[1] ? ($choose[0] ? $quot : $prod):($choose[0] ? $diff : $sum));
+
+```
+```tl-verilog
+$reset = *reset;// Free Running Counter
+$cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
+```
+
+
 ### Fibbonacci Series
 ![FIB_SEQ](https://github.com/user-attachments/assets/c48d2e91-f212-421f-ac48-6ffb106adc15)
 
