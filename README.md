@@ -6,6 +6,7 @@
 - [Assignment 4](#assignment-4)
 - [Assignment 5](#assignment-5)
 - [Assignment 6](#assignment-6)
+- [Assignment 7](#assignment-7)
   
 ## Assignment 1
 
@@ -657,7 +658,7 @@ Makerchip supports the Transaction-Level Verilog (TL-Verilog) standard, which re
 
 ![total_distance_calc_validity](https://github.com/user-attachments/assets/39794969-9d51-47e6-8278-8212fd041e8b)
 
-
+## Assignment 7
 ## Implementation of the RISC-V CPU Core
 
 ### Program Counter(PC) and next PC Logic
