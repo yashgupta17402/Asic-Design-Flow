@@ -841,8 +841,8 @@ Code:
 \TLV   
    |calc
       @0
-         $reset = *reset;
-         $clk_yog = *clk;
+         $reset = *reset;//2 Cycle Calulator with validity
+         $clk_yas = *clk;
          
       @1
          $val1 [31:0] = >>2$out [31:0];
@@ -891,6 +891,42 @@ Code:
 ![2cycle_valid](https://github.com/user-attachments/assets/516dbee0-845e-43c8-a924-ddc5718c214e)
 
 ###  2 Calculator with Single Value Memory
+Code:
+```tl-verilog
+|calc
+      @0
+         $reset = *reset;//2 Calculator with Single Value Memory
+         $clk_yas = *clk;
+         
+      @1
+         $val1 [31:0] = >>2$out;
+         $val2 [31:0] = $rand2[3:0];
+         
+         $valid = $reset ? 1'b0 : >>1$valid + 1'b1 ;
+         $valid_or_reset = $valid || $reset;
+         
+      ?$vaild_or_reset
+         @1   
+            $sum [31:0] = $val1 + $val2;
+            $diff[31:0] = $val1 - $val2;
+            $prod[31:0] = $val1 * $val2;
+            $quot[31:0] = $val1 / $val2;
+            
+         @2   
+            $mem[31:0] = $reset ? 32'b0 :
+                         ($op[2:0] == 3'b101) ? $val1 : >>2$mem ;
+            
+            $out [31:0] = $reset ? 32'b0 :
+                          ($op[2:0] == 3'b000) ? $sum :
+                          ($op[2:0] == 3'b001) ? $diff :
+                          ($op[2:0] == 3'b010) ? $prod :
+                          ($op[2:0] == 3'b011) ? $quot :
+                          ($op[2:0] == 3'b100) ? >>2$mem : >>2$out ;
+
+```
+
+![valid_3](https://github.com/user-attachments/assets/fa979790-f199-4409-9a64-662660461274)
+
 
 
 ## Assignment 7
