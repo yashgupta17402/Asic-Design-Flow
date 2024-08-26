@@ -1219,6 +1219,35 @@ We can observe that values are  Gradual increased and final value is h2d which i
 
 ## Assignment 8
 
+The RISC-V processor was originally developed using TL-Verilog in the Makerchip IDE. To deploy this design on an FPGA, it was necessary to convert it to standard Verilog. This conversion was accomplished using the Sandpiper-SaaS compiler. After the conversion, pre-synthesis simulations will be performed using the GTKWave simulator to verify the design.
+
+### INSTALLING PREREQUISITES AND CREATING VIRTUAL ENVIRONMENT
+
+``` bash
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave
+$ cd ~
+$ sudo apt-get install python3-venv
+$ python3 -m venv .venv
+$ source ~/.venv/bin/activate
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+![ass8_1](https://github.com/user-attachments/assets/645f6330-c29c-4ccc-be17-c8c24edaa92b)
+
+Code:
+
+
+Clone the repository that contains the VSDBabySoC design files and testbench. Once cloned, navigate to the VSDBabySoC directory.
+
+![Screenshot from 2024-08-27 00-24-00](https://github.com/user-attachments/assets/4c8ffea5-e6e2-4418-b6bd-763ee5d12c3e)
+
+Replace the rvmyth.tlv file in the VSDBabySoC Directory.Replace in src/module with the rvmth.tlv given [here](https://github.com/YogeshGoyyalA-1/Asic_Design/tree/main/Lab10/codes)
+
+
+
+
+
+
  
 
 
