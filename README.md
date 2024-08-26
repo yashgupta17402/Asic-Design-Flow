@@ -1261,7 +1261,7 @@ Now,we will create the pre_synth_sim.vcd.
 The simulation results, specifically the pre_synth_sim.vcd file, will be saved in the output/pre_synth_sim directory. To compile and simulate the VSDBabySoC design, you'll generate the pre_synth_sim.vcd file, which contains the simulation waveform data.
 ![Screenshot from 2024-08-27 00-24-58](https://github.com/user-attachments/assets/dbe4cfb8-b0c1-4067-b063-2253f870f691)
 
-### Waveforms
+###  GTK Waveforms
 
 CLOCK:
 ![Screenshot from 2024-08-27 00-36-44](https://github.com/user-attachments/assets/46a28f67-5cab-46e5-92f2-5e053916714f)
@@ -1276,6 +1276,21 @@ Reset:
 
  ALL Together:
 ![Screenshot from 2024-08-27 00-34-41](https://github.com/user-attachments/assets/f59991b6-19d2-4039-bcf6-8186212bc39b)
+
+Makerchip Waveforms:
+
+CLOCK:
+![day5_6](https://github.com/user-attachments/assets/ed66b7ef-787f-44f2-bdf1-29aa3f5cd8c1)
+
+RESET:
+![day5_3](https://github.com/user-attachments/assets/6f7c5730-309d-43af-a07f-b6e6bc2097ff)
+
+We can observe that values are  Gradual increased and final value is h2d which is 45.
+![day5_5](https://github.com/user-attachments/assets/8e7da521-5396-4dec-a212-a4fa4cc13a8e)
+
+
+
+
 
  
  
