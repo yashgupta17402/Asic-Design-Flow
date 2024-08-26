@@ -7,6 +7,7 @@
 - [Assignment 5](#assignment-5)
 - [Assignment 6](#assignment-6)
 - [Assignment 7](#assignment-7)
+- [Assignment 8](#assignment-8)
   
 ## Assignment 1
 
@@ -1215,6 +1216,8 @@ You can see that the value of reg 10 and reg 14 will reach to 45 after 57 cycles
 
 We can observe that values are  Gradual increased and final value is h2d which is 45.
 ![day5_5](https://github.com/user-attachments/assets/8e7da521-5396-4dec-a212-a4fa4cc13a8e)
+
+## Assignment 8
 
  
 
