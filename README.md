@@ -1235,6 +1235,16 @@ $ pip3 install pyyaml click sandpiper-saas
 ![ass8_1](https://github.com/user-attachments/assets/645f6330-c29c-4ccc-be17-c8c24edaa92b)
 
 Code:
+```bash
+git clone https://github.com/manili/VSDBabySoC.git
+cd VSDBabySoc
+sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+make pre_synth_sim
+iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+cd output
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
 
 
 Clone the repository that contains the VSDBabySoC design files and testbench. Once cloned, navigate to the VSDBabySoC directory.
@@ -1242,6 +1252,36 @@ Clone the repository that contains the VSDBabySoC design files and testbench. On
 ![Screenshot from 2024-08-27 00-24-00](https://github.com/user-attachments/assets/4c8ffea5-e6e2-4418-b6bd-763ee5d12c3e)
 
 Replace the rvmyth.tlv file in the VSDBabySoC Directory.Replace in src/module with the rvmyth.tlv given [here](https://github.com/yashgupta17402/Asic-Design-Flow/tree/main/CODE)
+
+We have now written the code in TL-Verilog (.tlv), which is a high-level language, and we need to convert it into low-level Verilog. This involves translating the .tlv definition of rvmyth into a .v Verilog definition.
+Now,we will create the pre_synth_sim.vcd.
+![Screenshot from 2024-08-27 00-24-14](https://github.com/user-attachments/assets/af121703-3f1b-41e9-9453-96a34ca4bcf9)
+
+The simulation results, specifically the pre_synth_sim.vcd file, will be saved in the output/pre_synth_sim directory. To compile and simulate the VSDBabySoC design, you'll generate the pre_synth_sim.vcd file, which contains the simulation waveform data.
+![Screenshot from 2024-08-27 00-24-58](https://github.com/user-attachments/assets/dbe4cfb8-b0c1-4067-b063-2253f870f691)
+
+### Waveforms
+
+CLOCK:
+![Screenshot from 2024-08-27 00-36-44](https://github.com/user-attachments/assets/46a28f67-5cab-46e5-92f2-5e053916714f)
+![Screenshot from 2024-08-27 00-35-42](https://github.com/user-attachments/assets/c13e26e2-1bde-43b5-952d-3012a2f41309)
+
+Reset:
+
+![Screenshot from 2024-08-27 00-37-20](https://github.com/user-attachments/assets/c571b85b-2766-4dbf-861f-e3722037d9dd)
+
+ OUT[9:0] :
+ ![Screenshot from 2024-08-27 00-36-34](https://github.com/user-attachments/assets/33962f2d-d646-4840-86b0-f56f967f6c60)
+
+ ALL Together:
+![Screenshot from 2024-08-27 00-34-41](https://github.com/user-attachments/assets/f59991b6-19d2-4039-bcf6-8186212bc39b)
+
+ 
+ 
+
+
+
+
 
 
 
