@@ -1241,7 +1241,7 @@ Clone the repository that contains the VSDBabySoC design files and testbench. On
 
 ![Screenshot from 2024-08-27 00-24-00](https://github.com/user-attachments/assets/4c8ffea5-e6e2-4418-b6bd-763ee5d12c3e)
 
-Replace the rvmyth.tlv file in the VSDBabySoC Directory.Replace in src/module with the rvmth.tlv given [here](https://github.com/YogeshGoyyalA-1/Asic_Design/tree/main/Lab10/codes)
+Replace the rvmyth.tlv file in the VSDBabySoC Directory.Replace in src/module with the rvmyth.tlv given [here](https://github.com/yashgupta17402/Asic-Design-Flow/tree/main/CODE)
 
 
 
