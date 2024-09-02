@@ -1294,11 +1294,198 @@ We have confirmed that our processor code functions as expected. The output wave
 ## Assignment 9
 
 ### Downloading necessary tools for future labs(yosys,opensta,swig,cudd...etc)
+Code:
+```bash
+git clone https://github.com/YosysHQ/yosys.git
+cd yosys
+sudo apt install make 
+sudo apt-get install build-essential clang bison flex libreadline-dev gawk tcl-dev libffi-dev git graphviz xdot pkg-config python3 libboost-system-dev libboost-python-dev libboost-filesystem-dev zlib1g-dev
+make config-gcc
+make
+sudo make install
+sudo apt-get install iverilog
+sudo apt install gtkwave
+version --
+cmake --version
+sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
+sudo -E apt-get update
+sudo apt-get install cmake
+cmake --version
+sudo apt upgrade cmake
+cmake --version
+pip install cmake --upgrade
+cmake --version
+apt remove cmake -y
+sudo apt remove cmake -y
+cmake --version
+apt remove cmake -y
+sudo apt remove cmake -y
+pip install cmake --upgrade
+cmake --version
+sudo apt-get update
+cmake --version
+sudo apt remove cmake
+apt --fix-broken install
+sudo apt --fix-broken install
+cmake --version
+sudo apt remove cmake
+cmake --version
+sudo apt upgrade cmake
+cmake --version
+sudo apt upgrade cmake
+cmake --version
+sudo apt remove cmake
+apt remove cmake -y
+sudo apt remove cmake -y
+pip install cmake --upgrade
+cmake --version
+pip install cmake
+cmake --version
+sudo pip install cmkae
+sudo pip install cmake
+cmake --version
+sudo apt get cmake
+sudo pip install cmake
+pip install cmake
+sudo apt get cmake
+pip install cmake --upgrade
+cmake --version
+pip install cmake --upgrade
+cmake --version
+pip install cmake
+pip install cmake4
+pip install cmake
+cmake --version
+sudo apt install cmake
+cmake --version
+sudo apt-get remove cmake
+sudo apt-get update
+sudo apt-get install cmake
+cmake --version
+sudo apt-get remove cmake
+cmake --version
+sudo pip install cmake
+cmake --version
+python3 -m cmake --version
+nano ~/.bashrc
+source ~/.bashrc
+cmake --version
+clang --version
+sudo apt upgrade clang
+clang --version
+sudo apt-get install wget lsb-release software-properties-common apt-transport-https
+wget https://apt.llvm.org/llvm.sh
+udo bash llvm.sh 15
+sudo bash llvm.sh 15
+clang --version
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
+sudo update-alternatives --config clang
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
+sudo update-alternatives --config clang
+clang --version
+gcc --version
+tcl --version
+sudo apt-get install tcl
+swig --version
+swig -version
+sudo apt install swig
+swig -version
+bison --version
+flex --version
+eigen --version
+sudo apt install libeigen3-dev
+eigen --version
+cudd --version
+cd cudd
+sudo apt-get install autotools-dev
+sudo apt-get install automake
+aclocal
+aclocal --
+aclocal --version
+./configure
+nano configure
+cd cudd
+gedit config
+ls
+gedit configure
+./configure
+make
+make check
+cd ..
+git clone https://github.com/parallaxsw/OpenSTA.git
+cd OpenSTA
+mkdir build
+cd build
+cmake .. -DUSE_CUDD=ON -DCUDD_DIR=~/cudd
+make
+cd ..
+swig --version
+swig -version
+sudo apt-get remove swig
+sudo apt-get update
+sudo apt-get install g++ libpcre3-dev automake libtool
+wget https://github.com/swig/swig/archive/refs/tags/v4.1.0.tar.gz
+tar -xzf v4.1.0.tar.gz
+cd swig-4.1.0
+./autogen.sh
+./configure
+make~
+make
+sudo make install
+swig -version
+cd ../
+swig -version
+sudo find / -name swig
+sudo ln -s /usr/local/bin/swig /usr/bin/swig
+swig -version
+tar -zxvf ngspice-37.tar.gz
+ls
+cd Downloads/
+ls
+tar -zxvf ngspice-37.tar.gz
+tar -zxvf ngspice-43.tar.gz
+cd ngspice-43
+mkdir release
+cd release
+../configure  --with-x --with-readline=yes --disable-debug
+sudo apt-get install libxaw7-dev
+../configure  --with-x --with-readline=yes --disable-debug
+make
+sudo make install
+ngspice --version
+cd ..
+cd ../
+sudo apt-get install m4
+sudo apt-get install tcsh
+sudo apt-get install csh
+sudo apt-get install libx11-dev
+sudo apt-get install tcl-dev tk-dev
+sudo apt-get install libcairo2-dev
+sudo apt-get install libncurses-dev
+git clone https://github.com/RTimothyEdwards/magic
+cd magic
+/configure
+./configure
+make
+make install
+magic -version
+magic --version
+sudo make install
+magic -version
+magic --version
+cd ../
+magic -version
+magic --version
+```
 
 ![Screenshot from 2024-08-31 01-55-48](https://github.com/user-attachments/assets/ccfcf9f6-88f6-4cb7-aa2c-9c01fab0dd43)
 ![Screenshot from 2024-08-31 03-38-04](https://github.com/user-attachments/assets/ac4572f8-de9d-4463-8bd5-8c1fab516127)
 ![Screenshot from 2024-08-31 03-41-33](https://github.com/user-attachments/assets/f67edfd6-896c-475d-b79a-7d5bffd1d408)
 ![Screenshot from 2024-08-31 03-48-36](https://github.com/user-attachments/assets/59933184-d629-4419-a441-43967f4f44f5)
+
+
+### Main part
+
 ![Screenshot from 2024-09-02 16-11-40](https://github.com/user-attachments/assets/ae5c6f95-e281-4d09-8855-d814fa6c1572)
 
 
