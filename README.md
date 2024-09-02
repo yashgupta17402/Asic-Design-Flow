@@ -1293,6 +1293,18 @@ We have confirmed that our processor code functions as expected. The output wave
 
 ## Assignment 9
 
+### Downloading necessary tools for future labs(yosys,opensta,swig,cudd...etc)
+
+![Screenshot from 2024-08-31 01-55-48](https://github.com/user-attachments/assets/ccfcf9f6-88f6-4cb7-aa2c-9c01fab0dd43)
+![Screenshot from 2024-08-31 03-38-04](https://github.com/user-attachments/assets/ac4572f8-de9d-4463-8bd5-8c1fab516127)
+![Screenshot from 2024-08-31 03-41-33](https://github.com/user-attachments/assets/f67edfd6-896c-475d-b79a-7d5bffd1d408)
+![Screenshot from 2024-08-31 03-48-36](https://github.com/user-attachments/assets/59933184-d629-4419-a441-43967f4f44f5)
+![Screenshot from 2024-09-02 16-11-40](https://github.com/user-attachments/assets/ae5c6f95-e281-4d09-8855-d814fa6c1572)
+
+
+
+
+
 
 
 
