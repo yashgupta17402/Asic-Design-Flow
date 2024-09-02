@@ -8,6 +8,7 @@
 - [Assignment 6](#assignment-6)
 - [Assignment 7](#assignment-7)
 - [Assignment 8](#assignment-8)
+- [Assignment 8](#assignment-9)
   
 ## Assignment 1
 
@@ -1289,6 +1290,8 @@ We can observe that values are  Gradual increased and final value is h2d which i
 ![day5_5](https://github.com/user-attachments/assets/8e7da521-5396-4dec-a212-a4fa4cc13a8e)
 
 We have confirmed that our processor code functions as expected. The output waveforms obtained from the .tlv file and after converting it to the low-level .v file using GTKWave are identical, indicating that the design is working correctly in both cases.
+
+## Assignment 9
 
 
 
