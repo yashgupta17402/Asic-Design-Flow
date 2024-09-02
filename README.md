@@ -1519,10 +1519,16 @@ DACs are widely used in applications such as audio playback, video display, and 
 
 ```
 
+After cloning the github  change rvmyth.v  from the previous labs(VSDBabySoc) and also change the name of clock to yours in vsdbabysoc.v
+
+![Screenshot from 2024-09-03 00-32-19](https://github.com/user-attachments/assets/059ec196-c179-411a-a1d7-9aacd158de21)
+
 
 ![Screenshot from 2024-09-02 16-11-40](https://github.com/user-attachments/assets/ae5c6f95-e281-4d09-8855-d814fa6c1572)
 
 ![Screenshot from 2024-09-03 00-21-32](https://github.com/user-attachments/assets/b3b8c9c4-d8cb-4516-80d1-dad98b6cab9e)
+
+The simulation successfully demonstrates the integration of DAC and PLL peripherals with the RISC-V processor, converting digital outputs to analog signals.
 
 
 
