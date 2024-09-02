@@ -1485,8 +1485,46 @@ magic --version
 
 
 ### Main part
+###  To generate waveform for DAC and PLL peripheral for Risc-V processor.
+
+![Screenshot from 2024-09-03 00-26-15](https://github.com/user-attachments/assets/a6616079-fa20-40ab-a0c1-5e7905b5897f)
+
+
+The VSDBabySoC is a compact yet powerful SoC based on the RISCV architecture. It was designed with the primary goal of testing three open-source IP cores together for the first time and calibrating the analog components. The SoC includes an RVMYTH microprocessor, an 8x-PLL for stable clock generation, and a 10-bit DAC for communication with other analog devices.
+
+### BabySoC Simulation
+Developing and simulating the complete micro-architecture of a RISC-V CPU is a complex task. For this simulation, we'll focus on incorporating two key IP blocks: PLL and DAC.
+
+
+### Phase-Locked Loop (PLL)
+A Phase-Locked Loop (PLL) is an electronic circuit designed to synchronize the phase and frequency of an output signal with that of a reference signal. It typically comprises three main components:
+
+#### Phase Detector: This component compares the phases of the reference signal and the output signal, generating an error signal that represents their difference.
+#### Loop Filter: It smooths out the error signal to reduce noise and enhance system stability.
+Voltage-Controlled Oscillator (VCO): The VCO adjusts its output frequency in response to the filtered error signal, working to minimize the phase difference.
+PLLs are commonly used in applications like clock generation, frequency synthesis, and data recovery in communication systems.
+
+### Digital-to-Analog Converter (DAC)
+A Digital-to-Analog Converter (DAC) translates digital signals (usually in binary form) into analog signals, such as voltage or current. This conversion is crucial in systems where digital data must interact with analog devices or be presented in a form perceivable by humans, like in audio or video output.
+
+DACs are widely used in applications such as audio playback, video display, and signal processing.
+
+
+``` bash
+ git clone https://github.com/Subhasis-Sahu/BabySoC_Simulation.git
+ cd BabySoC_Simulation
+ iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+ ./pre_synth_sim.out
+ gtkwave pre_synth_sim.vcd
+
+```
+
 
 ![Screenshot from 2024-09-02 16-11-40](https://github.com/user-attachments/assets/ae5c6f95-e281-4d09-8855-d814fa6c1572)
+
+![Screenshot from 2024-09-03 00-21-32](https://github.com/user-attachments/assets/b3b8c9c4-d8cb-4516-80d1-dad98b6cab9e)
+
+
 
 
 
