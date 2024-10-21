@@ -1613,9 +1613,30 @@ gedit tb_good_mux.v
 gedit good_mux.v 
 ```
 
+Test Bench code:
+
 ![Screenshot from 2024-10-21 21-36-42](https://github.com/user-attachments/assets/2b5f76ab-e4f5-47d4-995d-7c3c386b21a1)
 
+Design Code:
+
 ![Screenshot from 2024-10-21 21-36-58](https://github.com/user-attachments/assets/4e43e5ed-8006-443f-a08c-6d125eff26be)
+
+Synthesizer is the tool used for converting the RTL to netlist. **Yosys** is one such open source synthesizer. Yosys optimizes the design, mapping it to specific target technology libraries or FPGA architectures, and generates an optimized netlist that can be further analyzed and prepared for physical layout and fabrication.
+
+**Yosys Flow**
+<img width="1422" alt="yosys" src="https://github.com/user-attachments/assets/f75ab4d6-0476-4cd5-bcc9-2581ed6b4c0f">
+
+**Verifying the Synthesis**
+
+![Screenshot from 2024-10-21 21-41-43](https://github.com/user-attachments/assets/65608d44-fcf7-4b6a-ad91-6318b98c7bb5)
+
+
+Synthesis has three steps: RTL to Gate level translation, The design is then converted into gates and the connections are made between the gates and the output is given out as a file called netlist.
+Liberty(.lib): Its a collection of logical modules. It includes basic logic gates like And, Or, Not, etc... and it contains different variants of the same gate ike 2input, 3input, 4input, slow, fast, medium gates etc. Fast cells are used if only high performance is needed. Slower cells is used to address hold time issues. IThe selection of faster cells in digital circuit design can increase area and power consumption while potentially leading to hold time violations. Conversely, excessive use of slower cells can result in suboptimal performance. The optimal cell selection for synthesis is guided by constraints that balance area, power, and timing requirements.
+Constraints:A Constraint is a guidance file given to a synthesizer inorder to enable an optimum implementation of the logic circuit by selecting the appropriate flavour of cells (fast or slow).
+
+
+
 
 
 
