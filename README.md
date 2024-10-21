@@ -2124,7 +2124,9 @@ On optimisation the above design becomes a AND OR gate
 ![Screenshot from 2024-10-22 00-47-30](https://github.com/user-attachments/assets/6ad2b6dc-a828-47c5-b83e-273654d7070b)
 
 Realization of the Logic:
-![Screenshot from 2024-10-22 00-47-46](https://github.com/user-attachments/assets/7e734aa6-92a8-4aa1-b785-6bb3e5dcb0f1)
+
+![Screenshot from 2024-10-22 01-28-28](https://github.com/user-attachments/assets/456ab910-4547-49de-a4c4-ac239455e632)
+
 
 Netlist:
 
@@ -2164,7 +2166,8 @@ On optimisation the above design becomes Y=0
 
 ![Screenshot from 2024-10-22 00-52-58](https://github.com/user-attachments/assets/fc663317-a42a-47bc-83e8-3ecbaa93536e)
 Realization of the Logic:
-![Screenshot from 2024-10-22 00-53-23](https://github.com/user-attachments/assets/29ed8779-a91b-40e6-8818-412e317add4c)
+![Screenshot from 2024-10-22 01-26-27](https://github.com/user-attachments/assets/8863870b-fea0-4fd8-95cc-afbb22b63638)
+
 Netlist:
 ![Screenshot from 2024-10-22 00-53-51](https://github.com/user-attachments/assets/690d1adb-5ec6-4aed-a434-0858c066be4c)
 
