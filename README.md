@@ -1635,6 +1635,35 @@ Synthesis has three steps: RTL to Gate level translation, The design is then con
 Liberty(.lib): Its a collection of logical modules. It includes basic logic gates like And, Or, Not, etc... and it contains different variants of the same gate ike 2input, 3input, 4input, slow, fast, medium gates etc. Fast cells are used if only high performance is needed. Slower cells is used to address hold time issues. IThe selection of faster cells in digital circuit design can increase area and power consumption while potentially leading to hold time violations. Conversely, excessive use of slower cells can result in suboptimal performance. The optimal cell selection for synthesis is guided by constraints that balance area, power, and timing requirements.
 Constraints:A Constraint is a guidance file given to a synthesizer inorder to enable an optimum implementation of the logic circuit by selecting the appropriate flavour of cells (fast or slow).
 
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog good_mux.v
+synth -top good_mux
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog good_mux_netlist.v
+write_verilog -noattr good_mux_netlist.v
+gedit good_mux_netlist.v 
+```
+![Screenshot from 2024-10-21 21-48-08](https://github.com/user-attachments/assets/939e8d16-4888-4947-8b57-d3c846fbe675)
+
+Synthezing top level module:
+
+![Screenshot from 2024-10-21 21-48-00](https://github.com/user-attachments/assets/b8aef757-f90d-4de4-9642-49001a427bfb)
+
+Map to the standard library:
+![Screenshot from 2024-10-21 21-48-25](https://github.com/user-attachments/assets/de4aef0c-3c79-4184-b633-9a196d16d88c)
+
+Two view the result as a graphich use the show command.
+
+![Screenshot from 2024-10-21 21-48-40](https://github.com/user-attachments/assets/c3a00254-a59c-4571-b953-ac3176c09603)
+
+Viewing the netlist :
+![Screenshot from 2024-10-21 21-51-18](https://github.com/user-attachments/assets/51ec11c8-02fe-4400-bb92-1c2ad36867e9)
+
+
+
 
 
 
