@@ -1,4 +1,4 @@
-![making_directory](https://github.com/user-attachments/assets/8a8f8432-0241-4f76-ac00-7945dcbf753b)# Asic-Design-Flow
+
 ## Table of Contents
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
@@ -1572,7 +1572,7 @@ cd VLSI
 git clone https://github.com/kunalg123/vsdflow.git
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
 ```
-
+![making_directory](https://github.com/user-attachments/assets/8a8f8432-0241-4f76-ac00-7945dcbf753b)
 ![making_directory](https://github.com/user-attachments/assets/2ad392fd-7a97-4b01-8957-c76611dfd4cd)
 
 Directory **sky130RTLDesignAndSynthesisWorkshop**  all the necessary library files; where lib has the standard cell libraries to be used in synthesis and verilog_model with all standard cell verilog models for the standard cells present in the lib. Ther verilog_files folder contains all the experiments for lab sessions including both verilog code and test bench codes.
@@ -1704,9 +1704,79 @@ We can also find different versions of the same cell. For example, consider the 
 
 We can observe that:
 
-and2_0 -- taking the least area, more delay and low power.
-and2_1 -- taking more area, less delay and high power.
-and2_2 -- taking the largest area, larger delay and highest power.
+and2_4 -- taking the good  area, low power.
+and2b_1 -- taking less area but highest power.
+and2b_2 -- taking the largest area and good power.
+
+## Hierarchial synthesis vs Flat synthesis
+
+### Hierarchical synthesis
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show multiple_modules
+write_verilog -noattr multiple_modules_hier.v
+
+```
+
+![Screenshot from 2024-10-21 22-27-02](https://github.com/user-attachments/assets/7328cb69-947f-4990-960b-b110e3a733ce)
+![Screenshot from 2024-10-21 22-27-08](https://github.com/user-attachments/assets/aad70e37-67b0-4a79-946e-270878228c12)
+![Screenshot from 2024-10-21 22-35-54](https://github.com/user-attachments/assets/8f6494aa-8c1c-4fe3-aee4-8c5226895e15)
+Realization of the Logic
+![Screenshot from 2024-10-21 22-36-27](https://github.com/user-attachments/assets/5300f711-2e47-4959-bedc-0e0cc39a8e14)
+Hierarchical Netlist file :
+![Screenshot from 2024-10-21 22-40-00](https://github.com/user-attachments/assets/592ba1ad-12f0-4ac8-9344-db2f93933a53)
+
+### Flat synthesis
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+flatten
+show
+write_verilog -noattr multiple_modules_flat.v
+gedit multiple_modules_flat.v
+```
+
+
+![Screenshot from 2024-10-21 22-51-54](https://github.com/user-attachments/assets/2998b685-84ce-471b-bc67-f4841ceb2842)
+
+Realization of the Logic:
+
+![Screenshot from 2024-10-21 22-48-44](https://github.com/user-attachments/assets/746b23a4-4f96-48d2-b82a-0744c785081a)
+Flat Netlist file:
+
+![Screenshot from 2024-10-21 22-50-30](https://github.com/user-attachments/assets/74346345-462d-441d-a5a6-5120a0cd3300)
+
+
+### Module Level Synthesis
+
+This method is preferred when multiple instances of same module are used. The synthesis is carried out once and is replicate multiple times, and the multiple instances of the same module are stitched together in the top module. This method is helpful when making use of divide and conquer algorithm
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top sub_module1
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+![Screenshot from 2024-10-21 22-56-05](https://github.com/user-attachments/assets/0868246d-6d26-48ea-976b-6bdf3fd330d4)
+![Screenshot from 2024-10-21 22-56-20](https://github.com/user-attachments/assets/94a3d4c6-11f4-4111-8bb3-8f8243885b9d)
+Realization of the Logic:
+
+![Screenshot from 2024-10-21 22-56-35](https://github.com/user-attachments/assets/29d9b014-e4d4-49ac-97e0-b8c8acff1285)
+
+
+
+
 
 
 
