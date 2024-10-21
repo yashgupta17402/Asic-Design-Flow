@@ -12,7 +12,7 @@
 - [Assignment 10](#assignment-10)
   - [Day_1](#Day-1)
   - [Day 2](#Day-2)
-  - [Subtopic 3](#subtopic-3)
+  - [Day 4](#Day-4)
   
 ## Assignment 1
 
@@ -1811,6 +1811,146 @@ show
 
 Realization of Logic:
 ![Screenshot from 2024-10-21 23-09-27](https://github.com/user-attachments/assets/1fb43ed0-775e-4991-9da1-1b237142c48c)
+
+
+Synchronous Reset:
+
+Code:
+![Screenshot from 2024-10-21 23-12-54](https://github.com/user-attachments/assets/b2b4929d-6132-483f-939f-ede99d3ddb94)
+
+```
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_syncres.v
+synth -top dff_syncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![Screenshot from 2024-10-21 23-14-02](https://github.com/user-attachments/assets/c6dd7981-9128-4503-9225-0818d285be2d)
+Waveform:
+
+![Screenshot from 2024-10-21 23-14-47](https://github.com/user-attachments/assets/c914e183-425c-404e-a8be-d2b95c27981b)
+
+![Screenshot from 2024-10-21 23-16-48](https://github.com/user-attachments/assets/b7090c68-f73e-4c75-8f07-f85e3cc786ed)
+
+![Screenshot from 2024-10-21 23-16-57](https://github.com/user-attachments/assets/d1549cb0-c5fc-43ea-82a7-6d587156ee9f)
+
+![Screenshot from 2024-10-21 23-17-36](https://github.com/user-attachments/assets/205e4839-58aa-4c27-a57a-9a29533970c5)
+
+Realization of Logic:
+![Screenshot from 2024-10-21 23-17-48](https://github.com/user-attachments/assets/585c17d5-6c40-411e-bd67-446cd5e50151)
+
+### Asynchronous Set Flip-flop
+
+![Screenshot from 2024-10-21 23-20-26](https://github.com/user-attachments/assets/3e8ecc9f-43ee-4a1d-81dd-5eccf3554155)
+
+
+```
+iverilog dff_async_set.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_async_set.v
+synth -top dff_async_set
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![Screenshot from 2024-10-21 23-21-20](https://github.com/user-attachments/assets/21ae55d4-7fb8-4782-9925-295e9d357bd6)
+
+![Screenshot from 2024-10-21 23-22-06](https://github.com/user-attachments/assets/35573e65-6764-47ed-9683-e0436efb101e)
+
+![Screenshot from 2024-10-21 23-23-42](https://github.com/user-attachments/assets/98a7282c-5764-4bc7-8d31-4f21623aab6d)
+
+![Screenshot from 2024-10-21 23-23-48](https://github.com/user-attachments/assets/a029a9fb-5e2f-4570-8573-757899ee0332)
+
+![Screenshot from 2024-10-21 23-24-06](https://github.com/user-attachments/assets/50d681ca-d239-4519-85f4-e3b840c7981c)
+
+Realization of the Logic:
+![Screenshot from 2024-10-21 23-24-19](https://github.com/user-attachments/assets/ac1c88a3-df1f-449f-8e00-eff4b2439b2e)
+
+
+**mult_2.v**
+Code:
+
+![Screenshot from 2024-10-21 23-26-38](https://github.com/user-attachments/assets/449d1aa1-9943-422c-8b96-7db1d602d29e)
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_2.v
+synth -top mul2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr mult_2_net.v
+```
+
+![Screenshot from 2024-10-21 23-28-49](https://github.com/user-attachments/assets/168b532d-4b36-48f3-8e46-aed1996aa3fd)
+
+![Screenshot from 2024-10-21 23-29-11](https://github.com/user-attachments/assets/656c570a-cc28-4680-919f-8cbf95da2089)
+
+Realization of the Logic:
+![Screenshot from 2024-10-21 23-29-50](https://github.com/user-attachments/assets/34f43340-dccf-4918-a404-322764223fcd)
+
+Netlist code:
+
+![Screenshot from 2024-10-21 23-31-42](https://github.com/user-attachments/assets/0d31c300-47cf-4391-a20a-80fc715d6c6a)
+
+ **mult_8.v**
+
+Code:
+![Screenshot from 2024-10-21 23-32-54](https://github.com/user-attachments/assets/cbff8af7-bb32-4e42-93fc-9bb319249912)
+
+In this design the 3-bit input number "a" is multiplied by 9 i.e (a9) which can be re-written as (a8) + a . The term (a8) is nothing but a left shifting the number a by three bits. Consider that a = a2 a1 a0. (a8) results in a2 a1 a0 0 0 0. (a9)=(a8)+a = a2 a1 a0 a2 a1 a0 = aa(in 6 bit format). Hence in this case no hardware realization is required. 
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_8.v
+synth -top mult8
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr mult_8_net.v
+```
+
+
+![Screenshot from 2024-10-21 23-35-12](https://github.com/user-attachments/assets/a7ba8c33-861c-4698-84e6-169b3a8c60ee)
+![Screenshot from 2024-10-21 23-35-23](https://github.com/user-attachments/assets/f8c8d676-8ce2-4e93-b80a-b519881b4487)
+![Screenshot from 2024-10-21 23-35-47](https://github.com/user-attachments/assets/e2f157ed-0050-4309-abd4-8d75d155cfa0)
+Realization of the Logic:
+![Screenshot from 2024-10-21 23-35-59](https://github.com/user-attachments/assets/d2d8c776-91a5-4dac-b781-15e063c12e1c)
+
+Netlist :
+![Screenshot from 2024-10-21 23-37-25](https://github.com/user-attachments/assets/944b05a8-a69d-4108-8c97-629e5d667415)
+
+
+### Day 4
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
