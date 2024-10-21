@@ -2168,9 +2168,157 @@ Realization of the Logic:
 Netlist:
 ![Screenshot from 2024-10-22 00-53-51](https://github.com/user-attachments/assets/690d1adb-5ec6-4aed-a434-0858c066be4c)
 
+**Sequential Logic Optimizations**
+
+**Ex 1**
+
+```
+module dff_const1(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+endmodule
+```
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const1.v
+synth -top dff_const1
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_const1_net.v
+```
+```
+iverilog dff_const1.v tb_dff_const1.v
+./a.out
+gtkwave tb_dff_const1.vcd
+```
 
 
+![Screenshot from 2024-10-22 00-58-06](https://github.com/user-attachments/assets/57970ccb-4153-4f57-a2ce-b138ebe60dea)
 
+![Screenshot from 2024-10-22 00-58-23](https://github.com/user-attachments/assets/dbdf45bb-6805-4ada-9c83-c1e72b8b2bf5)
+
+Realization of the Logic:
+
+![Screenshot from 2024-10-22 00-58-35](https://github.com/user-attachments/assets/7c238db6-1a49-4443-adda-f838b69978e6)
+Netlist:
+
+![Screenshot from 2024-10-22 00-58-59](https://github.com/user-attachments/assets/bfea05c7-7e03-41af-89a6-78e048941f60)
+
+Waveform:
+
+![Screenshot from 2024-10-22 01-03-09](https://github.com/user-attachments/assets/e0fa19fb-0cd5-4198-b2c8-9cdcb5d827b9)
+
+**Ex 2**
+
+```
+module dff_const2(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+endmodule
+```
+
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const2.v
+synth -top dff_const2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_const2_net.v
+
+```
+```
+iverilog dff_const2.v tb_dff_const2.v
+./a.out
+gtkwave tb_dff_const2.vcd
+```
+
+
+![Screenshot from 2024-10-22 01-05-59](https://github.com/user-attachments/assets/cbb79e7a-8a41-4ec8-90be-259fc1f94097)
+
+![Screenshot from 2024-10-22 01-06-09](https://github.com/user-attachments/assets/a2da2202-f858-4cd4-bdec-21f2939407f3)
+Realization of the Logic:
+
+![Screenshot from 2024-10-22 01-06-44](https://github.com/user-attachments/assets/5eedc405-5dd7-4c98-994d-728a31595efe)
+Netlist:
+
+![Screenshot from 2024-10-22 01-07-14](https://github.com/user-attachments/assets/d13e1f2b-513e-4ac2-8fa3-c4c12f0bfb5b)
+
+![Screenshot from 2024-10-22 01-10-28](https://github.com/user-attachments/assets/a32be994-cce8-4a77-a595-7a0e346b2abd)
+
+Waveform:
+![Screenshot from 2024-10-22 01-10-20](https://github.com/user-attachments/assets/89e81e87-5092-4e2a-b711-6ac3cc9fccff)
+
+
+**Ex3**
+
+```
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const3.v
+synth -top dff_const3
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_const3_net.v
+```
+```
+iverilog dff_const3.v tb_dff_const3.v
+./a.out
+gtkwave tb_dff_const3.vcd
+```
+
+![Screenshot from 2024-10-22 01-10-28](https://github.com/user-attachments/assets/4851c075-0771-43de-97a1-d35abe736318)
+
+![Screenshot from 2024-10-22 01-12-55](https://github.com/user-attachments/assets/cdd9b747-8361-46e3-9d1e-ee510acc9d96)
+
+![Screenshot from 2024-10-22 01-13-13](https://github.com/user-attachments/assets/630fa259-f2c8-4421-acaf-9ec1aed31a53)
+
+
+Realization of the Logic:
+![Screenshot from 2024-10-22 01-13-34](https://github.com/user-attachments/assets/cdeab5d6-042a-4429-b717-b8373696ca9a)
+Netlist:
+
+![Screenshot from 2024-10-22 01-14-07](https://github.com/user-attachments/assets/955b82cc-1295-479b-ad56-aa866e8e0eaf)
+
+
+![Screenshot from 2024-10-22 01-16-35](https://github.com/user-attachments/assets/414c5a2f-90b8-4ab6-aa22-75c83da8e992)
+Waveform:
+
+![Screenshot from 2024-10-22 01-16-13](https://github.com/user-attachments/assets/ed4fef46-c5c7-4350-804f-1c35085529dc)
 
 
 
