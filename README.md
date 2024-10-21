@@ -1575,7 +1575,7 @@ git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
 
 ![making_directory](https://github.com/user-attachments/assets/2ad392fd-7a97-4b01-8957-c76611dfd4cd)
 
-Directory **sky130RTLDesignAndSynthesisWorkshop **  all the necessary library files; where lib has the standard cell libraries to be used in synthesis and verilog_model with all standard cell verilog models for the standard cells present in the lib. Ther verilog_files folder contains all the experiments for lab sessions including both verilog code and test bench codes.
+Directory **sky130RTLDesignAndSynthesisWorkshop**  all the necessary library files; where lib has the standard cell libraries to be used in synthesis and verilog_model with all standard cell verilog models for the standard cells present in the lib. Ther verilog_files folder contains all the experiments for lab sessions including both verilog code and test bench codes.
 ```
 cd sky130RTLDesignAndSynthesisWorkshop
 ls -R
@@ -1588,6 +1588,25 @@ ls
 ![Screenshot from 2024-10-21 21-22-10](https://github.com/user-attachments/assets/f6905bcc-907c-45df-90c7-9c0af6905b96)
 
 ![Screenshot from 2024-10-21 21-22-24](https://github.com/user-attachments/assets/fadeaf7d-2225-4580-a118-4638bafcf031)
+
+
+**Simulation of 2:1 multiplexer using iverilog simulator:-**
+
+```
+iverilog good_mux.v tb_good_mux.v
+./a.out
+gtkwave tb_good_mux.vcd
+```
+
+
+![Screenshot from 2024-10-21 21-32-29](https://github.com/user-attachments/assets/b780e49f-1bff-4f63-a902-d1926c2241e7)
+
+
+We can view the waveform of a simple 2:1 mux which selects the input based on the select line:
+
+![Screenshot from 2024-10-21 21-31-07](https://github.com/user-attachments/assets/f2bb8a40-d297-403a-b13e-9cbf19129cf2)
+
+
 
 
 
