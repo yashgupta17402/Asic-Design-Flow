@@ -1607,6 +1607,19 @@ We can view the waveform of a simple 2:1 mux which selects the input based on th
 ![Screenshot from 2024-10-21 21-31-07](https://github.com/user-attachments/assets/f2bb8a40-d297-403a-b13e-9cbf19129cf2)
 
 
+Codes can be viewed using these commands:
+```
+gedit tb_good_mux.v
+gedit good_mux.v 
+```
+
+![Screenshot from 2024-10-21 21-36-42](https://github.com/user-attachments/assets/2b5f76ab-e4f5-47d4-995d-7c3c386b21a1)
+
+![Screenshot from 2024-10-21 21-36-58](https://github.com/user-attachments/assets/4e43e5ed-8006-443f-a08c-6d125eff26be)
+
+
+
+
 
 
 
