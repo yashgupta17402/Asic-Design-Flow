@@ -1544,6 +1544,19 @@ The simulation successfully demonstrates the integration of DAC and PLL peripher
 ### Day 1
 
 
+### Introduction to iverilog
+In digital circuit design, Register-Transfer Level (RTL) is an abstraction used to model synchronous digital circuits by describing the flow of data between hardware registers and the logic operations applied to these signals. This RTL abstraction is expressed using HDL (Hardware Description Language) to create high-level models, which are later transformed into lower-level representations and, ultimately, the physical hardware design.
+
+**Simulator** : A tool used to verify the design. In this workshop, we utilize the iverilog tool. Simulation involves generating models that replicate the behavior of the intended device (simulation models) and creating test models to validate the device (test benches). RTL Design: Consists of one or more Verilog files that implement the required design specifications and functionality for the circuit.
+
+**Test Bench** : A setup that delivers stimulus (test vectors) to the design, verifying its behavior and ensuring it meets the required specifications.
+
+ Iverilog based Simulation Flow:
+
+<img width="851" alt="iverlog_flow" src="https://github.com/user-attachments/assets/5a61e02f-0b5e-49e1-a56d-47ff5bca4ae9">
+
+
+
 
 
 
