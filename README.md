@@ -2324,6 +2324,190 @@ Waveform:
 ![Screenshot from 2024-10-22 01-16-13](https://github.com/user-attachments/assets/ed4fef46-c5c7-4350-804f-1c35085529dc)
 
 
+**Ex 4**
+
+```
+module dff_const4(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b1;
+	end
+else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const4.v
+synth -top dff_const4
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_const4_net.v
+```
+```
+iverilog dff_const4.v tb_dff_const4.v
+./a.out
+gtkwave tb_dff_const4.vcd
+```
+![Screenshot from 2024-10-22 01-33-55](https://github.com/user-attachments/assets/b8ecf2c8-be4c-4833-93a2-4d2a45eec581)
+Realization of the Logic:
+![Screenshot from 2024-10-22 01-34-27](https://github.com/user-attachments/assets/02e81954-513c-4038-aec8-60d6b56d55ae)
+Netlist:
+![Screenshot from 2024-10-22 01-35-06](https://github.com/user-attachments/assets/b84c3377-499e-4cfe-904c-b50844dde0e8)
+
+![Screenshot from 2024-10-22 01-36-47](https://github.com/user-attachments/assets/1dda8622-127b-4c60-a73a-a71c2fa93677)
+Waveform:
+![Screenshot from 2024-10-22 01-36-31](https://github.com/user-attachments/assets/42f730f8-9db2-4780-b195-53fd50e889e9)
+
+**Ex5**
+
+```
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+		begin
+			q <= 1'b0;
+			q1 <= 1'b0;
+		end
+	else
+		begin
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const5.v
+synth -top dff_const5
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr dff_const5_net.v
+```
+```
+iverilog dff_const5.v tb_dff_const5.v
+./a.out
+gtkwave tb_dff_const5.vcd
+```
+![Screenshot from 2024-10-22 01-36-47](https://github.com/user-attachments/assets/66507a1f-d1b7-4fba-a7f6-e47d91825015)
+
+![Screenshot from 2024-10-22 01-40-13](https://github.com/user-attachments/assets/07b2f451-f905-41c9-a261-19e2e70773d9)
+
+![Screenshot from 2024-10-22 01-40-31](https://github.com/user-attachments/assets/e56ddc82-c319-46a7-b524-ba9f16b47ef5)
+Realization of the Logic:
+![Screenshot from 2024-10-22 01-40-49](https://github.com/user-attachments/assets/4a741022-b4e2-4f48-a35b-2ea6e7866d77)
+Netlist:
+
+![Screenshot from 2024-10-22 01-41-16](https://github.com/user-attachments/assets/6861246d-bfb5-4914-9379-4d4e3e987597)
+
+Waveform:
+![Screenshot from 2024-10-22 01-42-42](https://github.com/user-attachments/assets/6e1a2a54-68f8-4575-9390-b73aa4cb9ead)
+
+![Screenshot from 2024-10-22 01-44-00](https://github.com/user-attachments/assets/a75ca931-6a73-42df-afa1-e3eaeb820477)
+
+**Sequential Logic Optimizations for unused outputs**
+
+```
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr counter_opt_net.v
+```
+```
+iverilog counter_opt.v tb_counter_opt.v
+./a.out
+gtkwave tb_counter_opt.vcd
+```
+
+![Screenshot from 2024-10-22 01-45-45](https://github.com/user-attachments/assets/84c15a47-3bc9-4edd-9ea1-f46923b2d73e)
+![Screenshot from 2024-10-22 01-46-03](https://github.com/user-attachments/assets/e965746e-39ad-410d-ab85-8afbddbb9bce)
+Realization of the Logic:
+![Screenshot from 2024-10-22 01-46-17](https://github.com/user-attachments/assets/e2b5f79f-e638-4f1a-9277-01c82908e4a4)
+Netlist:
+![Screenshot from 2024-10-22 01-46-51](https://github.com/user-attachments/assets/1790aab2-6363-433d-baa0-ad472cac0d89)
+
+![Screenshot from 2024-10-22 01-48-54](https://github.com/user-attachments/assets/469252a7-c9bb-4a1f-8fb6-a85fd071db5c)
+Waveform:
+![Screenshot from 2024-10-22 01-48-48](https://github.com/user-attachments/assets/26cd2645-4faa-4c89-83df-37bc8b82bde2)
+
+**Modified counter logic:**
+
+```
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = {count[2:0]==3'b100};
+always @(posedge clk ,posedge reset)
+begin
+if(reset)
+	count <= 3'b000;
+else
+	count <= count + 1;
+end
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt2.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+write_verilog -noattr counter_opt_net.v
+```
+```
+iverilog counter_opt.v tb_counter_opt.v
+./a.out
+gtkwave tb_counter_opt.vcd
+```
+
+![Screenshot from 2024-10-22 01-55-35](https://github.com/user-attachments/assets/ae3fe546-48b1-425a-b82a-85837c01e54e)
+![Screenshot from 2024-10-22 01-55-57](https://github.com/user-attachments/assets/de96448c-ab2d-4e80-b35f-da75957f7a50)
+Realization of the Logic:
+![Screenshot from 2024-10-22 01-56-08](https://github.com/user-attachments/assets/f1a27261-77b3-41aa-9997-26161c60fa2c)
+
+Netlist:
+![Screenshot from 2024-10-22 01-56-31](https://github.com/user-attachments/assets/6a43bb47-4e08-40aa-bf9a-559b14c7f074)
+
+![Screenshot from 2024-10-22 01-57-35](https://github.com/user-attachments/assets/7b05260d-4112-41b7-8335-e4e3cfd076fa)
+
+Waveform:
+
+![Screenshot from 2024-10-22 01-57-25](https://github.com/user-attachments/assets/ab377d26-0442-409a-a379-405cc5e3f037)
+
 
 
 
