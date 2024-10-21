@@ -1774,6 +1774,50 @@ Realization of the Logic:
 
 ![Screenshot from 2024-10-21 22-56-35](https://github.com/user-attachments/assets/29d9b014-e4d4-49ac-97e0-b8c8acff1285)
 
+### Various Flop coding styles and optimization
+
+In a digital design, when an input signal changes state, the output changes after a propogation delay. All logic gates add some delay to singals. These delays cause expected and unwanted transitions in the output, called as Glitches where the output value is momentarily different from the expected value. An increased delay in one path can cause glitch when those signals are combined at the output gate. In short, more combinational circuits lead to more glitchy outputs that will not settle down with the output value.
+
+Flip-Flops are an essential part of sequential logic in a circuit and here we explore the design and synthesis of various types of flip-flops. To prevent glitches in digital circuits, we use flip-flops to store intermediate values. This ensures that combinational circuit inputs remain stable until the clock edge, avoiding glitches and maintaining correct operation.
+
+**Asynchronous Reset Flip-flop:**
+
+Code:
+
+![Screenshot from 2024-10-21 23-03-58](https://github.com/user-attachments/assets/92b73ce8-635a-4554-b15a-6bb715470d66)
+
+```
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![Screenshot from 2024-10-21 23-06-56](https://github.com/user-attachments/assets/cd1f0a38-9672-411b-a283-5a54a769e9a8)
+
+![Screenshot from 2024-10-21 23-06-00](https://github.com/user-attachments/assets/7b9b1d86-3414-45b5-8dfc-a8ae028b0786)
+
+![Screenshot from 2024-10-21 23-08-19](https://github.com/user-attachments/assets/a36c0002-ecc8-47a5-9d56-25ef10df5b01)
+
+![Screenshot from 2024-10-21 23-08-49](https://github.com/user-attachments/assets/7f5d346b-8d0a-42a1-90cc-667d8f6400fa)
+
+Realization of Logic:
+![Screenshot from 2024-10-21 23-09-27](https://github.com/user-attachments/assets/1fb43ed0-775e-4991-9da1-1b237142c48c)
+
+
+
+
+
+
+
 
 
 
