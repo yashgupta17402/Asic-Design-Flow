@@ -11,7 +11,7 @@
 - [Assignment 9](#assignment-9)
 - [Assignment 10](#assignment-10)
   - [Day_1](#Day-1)
-  - [Subtopic 2](#subtopic-2)
+  - [Day 2](#Day-2)
   - [Subtopic 3](#subtopic-3)
   
 ## Assignment 1
@@ -1662,11 +1662,51 @@ Two view the result as a graphich use the show command.
 Viewing the netlist :
 ![Screenshot from 2024-10-21 21-51-18](https://github.com/user-attachments/assets/51ec11c8-02fe-4400-bb92-1c2ad36867e9)
 
+### Day 2
+
+**Timing libs, hierarchical vs flat synthesis and efficient flop coding styles**
 
 
 
+```
+cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
+gedit sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+![Screenshot from 2024-10-21 22-02-15](https://github.com/user-attachments/assets/664d636a-bcc0-4719-9069-7e1a5328d991)
+
+A standard cell library is a collection of characterized logic gates that can be used to implement digital circuits.
+
+![Screenshot from 2024-10-21 21-58-02](https://github.com/user-attachments/assets/9f4dcb92-1a4e-49e9-a780-c0b16ee09bc9)
+
+The timing data of standard cells is provided in the liberty format. Every .lib file will provide timing, power, noise, area information for a single corner ie process,voltage, temperature etc.
+Library:general information common to all cells in the library.
+Cell:specific information about each standard cell.
+Pin:Timing, power, capacitance, leakage functionality etc characteristics for each pin in each cell
+
+![Screenshot from 2024-10-21 21-58-02](https://github.com/user-attachments/assets/61dc9c5f-1313-4d8c-aaf2-7623afd2db53)
+
+![Screenshot from 2024-10-21 22-11-39](https://github.com/user-attachments/assets/427423f6-d97c-44ac-b94f-6933db1a5577)
+
+![Screenshot from 2024-10-21 22-10-40](https://github.com/user-attachments/assets/1768ac05-c3ef-459d-ab78-86b473bf6b8c)
+
+![Screenshot from 2024-10-21 22-11-04](https://github.com/user-attachments/assets/4956e29c-e387-4046-8783-3587a0c2195d)
 
 
+We can also find different versions of the same cell. For example, consider the AND gate
+
+
+![Screenshot from 2024-10-21 22-16-54](https://github.com/user-attachments/assets/147f3a09-4992-4107-9494-b0d14224b62c)
+
+![Screenshot from 2024-10-21 22-17-14](https://github.com/user-attachments/assets/fcbceb30-73b7-4146-a956-4b39424516ad)
+
+![Screenshot from 2024-10-21 22-17-24](https://github.com/user-attachments/assets/bb8eef42-0ec7-415e-8d59-a97a96f21b51)
+
+We can observe that:
+
+and2_0 -- taking the least area, more delay and low power.
+and2_1 -- taking more area, less delay and high power.
+and2_2 -- taking the largest area, larger delay and highest power.
 
 
 
