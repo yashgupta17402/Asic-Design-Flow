@@ -12,6 +12,7 @@
 - [Assignment 10](#assignment-10)
   - [Day_1](#Day-1)
   - [Day 2](#Day-2)
+  - [Day 3](#Day-3)
   - [Day 4](#Day-4)
   
 ## Assignment 1
@@ -1935,6 +1936,248 @@ Realization of the Logic:
 
 Netlist :
 ![Screenshot from 2024-10-21 23-37-25](https://github.com/user-attachments/assets/944b05a8-a69d-4108-8c97-629e5d667415)
+
+### Day 3
+### Combinational and Sequential Optimizations 
+.
+### Combinational Logic Optimization
+**Why do we need Combinational Logic Optimizations?**
+
+* Primarily to squeeze the logic to get the most optimized design.
+    * An optimized design results in comprehensive Area and Power saving.
+
+#### Types of Combinational Optimizations
+
+* Constant Propagation 
+	* Direct Optimization technique
+* Boolean Logic Optimization.
+	* Karnaugh map
+	* Quine Mckluskey
+
+#### CONSTANT PROPAGATION
+
+In Constant propagation techniques, inputs that are no way related or affecting the changes in the output are ignored/optimized to simplify the combination logic thereby saving area and power usage by those input pins.
+```
+Y =((AB)+ C)'
+If A = 0
+Y =((0)+ C)' = C'
+```
+#### BOOLEAN LOGIC OPTIMIZATION
+
+Boolean logic optimization is nothing simplifying a complex boolean expression into a simplified expression by utilizing the laws of boolean logic algebra.
+```
+assign y = a?(b?c:(c?a:0)):(!c)
+```
+above is simplified as
+```
+y = a'c' + a(bc + b'ca) 
+y = a'c' + abc + ab'c 
+y = a'c' + ac(b+b') 
+y = a'c' + ac
+y = a xnor c
+```
+
+### Sequential Logic Optimization
+
+#### Types of Sequential Optimizations
+
+* Basic Technique
+	* Sequential Constant Propagation
+* Advanced Technique
+	* State Optimization
+	* Retiming
+	* Sequential Logic cloning(Floorplan aware synthesis)
+	
+#### COMBINATIONAL LOGIC OPTIMIZATION  
+
+**2 input AND Gate**
+
+```
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check.v
+synth -top opt_check
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+opt_clean -purge
+show
+```
+![Screenshot from 2024-10-22 00-29-47](https://github.com/user-attachments/assets/0c187285-b6e4-4997-804d-ae2a03f46c2a)
+![Screenshot from 2024-10-22 00-29-58](https://github.com/user-attachments/assets/236b9088-45ac-43d5-bc5a-58604b970cf2)
+![Screenshot from 2024-10-22 00-30-11](https://github.com/user-attachments/assets/608a49f3-628b-4ee8-a516-a1a55912297c)
+![Screenshot from 2024-10-22 00-30-58](https://github.com/user-attachments/assets/e01b7067-8011-4e9c-bda5-8e3e6f3c77b2)
+
+**2 input OR Gate**
+```
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+```
+```
+ yosys
+ read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ read_verilog opt_check2.v
+ synth -top opt_check2
+ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ opt_clean -purge
+ show
+```
+![Screenshot from 2024-10-22 00-34-02](https://github.com/user-attachments/assets/1781c3f8-a60f-4cea-98bc-e295c1897ce5)
+![Screenshot from 2024-10-22 00-34-15](https://github.com/user-attachments/assets/8b0b08fd-3f88-40ae-a892-d3277f616499)
+![Screenshot from 2024-10-22 00-34-36](https://github.com/user-attachments/assets/dd133fdb-4037-4e0f-a191-46b5743c72c4)
+
+ **3 input AND Gate**
+ 
+
+```
+ module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+
+```
+
+```
+ yosys
+ read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ read_verilog opt_check3.v
+ synth -top opt_check3
+ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ opt_clean -purge
+ show
+```
+
+![Screenshot from 2024-10-22 00-37-07](https://github.com/user-attachments/assets/0b0dee2f-e083-4e95-b3ea-d169ea9c5892)
+![Screenshot from 2024-10-22 00-37-18](https://github.com/user-attachments/assets/49e740b2-fb92-43ea-887d-d4b79c6a1e79)
+![Screenshot from 2024-10-22 00-37-32](https://github.com/user-attachments/assets/1867c076-08bf-4e47-baef-c0a9a24edbae)
+![Screenshot from 2024-10-22 00-37-43](https://github.com/user-attachments/assets/d60bded8-efef-480b-8c04-9a2a098ec7da)
+
+**2 input XNOR Gate (3 input Boolean Logic)**
+
+```
+module opt_check4 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+```
+
+```
+ yosys
+ read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ read_verilog opt_check4.v
+ synth -top opt_check4
+ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ opt_clean -purge
+ show
+```
+![Screenshot from 2024-10-22 00-41-04](https://github.com/user-attachments/assets/fc798c90-057f-4179-b998-8d2789886ba3)
+![Screenshot from 2024-10-22 00-42-10](https://github.com/user-attachments/assets/58c1d949-5454-41cd-a953-5c8d7eb853a9)
+![Screenshot from 2024-10-22 00-42-22](https://github.com/user-attachments/assets/87e91579-92bb-4070-a97a-aaadf96fbb54)
+
+
+**Ex1**
+
+```
+module sub_module1(input a , input b , output y);
+ assign y = a & b;
+endmodule
+
+module sub_module2(input a , input b , output y);
+ assign y = a^b;
+endmodule
+
+module multiple_module_opt(input a , input b , input c , input d , output y);
+wire n1,n2,n3;
+
+sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+assign y = c | (b & n1); 
+
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_module_opt.v
+synth -top multiple_module_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+flatten
+show
+write_verilog -noattr multiple_module_opt_net.v
+
+
+gedit multiple_module_opt_net.v
+```
+
+
+On optimisation the above design becomes a AND OR gate
+
+![Screenshot from 2024-10-22 00-46-54](https://github.com/user-attachments/assets/4a8e6c1c-f65a-4e7f-83a8-7470ea43b943)
+
+![Screenshot from 2024-10-22 00-47-11](https://github.com/user-attachments/assets/835bb467-a71f-44fd-a283-9bf1899a41ef)
+
+![Screenshot from 2024-10-22 00-47-30](https://github.com/user-attachments/assets/6ad2b6dc-a828-47c5-b83e-273654d7070b)
+
+Realization of the Logic:
+![Screenshot from 2024-10-22 00-47-46](https://github.com/user-attachments/assets/7e734aa6-92a8-4aa1-b785-6bb3e5dcb0f1)
+
+Netlist:
+
+![Screenshot from 2024-10-22 00-48-20](https://github.com/user-attachments/assets/e5a97216-7b14-464d-ac18-b6e0933eb488)
+
+
+**Ex2**
+
+```
+module sub_module(input a , input b , output y);
+	assign y = a & b;
+endmodule
+
+module multiple_module_opt2(input a , input b , input c , input d , output y);
+		wire n1,n2,n3;
+	sub_module U1 (.a(a) , .b(1'b0) , .y(n1));
+	sub_module U2 (.a(b), .b(c) , .y(n2));
+	sub_module U3 (.a(n2), .b(d) , .y(n3));
+	sub_module U4 (.a(n3), .b(n1) , .y(y));
+endmodule
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_module_opt2.v
+synth -top multiple_module_opt2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+flatten
+show
+write_verilog -noattr multiple_module_opt2_net.v
+```
+
+On optimisation the above design becomes Y=0
+
+![Screenshot from 2024-10-22 00-52-40](https://github.com/user-attachments/assets/b0adbfe9-8780-4d28-a8ce-6fc0c474a406)
+
+![Screenshot from 2024-10-22 00-52-58](https://github.com/user-attachments/assets/fc663317-a42a-47bc-83e8-3ecbaa93536e)
+Realization of the Logic:
+![Screenshot from 2024-10-22 00-53-23](https://github.com/user-attachments/assets/29ed8779-a91b-40e6-8818-412e317add4c)
+Netlist:
+![Screenshot from 2024-10-22 00-53-51](https://github.com/user-attachments/assets/690d1adb-5ec6-4aed-a434-0858c066be4c)
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Day 4
