@@ -9,6 +9,10 @@
 - [Assignment 7](#assignment-7)
 - [Assignment 8](#assignment-8)
 - [Assignment 9](#assignment-9)
+- [Assignment 10](#assignment-10)
+  - [Subtopic 1](#Day-1)
+  - [Subtopic 2](#subtopic-2)
+  - [Subtopic 3](#subtopic-3)
   
 ## Assignment 1
 
@@ -1533,6 +1537,11 @@ After cloning the github  change rvmyth.v  from the previous labs(VSDBabySoc) an
 ![Screenshot from 2024-09-03 00-21-32](https://github.com/user-attachments/assets/b3b8c9c4-d8cb-4516-80d1-dad98b6cab9e)
 
 The simulation successfully demonstrates the integration of DAC and PLL peripherals with the RISC-V processor, converting digital outputs to analog signals.
+
+
+## Assignment 10
+
+### Day1
 
 
 
