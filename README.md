@@ -2056,6 +2056,57 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 
 ![Screenshot from 2024-10-22 00-06-06](https://github.com/user-attachments/assets/b0a8e1f7-e4e0-4354-b065-b67aaac29870)
 
+**Labs:Synthesis-Simulation mismatch for blocking statements**
+
+```
+module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+begin
+d = x & c;
+x = a | b;
+end
+endmodule
+```
+```
+iverilog blocking_caveat.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+```
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+read_verilog blocking_caveat.v
+synth -top blocking_caveat
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+write_verilog -noattr blocking_caveat_net.v
+```
+
+![Screenshot from 2024-10-22 00-15-25](https://github.com/user-attachments/assets/d0cd66af-b4f4-4b31-bcb8-7b22bd661127)
+Waveform:
+
+![Screenshot from 2024-10-22 00-14-50](https://github.com/user-attachments/assets/8b9d7dea-46b3-404f-91ce-67215e24b7cc)
+
+
+![Screenshot from 2024-10-22 00-16-22](https://github.com/user-attachments/assets/2fbbe333-f7c1-42ea-a544-5e9708c57c04)
+![Screenshot from 2024-10-22 00-16-32](https://github.com/user-attachments/assets/dfff4ba3-7433-49b8-b35c-c8612eec746b)
+Realization of Logic:
+![Screenshot from 2024-10-22 00-16-46](https://github.com/user-attachments/assets/25b7f38b-0664-4501-a4ee-54648aa9a8f7)
+Netlist:
+![Screenshot from 2024-10-22 00-17-22](https://github.com/user-attachments/assets/1958e816-f25e-4343-bec4-511daba2038f)
+
+GLS:
+
+```
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+Waveform:
+In this case there is a synthesis and simulation mismatch. While performing synthesis yosys has corrected the latch error.
+
+![Screenshot from 2024-10-22 00-20-35](https://github.com/user-attachments/assets/82614321-d1a0-4af1-bff3-cccacc111946)
 
 
 
