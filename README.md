@@ -10,7 +10,7 @@
 - [Assignment 8](#assignment-8)
 - [Assignment 9](#assignment-9)
 - [Assignment 10](#assignment-10)
-  - [Day1](#Day-1)
+  - [Day_1](#Day-1)
   - [Subtopic 2](#subtopic-2)
   - [Subtopic 3](#subtopic-3)
   
@@ -1541,7 +1541,7 @@ The simulation successfully demonstrates the integration of DAC and PLL peripher
 
 ## Assignment 10
 
-### Day1
+### Day 1
 
 
 
