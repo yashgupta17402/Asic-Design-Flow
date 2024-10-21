@@ -1,4 +1,4 @@
-# Asic-Design-Flow
+![making_directory](https://github.com/user-attachments/assets/8a8f8432-0241-4f76-ac00-7945dcbf753b)# Asic-Design-Flow
 ## Table of Contents
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
@@ -1553,9 +1553,41 @@ In digital circuit design, Register-Transfer Level (RTL) is an abstraction used 
 
  Iverilog based Simulation Flow:
 
+ Simulator working:
+
+
 <img width="851" alt="iverlog_flow" src="https://github.com/user-attachments/assets/5a61e02f-0b5e-49e1-a56d-47ff5bca4ae9">
 
+Simulator looks for changes on input signals and based on that output is evaluated.
 
+Simulation Flow:
+
+Simulator continuously checks for changes in the input. If there is an input change, the output is evaluated; else the simulator will never evaluate the output.
+
+<img width="1407" alt="flow_iverilog" src="https://github.com/user-attachments/assets/327803ac-fee4-44e6-aecf-c6f7224887fe">
+
+```
+mkdir VLSI 
+cd VLSI
+git clone https://github.com/kunalg123/vsdflow.git
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+```
+
+![making_directory](https://github.com/user-attachments/assets/2ad392fd-7a97-4b01-8957-c76611dfd4cd)
+
+Directory **sky130RTLDesignAndSynthesisWorkshop **  all the necessary library files; where lib has the standard cell libraries to be used in synthesis and verilog_model with all standard cell verilog models for the standard cells present in the lib. Ther verilog_files folder contains all the experiments for lab sessions including both verilog code and test bench codes.
+```
+cd sky130RTLDesignAndSynthesisWorkshop
+ls -R
+```
+```
+cd sky130RTLDesignAndSynthesisWorkshop
+cd verilog_files
+ls
+```
+![Screenshot from 2024-10-21 21-22-10](https://github.com/user-attachments/assets/f6905bcc-907c-45df-90c7-9c0af6905b96)
+
+![Screenshot from 2024-10-21 21-22-24](https://github.com/user-attachments/assets/fadeaf7d-2225-4580-a118-4638bafcf031)
 
 
 
