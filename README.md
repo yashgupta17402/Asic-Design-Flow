@@ -10,7 +10,7 @@
 - [Assignment 8](#assignment-8)
 - [Assignment 9](#assignment-9)
 - [Assignment 10](#assignment-10)
-  - [Subtopic 1](#Day-1)
+  - [Day 1](#Day-1)
   - [Subtopic 2](#subtopic-2)
   - [Subtopic 3](#subtopic-3)
   
