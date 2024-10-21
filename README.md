@@ -2103,6 +2103,10 @@ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_
 ./a.out
 gtkwave tb_blocking_caveat.vcd
 ```
+
+![Screenshot from 2024-10-22 00-22-09](https://github.com/user-attachments/assets/d27f66a8-7bd7-4991-9ab3-0c03a1b4eafe)
+
+
 Waveform:
 In this case there is a synthesis and simulation mismatch. While performing synthesis yosys has corrected the latch error.
 
