@@ -2709,6 +2709,31 @@ Here take src folder from VSDBabySoc folder and Copy the src folder from your VS
 
 ### Synthesis:
 ```
+d ~/VSDBabySoC/src
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -lib ../lib/avsddac.lib
+read_liberty -lib ../lib/avsdpll.lib  
+read_verilog ../module/vsdbabysoc.v
+read_verilog ../module/rvmyth_pri.v
+read_verilog ../module/clk_gate.v 
+synth -top vsdbabysoc
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+show
+write_verilog -noattr vsdbabysoc.synth.v
+exit
+```
+![Screenshot from 2024-10-24 01-03-34](https://github.com/user-attachments/assets/e82bd0d2-e234-4f06-a228-3d064e543db1)
+schematic 
+![Screenshot from 2024-10-24 01-10-17](https://github.com/user-attachments/assets/e44b9581-8230-461b-ae04-ca4e7f3355eb)
+
+Netlist code:
+![Screenshot from 2024-10-24 01-14-19](https://github.com/user-attachments/assets/d9b452f2-a660-411a-b706-cf346c396f45)
+
+
+
+```
 yosys 
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog clk_gate.v
