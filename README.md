@@ -2707,7 +2707,7 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 ```
 Here take src folder from VSDBabySoc folder and Copy the src folder from your VSDBabySoC folder to your ASIC folder.
 
-
+### Synthesis:
 ```
 yosys 
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
