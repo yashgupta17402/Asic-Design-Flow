@@ -2782,7 +2782,7 @@ Waveform:
 ![Screenshot from 2024-10-24 00-03-06](https://github.com/user-attachments/assets/da356e13-0d62-4c2c-a24f-5c60e29301bd)
 ![Screenshot from 2024-10-24 00-03-14](https://github.com/user-attachments/assets/177bcf20-8e96-48b9-9dcd-396f11ce3e08)
 
-As we can see comparing both the outputs are same hence verifying our results.
+As we can see comparing The Functionality vs Synthesized output waveform matches hence verifying our results.
 
 
 
