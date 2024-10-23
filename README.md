@@ -2708,8 +2708,8 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 Here take src folder from VSDBabySoc folder and Copy the src folder from your VSDBabySoC folder to your ASIC folder.
 
 ### Synthesis:
+
 ```
-d ~/VSDBabySoC/src
 yosys
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_liberty -lib ../lib/avsddac.lib
@@ -2725,7 +2725,7 @@ write_verilog -noattr vsdbabysoc.synth.v
 exit
 ```
 ![Screenshot from 2024-10-24 01-03-34](https://github.com/user-attachments/assets/e82bd0d2-e234-4f06-a228-3d064e543db1)
-schematic 
+synthesized module
 ![Screenshot from 2024-10-24 01-10-17](https://github.com/user-attachments/assets/e44b9581-8230-461b-ae04-ca4e7f3355eb)
 
 Netlist code:
