@@ -14,7 +14,7 @@
   - [Day 2](#Day-2)
   - [Day 3](#Day-3)
   - [Day 4](#Day-4)
-  
+- [Assignment 11](#assignment-11)
 ## Assignment 1
 
 ## GCC Compilation: C Program
@@ -2689,6 +2689,78 @@ Waveform:
 In this case there is a synthesis and simulation mismatch. While performing synthesis yosys has corrected the latch error.
 
 ![Screenshot from 2024-10-22 00-20-35](https://github.com/user-attachments/assets/82614321-d1a0-4af1-bff3-cccacc111946)
+
+
+
+## Assignment 11
+
+### To Synthesize RISC-V and compare output with functional simulations.
+
+
+
+```
+ cp -r src sky130RTLDesignAndSynthesisWorkshop/
+ cd sky130RTLDesignAndSynthesisWorkshop/
+ ls
+ cd src
+ cd module/
+```
+Here take src folder from VSDBabySoc folder and Copy the src folder from your VSDBabySoC folder to your ASIC folder.
+
+
+```
+yosys 
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog clk_gate.v
+read_verilog rvmyth.v
+synth -top rvmyth
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+write_verilog -noattr rvmyth.v
+!gedit rvmyth.v
+exit
+```
+```
+iverilog ../../my_lib/verilog_model/primitives.v ../../my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v 
+ls
+./a.out
+gtkwave dump.vcd
+```
+![Screenshot from 2024-10-23 23-43-16](https://github.com/user-attachments/assets/be55fed9-596e-4e9a-b3e7-852daa448ec9)
+Synthesis:
+![Screenshot from 2024-10-23 23-50-16](https://github.com/user-attachments/assets/07b7e7ee-a647-45f8-a1ac-e3f4f13b1ca3)
+![Screenshot from 2024-10-23 23-50-28](https://github.com/user-attachments/assets/b0552a1e-2d76-447a-adad-2d0ff9cc9d97)
+![Screenshot from 2024-10-23 23-50-46](https://github.com/user-attachments/assets/31d7a766-2aaa-4935-bfad-123792824297)
+NetList:
+![Screenshot from 2024-10-23 23-51-43](https://github.com/user-attachments/assets/79fd6f57-93b1-45cc-840d-c871e4379d91)
+
+Waveform:
+![Screenshot from 2024-10-24 00-00-13](https://github.com/user-attachments/assets/8946d5d0-8c2f-45fe-af9a-a809f0680a3d)
+![Screenshot from 2024-10-24 00-00-33](https://github.com/user-attachments/assets/d916729c-00b5-4456-a055-1da6844a1cec)
+![Screenshot from 2024-10-24 00-00-42](https://github.com/user-attachments/assets/97900cbf-224f-4992-88ff-6e556d68a396)
+
+
+### Functional Simulations
+
+```
+cd
+cd VSDBabySoC
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+![Screenshot from 2024-10-24 00-01-47](https://github.com/user-attachments/assets/93beb236-d91a-43f5-afb8-52b5911f5899)
+
+Waveform:
+
+
+![Screenshot from 2024-10-24 00-02-39](https://github.com/user-attachments/assets/537d5343-fa63-442f-9736-89bc704f5110)
+![Screenshot from 2024-10-24 00-02-50](https://github.com/user-attachments/assets/c589b998-dd84-499e-945f-bb24a9fb6cfb)
+![Screenshot from 2024-10-24 00-03-06](https://github.com/user-attachments/assets/da356e13-0d62-4c2c-a24f-5c60e29301bd)
+![Screenshot from 2024-10-24 00-03-14](https://github.com/user-attachments/assets/177bcf20-8e96-48b9-9dcd-396f11ce3e08)
+
+
+
+
 
 
 
