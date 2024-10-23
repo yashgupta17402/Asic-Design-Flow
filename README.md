@@ -2721,7 +2721,6 @@ exit
 ```
 ```
 iverilog ../../my_lib/verilog_model/primitives.v ../../my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v 
-ls
 ./a.out
 gtkwave dump.vcd
 ```
@@ -2757,6 +2756,8 @@ Waveform:
 ![Screenshot from 2024-10-24 00-02-50](https://github.com/user-attachments/assets/c589b998-dd84-499e-945f-bb24a9fb6cfb)
 ![Screenshot from 2024-10-24 00-03-06](https://github.com/user-attachments/assets/da356e13-0d62-4c2c-a24f-5c60e29301bd)
 ![Screenshot from 2024-10-24 00-03-14](https://github.com/user-attachments/assets/177bcf20-8e96-48b9-9dcd-396f11ce3e08)
+
+As we can see comparing both the outputs are same hence verifying our results.
 
 
 
