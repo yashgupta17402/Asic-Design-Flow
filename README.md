@@ -2775,12 +2775,12 @@ gtkwave pre_synth_sim.vcd
 ![Screenshot from 2024-10-24 00-01-47](https://github.com/user-attachments/assets/93beb236-d91a-43f5-afb8-52b5911f5899)
 
 Waveform:
+![Screenshot from 2024-10-24 01-28-00](https://github.com/user-attachments/assets/6ba0d3a7-cb5f-46b5-8ce4-c4a9b3a4e6bb)
+![Screenshot from 2024-10-24 01-28-13](https://github.com/user-attachments/assets/1ae12913-19b7-411f-b14e-dd4299a7e390)
+![Screenshot from 2024-10-24 01-30-00](https://github.com/user-attachments/assets/8e9ca955-5da6-45b4-b89c-71c292e84167)
+![Screenshot from 2024-10-24 01-30-58](https://github.com/user-attachments/assets/6547d6ff-9683-4613-8b9e-aa598aa0043e)
 
 
-![Screenshot from 2024-10-24 00-02-39](https://github.com/user-attachments/assets/537d5343-fa63-442f-9736-89bc704f5110)
-![Screenshot from 2024-10-24 00-02-50](https://github.com/user-attachments/assets/c589b998-dd84-499e-945f-bb24a9fb6cfb)
-![Screenshot from 2024-10-24 00-03-06](https://github.com/user-attachments/assets/da356e13-0d62-4c2c-a24f-5c60e29301bd)
-![Screenshot from 2024-10-24 00-03-14](https://github.com/user-attachments/assets/177bcf20-8e96-48b9-9dcd-396f11ce3e08)
 
 As we can see comparing The Functionality vs Synthesized output waveform matches hence verifying our results.
 
