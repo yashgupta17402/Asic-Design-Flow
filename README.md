@@ -2715,7 +2715,7 @@ read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_liberty -lib ../lib/avsddac.lib
 read_liberty -lib ../lib/avsdpll.lib  
 read_verilog ../module/vsdbabysoc.v
-read_verilog ../module/rvmyth_pri.v
+read_verilog ../module/rvmyth.v
 read_verilog ../module/clk_gate.v 
 synth -top vsdbabysoc
 dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
@@ -2761,6 +2761,10 @@ Waveform:
 ![Screenshot from 2024-10-24 00-00-13](https://github.com/user-attachments/assets/8946d5d0-8c2f-45fe-af9a-a809f0680a3d)
 ![Screenshot from 2024-10-24 00-00-33](https://github.com/user-attachments/assets/d916729c-00b5-4456-a055-1da6844a1cec)
 ![Screenshot from 2024-10-24 00-00-42](https://github.com/user-attachments/assets/97900cbf-224f-4992-88ff-6e556d68a396)
+With cells:
+![Screenshot from 2024-10-24 01-43-57](https://github.com/user-attachments/assets/6d627c97-e6f5-4294-b019-5659055cdcd5)
+
+
 
 
 ### Functional Simulations
@@ -2783,6 +2787,9 @@ Waveform:
 
 
 As we can see comparing The Functionality vs Synthesized output waveform matches hence verifying our results.
+![Screenshot from 2024-10-24 01-43-25](https://github.com/user-attachments/assets/61ec933b-4551-49ab-a201-d7bc8ffbca56)
+![Screenshot from 2024-10-24 01-43-39](https://github.com/user-attachments/assets/2173fec4-aee7-418e-b2e9-21febe94580c)
+
 
 
 
