@@ -2761,6 +2761,8 @@ Waveform:
 ![Screenshot from 2024-10-24 00-00-13](https://github.com/user-attachments/assets/8946d5d0-8c2f-45fe-af9a-a809f0680a3d)
 ![Screenshot from 2024-10-24 00-00-33](https://github.com/user-attachments/assets/d916729c-00b5-4456-a055-1da6844a1cec)
 ![Screenshot from 2024-10-24 00-00-42](https://github.com/user-attachments/assets/97900cbf-224f-4992-88ff-6e556d68a396)
+![Screenshot from 2024-10-24 02-02-31](https://github.com/user-attachments/assets/a368c6cb-2bca-4008-93a0-48f3f7b9d6ca)
+
 With cells:
 ![Screenshot from 2024-10-24 01-43-57](https://github.com/user-attachments/assets/6d627c97-e6f5-4294-b019-5659055cdcd5)
 
