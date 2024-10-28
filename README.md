@@ -15,6 +15,7 @@
   - [Day 3](#Day-3)
   - [Day 4](#Day-4)
 - [Assignment 11](#assignment-11)
+- [Assignment 12](#assignment-12)
 ## Assignment 1
 
 ## GCC Compilation: C Program
@@ -2796,7 +2797,67 @@ As we can see comparing The Functionality vs Synthesized output waveform matches
 ![Screenshot from 2024-10-24 01-43-39](https://github.com/user-attachments/assets/2173fec4-aee7-418e-b2e9-21febe94580c)
 
 
+## Assignment 12
+### Post Synthesis Static Timing Analysis using OpenSTA
 
+### STA
+Static Timing Analysis (STA) is a method used in digital circuit design to verify the timing performance of a circuit without requiring dynamic simulation. It checks whether the circuit meets its timing constraints by analyzing the timing paths in the design. Here are some key aspects of STA:
+Timing Paths: STA evaluates all possible paths through a circuit from input to output, taking into account the propagation delays of gates and interconnects.
+Setup and Hold Times: It checks for setup and hold time violations. The setup time is the minimum time before the clock edge that the input data must be stable, while the hold time is the minimum time after the clock edge that the data must remain stable.
+Clock Constraints: STA incorporates clock definitions, including the clock frequency, period, and any variations (like skew or jitter).
+Worst-case Scenario: STA assumes worst-case conditions for delay values (like maximum load, temperature, and voltage) to ensure that the circuit will perform correctly under all expected operating conditions.
+Tools: There are various tools for performing STA, such as Synopsys PrimeTime, Cadence Tempus, and others, which automate the process and provide detailed reports on timing violations. Overall, STA is crucial for ensuring that digital circuits operate reliably at the intended speeds and for identifying potential timing issues early in the design process.
+
+### Reason for STA:
+Static Timing Analysis (STA) is performed for several critical reasons in digital circuit design:
+
+Timing Verification: STA ensures that the design meets its specified timing constraints. It verifies that data signals can propagate through the circuit within the required time limits, ensuring that outputs are stable and valid when needed.
+Identify Timing Violations: It helps identify setup and hold time violations, which can lead to incorrect operation of flip-flops and other sequential elements. Detecting these violations is crucial to ensure the reliability of the circuit.
+Performance Optimization: By analyzing the timing paths, designers can identify critical paths that limit the maximum operating frequency. This information can be used to optimize the design by resizing gates, adjusting the layout, or modifying the clock strategy.
+Early Detection of Issues: STA allows for early detection of timing issues during the design process, reducing the risk of costly iterations and revisions in later stages, such as post-layout or during fabrication.
+Power Consumption Analysis: Timing analysis can also help in understanding the impact of clock frequency on power consumption. By ensuring that the design runs at optimal speeds, designers can balance performance and power efficiency.
+
+### vsdbabysoc_synthesis.sdc:
+```
+set PERIOD 11.20
+set_units -time ns
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty -setup  [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+### Running the OpenSTA:
+```
+cd VSDBabySoc/src
+sta
+read_liberty -min ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -min ./lib/avsdpll.lib
+read_liberty -min ./lib/avsddac.lib
+read_liberty -max ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -max ./lib/avsdpll.lib
+read_liberty -max ./lib/avsddac.lib
+read_verilog ../output/synth/vsdbabysoc.synth.v
+link_design vsdbabysoc
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+
+![Screenshot from 2024-10-28 21-54-06](https://github.com/user-attachments/assets/ef64b544-5aa8-4a27-a183-60dd996c7fb6)
+
+HOLD TIME:
+![Screenshot from 2024-10-29 00-11-55](https://github.com/user-attachments/assets/836a5209-2785-4e6b-9624-455796f20cd0)
+
+
+![Screenshot from 2024-10-29 00-12-42](https://github.com/user-attachments/assets/be82d44a-5ab6-4f22-a18f-ece111c88c3f)
+
+SETUP TIME:
+![Screenshot from 2024-10-29 00-11-47](https://github.com/user-attachments/assets/247c4adc-96b5-498f-895e-77c4fbf982e4)
 
 
 
