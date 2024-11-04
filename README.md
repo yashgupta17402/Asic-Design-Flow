@@ -2925,7 +2925,6 @@ source sta_pvt.tcl
 
 ![Screenshot from 2024-11-05 03-38-04](https://github.com/user-attachments/assets/e88856c5-9297-40b6-9f57-9b67399b912e)
 ![Screenshot from 2024-11-05 01-50-12](https://github.com/user-attachments/assets/ae13b57b-d94a-46a7-91cf-f76b64f146a8)
-![Screenshot from 2024-11-05 02-30-31](https://github.com/user-attachments/assets/dd2b1bbf-8a4e-4ea1-8d56-ec533649fe5a)
 ![Screenshot from 2024-11-05 03-26-26](https://github.com/user-attachments/assets/ba7f5f77-f44e-4d9a-89b3-a3dc84709ce8)
 ![Screenshot from 2024-11-05 03-28-11](https://github.com/user-attachments/assets/265f738d-092c-4b74-998b-be57d6d7f8f4)
 
