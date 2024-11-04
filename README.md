@@ -2924,9 +2924,34 @@ source sta_pvt.tcl
 ```
 
 ![Screenshot from 2024-11-05 03-38-04](https://github.com/user-attachments/assets/e88856c5-9297-40b6-9f57-9b67399b912e)
-![Screenshot from 2024-11-05 02-30-19](https://github.com/user-attachments/assets/2f912d2d-099e-4b1f-90a2-23188459bdd9)
+![Screenshot from 2024-11-05 02-30-31](https://github.com/user-attachments/assets/dd2b1bbf-8a4e-4ea1-8d56-ec533649fe5a)
 ![Screenshot from 2024-11-05 03-26-26](https://github.com/user-attachments/assets/ba7f5f77-f44e-4d9a-89b3-a3dc84709ce8)
 ![Screenshot from 2024-11-05 03-28-11](https://github.com/user-attachments/assets/265f738d-092c-4b74-998b-be57d6d7f8f4)
+
+| File Name                                     | Worst HoldSlack (WNS) | Worst Negative Slack (WNS) |
+|-----------------------------------------------|------------------------|-----------------------------|
+| min_max_sky130_fd_sc_hd__ff_100C_1v65.lib.txt | -0.6057               | -3.2129                     |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v95.lib.txt | -0.6648               | 0.0555                      |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v56.lib.txt | -0.544                | -2.8771                     |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v65.lib.txt | -0.5847               | -1.7646                     |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v76.lib.txt | -0.621                | -0.8431                     |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v95.lib.txt | -0.6648               | 0.0555                      |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part1.txt | -0.6648 | 0.0555          |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part2.txt | -0.6648 | 0.0555          |
+| min_max_sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part3.txt | -0.6648 | 0.0555          |
+| min_max_sky130_fd_sc_hd__ss_100C_1v40.lib.txt | 0.1376                | -25.9157                    |
+| min_max_sky130_fd_sc_hd__ss_100C_1v60.lib.txt | -0.1424               | -15.7276                    |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v28.lib.txt | 1.0372                | -96.7958                    |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v35.lib.txt | 0.5733                | -60.9135                    |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v44.lib.txt | 0.2112                | -38.9537                    |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v60.lib.txt | -0.1213               | -19.6409                    |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part1.txt | -0.1213 | -19.6409        |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part2.txt | -0.1213 | -19.6409        |
+| min_max_sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part3.txt | -0.1213 | -19.6409        |
+| min_max_sky130_fd_sc_hd__tt_025C_1v80.lib.txt | -0.5417               | -4.2481                     |
+| min_max_sky130_fd_sc_hd__tt_100C_1v80.lib.txt | -0.5439               | -5.1643                     |
+
+
 ### Worst Negative Slack(Graph)
 ![Screenshot from 2024-11-05 03-32-38](https://github.com/user-attachments/assets/4767f300-3531-4aee-a2c9-31da5acbf64f)
 ### Worst Hold Slack(Graph)
