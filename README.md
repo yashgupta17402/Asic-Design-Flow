@@ -2951,7 +2951,7 @@ source sta_pvt.tcl
 | min_max_sky130_fd_sc_hd__tt_025C_1v80.lib.txt | -0.5417               | -4.2481                     |
 | min_max_sky130_fd_sc_hd__tt_100C_1v80.lib.txt | -0.5439               | -5.1643                     |
 
-
+Graphs plotted in LibreOffice Calc using all values taken from txts.
 ### Worst Negative Slack(Graph)
 ![Screenshot from 2024-11-05 03-32-38](https://github.com/user-attachments/assets/4767f300-3531-4aee-a2c9-31da5acbf64f)
 ### Worst Hold Slack(Graph)
