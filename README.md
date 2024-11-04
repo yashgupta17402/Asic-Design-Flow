@@ -2862,6 +2862,77 @@ SETUP TIME:
 
 
 ## Assignment 13
+Post Synthesis Static Timing Analysis using OpenSTA for all the sky130 lib files.
+
+```
+set PERIOD 11.20
+set_units -time ns
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty -setup  [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+
+
+Store all the lib files in a folder  timing_libs(in src)
+Create a sta_pvt.tcl file with below content:
+
+```
+set list_of_lib_files(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+set list_of_lib_files(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+set list_of_lib_files(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+set list_of_lib_files(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set list_of_lib_files(7) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part1"
+set list_of_lib_files(8) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part2"
+set list_of_lib_files(9) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part3"
+set list_of_lib_files(10) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+set list_of_lib_files(11) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+set list_of_lib_files(15) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+set list_of_lib_files(16) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+set list_of_lib_files(17) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part1"
+set list_of_lib_files(18) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part2"
+set list_of_lib_files(19) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part3"
+set list_of_lib_files(20) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+set list_of_lib_files(21) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+set list_of_lib_files(22) "sky130_fd_sc_hd__tt_100C_1v80.lib"
+
+for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
+read_liberty ./timing_libs/$list_of_lib_files($i)
+read_verilog ../output/synth/vsdbabysoc.synth.v
+link_design vsdbabysoc
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+check_setup -verbose
+report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > ./sta_output/min_max_$list_of_lib_files($i).txt
+
+}
+```
+Create a folder named sta_output in VSDBabySoC/src. .txt files will be generated.
+```
+cd VSDBabySoC/src
+sta
+source sta_pvt.tcl
+```
+
+![Screenshot from 2024-11-05 03-38-04](https://github.com/user-attachments/assets/e88856c5-9297-40b6-9f57-9b67399b912e)
+![Screenshot from 2024-11-05 02-30-19](https://github.com/user-attachments/assets/2f912d2d-099e-4b1f-90a2-23188459bdd9)
+![Screenshot from 2024-11-05 03-26-26](https://github.com/user-attachments/assets/ba7f5f77-f44e-4d9a-89b3-a3dc84709ce8)
+![Screenshot from 2024-11-05 03-28-11](https://github.com/user-attachments/assets/265f738d-092c-4b74-998b-be57d6d7f8f4)
+### Worst Negative Slack(Graph)
+![Screenshot from 2024-11-05 03-32-38](https://github.com/user-attachments/assets/4767f300-3531-4aee-a2c9-31da5acbf64f)
+### Worst Hold Slack(Graph)
+![Screenshot from 2024-11-05 03-30-09](https://github.com/user-attachments/assets/8b31e76e-0d82-4c35-8969-9415c75d6738)
+
+
 
 
 
