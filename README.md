@@ -3081,7 +3081,7 @@ docker
 package require openlane 0.9
 prep -design picorv32a
 run_synthesis
-
+```
 
 
 ![asic1](https://github.com/user-attachments/assets/3b4e36c2-6e98-4fb2-8e78-a4ba94f3bb45)
