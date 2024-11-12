@@ -2961,7 +2961,414 @@ Graphs plotted in LibreOffice Calc using all values taken from txts.
 
 ## Assignment 14
 
+#### Day-1: Inception of open-source EDA, OpenLane and Sky130 PDK
 
+**QFN-48 Package:** A Quad Flat No-leads (QFN) 48 package is a leadless IC package with 48 connection pads around the perimeter. It offers good thermal and electrical performance in a compact form, making it ideal for high-density applications.
+
+![image](https://github.com/user-attachments/assets/2237a9ef-dc38-444f-97a5-ceb4e983c8f0)
+
+
+**Chip:** An integrated circuit (IC) that contains various functional blocks like memory, processing units, and I/O in a silicon substrate, typically used for specific applications in electronics.
+
+![image](https://github.com/user-attachments/assets/7503bcea-4654-4bc9-b77a-de9ced7929be)
+
+
+**Pads:** Small metallic areas on a chip or package used to connect internal circuitry to external connections, enabling signals to be transferred to and from the IC.
+
+**Core:** The central part of a chip containing the main processing unit and functional logic, often optimized for power and performance.
+
+**Die:** The section of a silicon wafer containing an individual IC before it is packaged, housing all active circuits and elements for the chip's functions.
+
+![image](https://github.com/user-attachments/assets/cfa2c482-59c5-4ad5-b74c-a027bfdf16b8)
+
+**IPs (Intellectual Properties):** Pre-designed functional blocks or modules within a chip, such as USB controllers or memory interfaces, licensed for reuse across various designs to save time and cost.
+
+![image](https://github.com/user-attachments/assets/1039a7d9-0286-42c7-8da7-17136c3da5aa)
+
+
+**From Software Applications to Hardware Flow**
+
+To run an application on hardware, several processes take place. First, the application enters a layer known as the system software, which prepares it for execution by translating the application program into binary format, understandable by hardware. Key components within system software include the Operating System (OS), Compiler, and Assembler.
+
+The process starts with the OS, which breaks down application functions written in high-level languages such as C, C++, Java, or Visual Basic. These functions are passed to a suitable compiler, which translates them into low-level instructions. The syntax and format of these instructions are tailored to the specific hardware architecture in use.
+
+Next, the assembler converts these hardware-specific instructions into binary format, known as machine language. This binary code is then fed to the hardware, enabling it to perform specific tasks as defined by the received instructions.
+
+![image](https://github.com/user-attachments/assets/14788472-7c91-4860-82c6-2bccb49f91d2)
+
+For example, consider a stopwatch app running on a RISC-V core. Here, the OS might generate a small function in C, which is then passed to a compiler. The compiler outputs RISC-V-specific instructions, tailored to the architecture. These instructions are subsequently processed by the assembler, which converts them into binary code. This binary code then flows into the chip layout, where the hardware executes the desired functionality.
+
+![image](https://github.com/user-attachments/assets/cabbd8f7-f0c4-4a13-bf2e-d6d67392910e)
+
+For the above stopwatch the below figure shows the input and output of the compiler and assembler.
+
+![image](https://github.com/user-attachments/assets/63f2e771-eed8-4953-b501-dd9ff0d209f7)
+
+The compiler generates architecture-specific instructions, while the assembler produces the corresponding binary patterns. To execute these instructions on hardware, an RTL (written in a Hardware Description Language) is used to interpret and implement the instructions. This RTL design is then synthesized into a netlist, represented as interconnected logic gates. Finally, the netlist undergoes physical design implementation to be fabricated onto the chip.
+
+![image](https://github.com/user-attachments/assets/ae0a287d-8bb4-4535-b6b0-5b1baf09008d)
+
+**Components of ASIC Design**
+
+![image](https://github.com/user-attachments/assets/560b728b-8e75-4c9d-a3c8-5b640318c4aa)
+
+- RTL IPs: Pre-designed, verified digital circuit blocks (like adders, flip-flops, memory) in HDL (e.g., Verilog, VHDL). They save design time by providing ready-to-use components for complex circuits.
+
+- EDA Tools: Software that automates ASIC design tasks (e.g., synthesis, optimization, placement, timing analysis). Essential for improving productivity and ensuring performance and power requirements are met.
+
+- PDK Data: A set of files and parameters from a semiconductor foundry, detailing its manufacturing process (e.g., transistor models, design rules). PDKs ensure ASIC designs are compatible with the foundry’s fabrication process.
+
+**Simplified RTL to GDS flow**
+
+![image](https://github.com/user-attachments/assets/1f2a5455-d83e-46fe-92e3-531ade2a9add)
+
+- **RTL Design:** Describes the circuit's functional behavior using HDLs like Verilog or VHDL, defining its logic and data paths.
+
+- **RTL Synthesis:** Converts RTL code to a gate-level netlist which is a collection of standard cells like AND gates, flip-flops, and multiplexers by mapping it to standard cells and optimizing for area, power, and timing. 
+- **Floor and Power Planning:** Partitions chip area, places major components, and defines power grid and I/O placement to optimize area, power distribution, and signal flow. This step optimizes the physical layout, aiming to reduce power consumption and improve signal integrity by considering the placement of I/O pads and power distribution cells
+
+- **Placement:** Assigns physical locations to cells, aiming to minimize wirelength, reduce signal delay, and meet design constraints. The placement tool carefully arranges the cells to balance the overall chip design for optimal performance and area utilization.
+
+- **Clock Tree Synthesis (CTS):** Clock Tree Synthesis (CTS) is a critical step that focuses on creating an optimized clock distribution network. CTS ensures the clock is distributed evenly to all flip-flops and registers. It builds an optimized clock network to balance clock signal distribution and reduce clock skew.
+
+- **Routing:** Connects components based on placement, optimizing wire paths to ensure signal integrity, minimize congestion, and meet design rules.
+
+- **Sign-off:** Final verification stage, ensuring the design meets functionality, performance, power, and reliability targets. Timing analysis is performed to check setup and hold times, power analysis ensures the design doesn’t exceed power limits, and physical verification checks ensure that the layout meets manufacturing rules. This stage confirms the design is ready for fabrication.
+
+- **GDSII File Generation:** Creates the GDSII file containing the complete layout details needed for chip fabrication. This file represents the final physical design and is used by manufacturers to create the photomasks required for chip production. The GDSII file serves as the blueprint for the actual fabrication of the chip.
+
+**OpenLane ASIC Flow:**
+
+![image](https://github.com/user-attachments/assets/cdd04b14-fbfe-44a3-8d4e-8fbfe443bd74)
+
+1. RTL Synthesis, Technology Mapping, and Formal Verification: The tools used are Yosys (for RTL synthesis), ABC (for technology mapping and formal verification).
+2. Static Timing Analysis: The tools used are OpenSTA (for static timing analysis).
+3. Floor Planning: The tools used are init_fp (initial floorplanning), ioPlacer (I/O placement), pdn (power distribution network planning), tapcell (tap cell insertion).
+4. Placement: The tools used are RePLace (global placement), Resizer (optional for resizing cells), OpenPhySyn (formerly used for placement), OpenDP (detailed placement).
+5. Clock Tree Synthesis: The tools used are TritonCTS (for clock tree synthesis).
+6. Fill Insertion: The tools used are OpenDP (for filler placement).
+7. Routing: The tools used for global routing are FastRoute or CU-GR (formerly used) and for the detailed routing , we use TritonRoute (for detailed routing) or DR-CU (formerly used).
+8. SPEF Extraction: The tools used are OpenRCX (or SPEF-Extractor, formerly used) for Standard Parasitic Exchange Format (SPEF) extraction.
+9. GDSII Streaming Out: The tools used are Magic and KLayout (for viewing and editing GDSII files).
+10. Design Rule Checking (DRC) Checks: The tools used are Magic and KLayout (for DRC checks).
+11. Layout vs. Schematic (LVS) Check: The tools used are Netgen (for LVS checks).
+12. Antenna Checks: The tools used are Magic (for antenna checks).
+
+**OpenLANE Directory structure**
+
+``` 
+├── OOpenLane             -> directory where the tool can be invoked (run docker first)
+│   ├── designs          -> All designs must be extracted from this folder
+│   │   │   ├── picorv32a -> Design used as case study for this workshop
+│   |   |   ├── ...
+|   |   ├── ...
+├── pdks                 -> contains pdk related files 
+│   ├── skywater-pdk     -> all Skywater 130nm PDKs
+│   ├── open-pdks        -> contains scripts that makes the commerical PDK (which is normally just compatible to commercial tools) to also be compatible with the open-source EDA tool
+│   ├── sky130A          -> pdk variant made especially compatible for open-source tools
+│   │   │  ├── libs.ref  -> files specific to node process (timing lib, cell lef, tech lef) for example is `sky130_fd_sc_hd` (Sky130nm Foundry Standard Cell High Density)  
+│   │   │  ├── libs.tech -> files specific for the tool (klayout,netgen,magic...) 
+```
+
+**Synthesis in Openlane:**
+
+Go to VSD Virtual Box and run the following commands:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+
+
+
+![asic1](https://github.com/user-attachments/assets/3b4e36c2-6e98-4fb2-8e78-a4ba94f3bb45)
+
+![asic3](https://github.com/user-attachments/assets/358982df-cd58-477b-9b0c-28d9d0cdb106)
+
+![asic2](https://github.com/user-attachments/assets/0abb26fe-6695-40d0-8544-5e9916fe9c2f)
+
+To view the netlist:
+
+```
+cd designs/picorv32a/runs/12-11_20-18/results/synthesis/
+gedit picorv32a.synthesis.v
+```
+![asic4](https://github.com/user-attachments/assets/2b547b91-7f39-4d7f-9580-b9225cae3275)
+Netlist code:
+![asic5](https://github.com/user-attachments/assets/7cd6f0ea-7818-46c7-9dc4-b19dbf6c678b)
+![asic6](https://github.com/user-attachments/assets/67dedd74-265e-46c2-bdbf-0796b6ef0095)
+
+To view the yosys report:
+
+```
+cd ../..
+cd reports/synthesis
+gedit 1-yosys_4.stat.rpt
+```
+![asic8](https://github.com/user-attachments/assets/9f714e19-98a8-4716-b7a3-677da3457981)
+
+![asic7](https://github.com/user-attachments/assets/b2b4779e-da33-45e3-b45d-6698cc31fb91)
+
+
+Report:
+
+```
+28. Printing statistics.
+
+=== picorv32a ===
+
+   Number of wires:              14596
+   Number of wire bits:          14978
+   Number of public wires:        1565
+   Number of public wire bits:    1947
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14876
+     sky130_fd_sc_hd__a2111o_2       1
+     sky130_fd_sc_hd__a211o_2       35
+     sky130_fd_sc_hd__a211oi_2      60
+     sky130_fd_sc_hd__a21bo_2      149
+     sky130_fd_sc_hd__a21boi_2       8
+     sky130_fd_sc_hd__a21o_2        57
+     sky130_fd_sc_hd__a21oi_2      244
+     sky130_fd_sc_hd__a221o_2       86
+     sky130_fd_sc_hd__a22o_2      1013
+     sky130_fd_sc_hd__a2bb2o_2    1748
+     sky130_fd_sc_hd__a2bb2oi_2     81
+     sky130_fd_sc_hd__a311o_2        2
+     sky130_fd_sc_hd__a31o_2        49
+     sky130_fd_sc_hd__a31oi_2        7
+     sky130_fd_sc_hd__a32o_2        46
+     sky130_fd_sc_hd__a41o_2         1
+     sky130_fd_sc_hd__and2_2       157
+     sky130_fd_sc_hd__and3_2        58
+     sky130_fd_sc_hd__and4_2       345
+     sky130_fd_sc_hd__and4b_2        1
+     sky130_fd_sc_hd__buf_1       1656
+     sky130_fd_sc_hd__buf_2          8
+     sky130_fd_sc_hd__conb_1        42
+     sky130_fd_sc_hd__dfxtp_2     1613
+     sky130_fd_sc_hd__inv_2       1615
+     sky130_fd_sc_hd__mux2_1      1224
+     sky130_fd_sc_hd__mux2_2         2
+     sky130_fd_sc_hd__mux4_1       221
+     sky130_fd_sc_hd__nand2_2       78
+     sky130_fd_sc_hd__nor2_2       524
+     sky130_fd_sc_hd__nor2b_2        1
+     sky130_fd_sc_hd__nor3_2        42
+     sky130_fd_sc_hd__nor4_2         1
+     sky130_fd_sc_hd__o2111a_2       2
+     sky130_fd_sc_hd__o211a_2       69
+     sky130_fd_sc_hd__o211ai_2       6
+     sky130_fd_sc_hd__o21a_2        54
+     sky130_fd_sc_hd__o21ai_2      141
+     sky130_fd_sc_hd__o21ba_2      209
+     sky130_fd_sc_hd__o21bai_2       1
+     sky130_fd_sc_hd__o221a_2      204
+     sky130_fd_sc_hd__o221ai_2       7
+     sky130_fd_sc_hd__o22a_2      1312
+     sky130_fd_sc_hd__o22ai_2       59
+     sky130_fd_sc_hd__o2bb2a_2     119
+     sky130_fd_sc_hd__o2bb2ai_2     92
+     sky130_fd_sc_hd__o311a_2        8
+     sky130_fd_sc_hd__o31a_2        19
+     sky130_fd_sc_hd__o31ai_2        1
+     sky130_fd_sc_hd__o32a_2       109
+     sky130_fd_sc_hd__o41a_2         2
+     sky130_fd_sc_hd__or2_2       1088
+     sky130_fd_sc_hd__or2b_2        25
+     sky130_fd_sc_hd__or3_2         68
+     sky130_fd_sc_hd__or3b_2         5
+     sky130_fd_sc_hd__or4_2         93
+     sky130_fd_sc_hd__or4b_2         6
+     sky130_fd_sc_hd__or4bb_2        2
+
+   Chip area for module '\picorv32a': 147712.918400
+```
+
+```
+Flop ratio = Number of D Flip flops = 1613  = 0.1084
+             ______________________   _____
+             Total Number of cells    14876
+```
+
+
+#### Day-2: Good floorplan vs bad floorplan and introduction to library cells
+
+**Utilization Factor and Aspect Ratio**: In IC floor planning, utilization factor and aspect ratio are key parameters. The utilization factor is the ratio of the area occupied by the netlist to the total core area. While a perfect utilization of 1 (100%) is ideal, practical designs target a factor of 0.5 to 0.6 to allow space for buffer zones, routing channels, and future adjustments. The aspect ratio, defined as height divided by width, indicates the chip’s shape; an aspect ratio of 1 denotes a square, while other values result in a rectangular layout. The aspect ratio is chosen based on functional, packaging, and manufacturing needs.
+
+```
+Utilisation Factor =  Area occupied by netlist
+                     __________________________
+                         Total area of core
+                         
+
+Aspect Ratio =  Height
+               ________
+                Width
+```
+
+**Pre-placed cells** : Pre-placed cells are essential functional blocks, such as memory, custom processors, and analog circuits, positioned manually in fixed locations. These blocks are crucial for the chip’s performance and remain fixed during placement and routing to preserve their functionality and layout integrity.
+
+**Decoupling Capacitors** : Decoupling capacitors are placed near logic circuits to stabilize power supply voltages during transient events. Acting as local energy reserves, they help reduce voltage fluctuations, crosstalk, and electromagnetic interference (EMI), ensuring reliable power delivery to sensitive circuits.
+
+**Power Planning**: A robust power planning strategy includes creating a power and ground mesh to distribute VDD and VSS evenly across the chip. This setup ensures stable power delivery, minimizes voltage drops, and improves overall efficiency. Multiple power and ground points reduce the risk of instability and voltage drop issues, supporting the design’s power needs effectively.
+
+**Pin Placement**: Pin placement (I/O planning) is crucial for functionality and reliability. Strategic pin assignment minimizes signal degradation, preserves data integrity, and helps manage heat dissipation. Proper positioning of power and ground pins supports thermal management and enhances signal strength, contributing to overall system stability and manufacturability.
+
+Floorplaning using OpenLANE:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
+
+```
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+```
+![asic9](https://github.com/user-attachments/assets/3090eb06-db92-4ba1-ba28-3d74d7bd717d)
+
+![asic10](https://github.com/user-attachments/assets/b7d51e85-fb40-4072-8cd1-75db0132ba60)
+
+
+Now, run the below commands in a new terminal:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_20-33/results/floorplan
+gedit picorv32a.floorplan.def
+```
+![asic11](https://github.com/user-attachments/assets/197f066d-896c-4555-a492-7d0f96d51c21)
+
+![asic12](https://github.com/user-attachments/assets/2ea7a161-5ee3-4f2a-9169-01ec1ca63592)
+
+According to floorplan definition:
+
+1000 Unit Distance = 1 Micron  
+
+Die width in unit distance = 660685−0 = 660685 
+
+Die height in unit distance = 671405−0 = 671405  
+
+Distance in microns = Value in Unit Distance/1000  
+
+​Die width in microns = 660685/1000 = 660.685 Microns  
+
+Die height in microns = 671405/1000 = 671.405 Microns  
+
+Area of die in microns = 660.685 × 671.405 = 443587.212425 Square Microns
+
+To view the floorplan in magic. Open a new terminal and run the below commands:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_20-33/results/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+
+Decap and Tap Cells,Unplaces standard cells at origin
+![asic13](https://github.com/user-attachments/assets/42b9a94f-8bb6-49e3-8a8e-d644cb074a6b)
+![asic14](https://github.com/user-attachments/assets/71c11aef-d16d-4ee8-ba5a-5569c07d1220)
+![asic15](https://github.com/user-attachments/assets/92fecff1-6ed7-4825-9918-b9a15fb96917)
+![asic16](https://github.com/user-attachments/assets/b557d577-8c9c-4856-853b-190b2ad573f4)
+
+Command to run placement:
+
+```
+run_placement
+```
+![asic18](https://github.com/user-attachments/assets/8985f68b-63b5-42d2-817b-bef8f9f63683)
+![asic19](https://github.com/user-attachments/assets/4879e236-aa3c-4f81-8d71-6d973c573280)
+
+To view the placement in magic:
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-11_20-33/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+![asic21](https://github.com/user-attachments/assets/3c9e9c7d-16b9-464b-bb64-3f73c3a29335)
+![asic20](https://github.com/user-attachments/assets/a871e98c-6192-44f3-a43f-802b9da52e26)
+![asic24](https://github.com/user-attachments/assets/d8d5c15e-c464-4b65-9e52-a7eea7d6b057)
+
+
+**Cell design and Characterization Flow**
+
+Library is a place where we get information about every cell. It has differents cells with different size, functionality,threshold voltages. There is a typical cell design flow steps.
+
+Inputs : PDKS(process design kit) : DRC & LVS, SPICE Models, library & user-defined specs.
+Design Steps :Circuit design, Layout design (Art of layout Euler's path and stick diagram), Extraction of parasitics, Characterization (timing, noise, power).
+Outputs: CDL (circuit description language), LEF, GDSII, extracted SPICE netlist (.cir), timing, noise and power .lib files
+
+**Standard Cell Characterization Flow**
+
+A typical standard cell characterization flow that is followed in the industry includes the following steps:
+
+- Read in the models and tech files
+- Read extracted spice Netlist
+- Recognise behavior of the cells
+- Read the subcircuits
+- Attach power sources
+- Apply stimulus to characterization setup
+- Provide neccesary output capacitance loads
+- Provide neccesary simulation commands
+- Now all these 8 steps are fed in together as a configuration file to a characterization software called GUNA. This software generates timing, noise, power models. These .libs are classified as Timing characterization, power characterization and noise characterization.
+
+**Timing parameters**
+
+| Timing definition | Value |
+|---|---|
+| slew_low_rise_thr | 20% value |
+| slew_high_rise_thr | 80% value |
+| slew_low_fall_thr | 20% value |
+| slew_high_fall_thr | 80% value |
+| in_rise_thr | 50% value |
+| in_fall_thr | 50% value |
+| out_rise_thr | 50% value |
+| out_fall_thr | 50% value |
+**Propagation Delay**: It refers to the time it takes for a change in an input signal to reach 50% of its final value to produce a corresponding change in the output signal to reach 50% of its final value of a digital circuit.
+
+```
+rise delay =  time(out_fall_thr) - time(in_rise_thr)
+```
+
+**Transistion time**: The time it takes the signal to move between states is the transition time , where the time is measured between 10% and 90% or 20% to 80% of the signal levels.
+
+```
+Fall transition time: time(slew_high_fall_thr) - time(slew_low_fall_thr)
+Rise transition time: time(slew_high_rise_thr) - time(slew_low_rise_thr)
+```
+
+#### Day-3: Design Library Cell Using Magic Layout and Cell characterization
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+cd vsdstdcelldesign
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+ls
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+![asic22](https://github.com/user-attachments/assets/df726da8-f6a6-41d0-90d4-6e39f7d68522)
+![asic23](https://github.com/user-attachments/assets/abf375ea-5ab6-4839-8fc1-df85d1dd5bd0)
+
+Inverter layout:
+
+Identify PMOS:
+
+![asic25](https://github.com/user-attachments/assets/caa64a29-b208-4964-a182-33fa41dea9a1)
+
+
+Identify NMOS:
+![asic26](https://github.com/user-attachments/assets/e52ae2c2-e1af-40f7-a373-3a0383540b36)
+
+Output Y:
+![asic27](https://github.com/user-attachments/assets/9d8cc8f9-89c5-4cb4-b987-28e02cfd69de)
 
 
 
