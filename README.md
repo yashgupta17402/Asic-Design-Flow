@@ -3370,6 +3370,108 @@ Identify NMOS:
 Output Y:
 ![asic27](https://github.com/user-attachments/assets/9d8cc8f9-89c5-4cb4-b987-28e02cfd69de)
 
+PMOS source connected to VDD:
+![asic28](https://github.com/user-attachments/assets/09f9d3c8-7a69-4b15-a111-3df43f91ed0f)
+
+NMOS source connected to VSS:
+![asic29](https://github.com/user-attachments/assets/a36daa45-f551-4ece-aa59-560e59aa7830)
+
+Spice extraction of inverter in Magic. Run these in the tkcon window:
+
+```
+pwd
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+
+```
+gedit sky130_inv.spice 
+```
+![asic30](https://github.com/user-attachments/assets/35a76bdf-bdd8-43ac-9d38-92767c98c361)
+
+![asic31](https://github.com/user-attachments/assets/5f69041c-2d0d-4794-ba1f-9283a5c3b2d6)
+
+Modified `sky130_inv.spice` :
+![asic32](https://github.com/user-attachments/assets/f1269a43-c87c-465a-8aae-293471182509)
+
+Simulating the spice netlist
+```
+ngspice sky130_inv.spice
+```
+![asic33](https://github.com/user-attachments/assets/b0c26239-9f69-4af1-b32c-cdb8c99c847c)
+
+plotting plot y vs time a
+
+```
+plot y vs time a
+```
+![asic34](https://github.com/user-attachments/assets/39e561a4-016c-4590-b5b3-7b8d8845f85e)
+
+Using this transient response, we will now characterize the cell's slew rate and propagation delay:
+
+Rise Transition: Time taken for the output to rise from 20% to 80% of max value
+Fall Transition: Time taken for the output to fall from 80% to 20% of max value
+Cell Rise delay: difference in time(50% output rise) to time(50% input fall)
+Cell Fall delay: difference in time(50% output fall) to time(50% input rise)
+
+```
+Rise Transition : 2.24638 - 2.18242 =  0.06396 ns = 63.96 ps
+Fall Transition : 4.0955 - 4.05536 =  0.0419 ns = 41.9 ps
+Cell Rise Delay : 2.21144 - 2.15008 = 0.06136 ns = 61.36 ps
+Cell Fall Delay : 4.07807 - 4.05 =0.02 ns = 20 ps
+```
+
+Magic Tool options and DRC Rules:
+
+Now, go to home directory and run the below commands:
+
+```
+cd
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+tar xfz drc_tests.tgz
+cd drc_tests
+ls -al
+gvim .magicrc
+magic -d XR &
+```
+![asic35](https://github.com/user-attachments/assets/e75d4032-0d8a-4ef5-93b1-b44d3f2511ca)
+![asic36](https://github.com/user-attachments/assets/67c092ea-4b73-44ac-abf5-30d3c6461bf4)
+ loading the poly file by load poly.mag on tkcon window.
+![asic37](https://github.com/user-attachments/assets/8c7f2dc5-4bd6-434c-bbe9-ade97da0266d)
+Observation: We can see that Poly.9 is incorrect.
+
+Adding commands in the sky130A.tech:
+![asic38](https://github.com/user-attachments/assets/56a0bbf0-5c16-4c9d-8a69-13d0a65e4dae)
+![asic39](https://github.com/user-attachments/assets/e191864c-0e61-4a9d-9155-d5b661f523e5)
+
+Run the commands in tkcon window:
+
+```
+tech load sky130A.tech
+drc check
+drc why
+```
+![asic40](https://github.com/user-attachments/assets/088eb969-cf51-42c1-8cf1-1e42d03eee60)
+![asic41](https://github.com/user-attachments/assets/7280c079-7f11-496f-8752-6e35cf5c0243)
+
+#### Day-4: Pre-layout timing analysis and importance of good clock tree
+
+
+Commands to extract tracks.info file:
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+cd ../../pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/
+less tracks.info
+```
+
+![asic42](https://github.com/user-attachments/assets/c7ea1298-f747-407d-91c6-9ef920d68653)
+![asic43](https://github.com/user-attachments/assets/508ca31c-d280-4fc6-a111-10dd8066ff0f)
+
+
+
+
+
 
 
 
