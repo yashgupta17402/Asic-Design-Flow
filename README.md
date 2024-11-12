@@ -17,6 +17,7 @@
 - [Assignment 11](#assignment-11)
 - [Assignment 12](#assignment-12)
 - [Assignment 13](#assignment-13)
+- [Assignment 14](#assignment-14)
 ## Assignment 1
 
 ## GCC Compilation: C Program
@@ -2956,6 +2957,9 @@ Graphs plotted in LibreOffice Calc using all values taken from txts.
 ![Screenshot from 2024-11-05 03-32-38](https://github.com/user-attachments/assets/4767f300-3531-4aee-a2c9-31da5acbf64f)
 ### Worst Hold Slack(Graph)
 ![Screenshot from 2024-11-05 03-30-09](https://github.com/user-attachments/assets/8b31e76e-0d82-4c35-8969-9415c75d6738)
+
+
+## Assignment 14
 
 
 
