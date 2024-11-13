@@ -3411,9 +3411,44 @@ plot y vs time a
 Using this transient response, we will now characterize the cell's slew rate and propagation delay:
 
 Rise Transition: Time taken for the output to rise from 20% to 80% of max value
-Fall Transition: Time taken for the output to fall from 80% to 20% of max value
-Cell Rise delay: difference in time(50% output rise) to time(50% input fall)
-Cell Fall delay: difference in time(50% output fall) to time(50% input rise)
+**Rise transition time calculation**
+	Rise Transition Time  = Time taken for output to rise to 80% − Time taken for output to rise to 20%
+	20% of output (3.3V) = 0.66V
+	80% of output (3.3V) = 2.64V
+ 
+20% Screenshots
+![asic45](https://github.com/user-attachments/assets/65e7cc34-d862-4f6d-9264-ba43b3d13874)
+![asic44](https://github.com/user-attachments/assets/3b4e125e-8a7d-48fd-bf7d-db0e5e4bd905)
+
+80% Screenshots
+![asic46](https://github.com/user-attachments/assets/b05a8bf3-14b0-4133-81ec-3be6ecf87fb9)
+
+ 
+Fall Transition Time  = Time taken for output to fall to 80% − Time taken for output to fall to 20%
+	20% of output (3.3V) = 0.66V
+	80% of output (3.3V) = 2.64V
+
+ 20% Screenshots
+ ![asic47](https://github.com/user-attachments/assets/586ca022-8ed8-4d33-b293-47e8854cafa4)
+
+ 
+ 80% Screenshots
+ ![asic48](https://github.com/user-attachments/assets/530a731f-acac-4707-8d83-9a7417069c57)
+
+
+Rise Cell Delay Calculation
+	Rise cell delay = Time taken by output to rise to 50% − Time taken by input to fall to 50% 
+	50 % of 3.3V = 1.65V 
+ 50% Screenshots
+ ![asic49](https://github.com/user-attachments/assets/eda6860d-42e0-4143-8e71-5deefeb54a32)
+
+ 
+Fall Cell Delay Calculation
+	Fall cell delay = Time taken by output to fall to 50% − Time taken by input to rise to 50% 
+	50 % of 3.3V = 1.65V
+ 50% Screenshots
+![asic50](https://github.com/user-attachments/assets/61d3fcc1-3910-4289-b838-cf5aab0503c5)
+
 
 ```
 Rise Transition : 2.24638 - 2.18242 =  0.06396 ns = 63.96 ps
@@ -3467,6 +3502,14 @@ less tracks.info
 
 ![asic42](https://github.com/user-attachments/assets/c7ea1298-f747-407d-91c6-9ef920d68653)
 ![asic43](https://github.com/user-attachments/assets/508ca31c-d280-4fc6-a111-10dd8066ff0f)
+
+Commands for tkcon window to set grid as tracks of locali layer
+
+```
+grid 0.46um 0.34um 0.23um 0.17um
+```
+![asic52](https://github.com/user-attachments/assets/bf63d82e-b414-45ea-9579-461af29fe4dc)
+
 
 
 
