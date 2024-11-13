@@ -3508,7 +3508,82 @@ Commands for tkcon window to set grid as tracks of locali layer
 ```
 grid 0.46um 0.34um 0.23um 0.17um
 ```
-![asic52](https://github.com/user-attachments/assets/bf63d82e-b414-45ea-9579-461af29fe4dc)
+![asic60](https://github.com/user-attachments/assets/27fcd530-0dfc-42f5-812f-3fad507c2f2d)
+
+
+
+
+The grids show where the routing for the local-interconnet layer can only happen, the distance of the grid lines are the required pitch of the wire.
+![asic61](https://github.com/user-attachments/assets/73b9bcc8-2a8d-4500-8ea0-64de995fa716)
+
+
+Now, save it by giving a custon name
+
+```
+save sky130_yasinv.mag
+```
+![asic62](https://github.com/user-attachments/assets/8f2ec8be-2201-4b7c-a736-9e1b82b67e7d)
+
+
+
+Now, open it by using the following commands:
+
+```
+magic -T sky130A.tech sky130_yasinv.mag &
+```
+![asic63](https://github.com/user-attachments/assets/59c4f34c-4811-415f-b7eb-5b3b17e9c92f)
+
+
+
+Now, type the following command in tkcon window:
+
+```
+lef write
+```
+![asic64](https://github.com/user-attachments/assets/e1cd650e-7902-48a7-bb3c-9d143a866163)
+
+![asic65](https://github.com/user-attachments/assets/977caff7-cbc1-4053-852d-d52c96cfb18a)
+
+
+lef file:
+![asic66](https://github.com/user-attachments/assets/3f7807d0-49da-40a8-b4a6-6927b6c395fd)
+
+
+Commands to copy necessary files to 'picorv32a' design 'src' directory
+
+```
+# Copy lef file
+cp sky130_yasinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# List and check whether it's copied
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# Copy lib files
+cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+# List and check whether it's copied
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+
+```
+![asic67](https://github.com/user-attachments/assets/7d1994f2-ddd0-45b8-aa3c-42d19917672c)
+
+
+Modify config.tcl at path:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a
+```
+Add these lines in config.tcl:
+```
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+```
+
+
 
 
 
