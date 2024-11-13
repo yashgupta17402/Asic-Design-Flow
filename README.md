@@ -3604,6 +3604,85 @@ run_synthesis
 
 ![asic71](https://github.com/user-attachments/assets/551c6332-596a-484e-93ad-5835d51cff79)
 
+![asic72](https://github.com/user-attachments/assets/8173d30c-0795-4da0-9a08-b8e0d9714deb)
+
+ Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
+Noting down current design values generated before modifying parameters to improve timing
+```
+# Now once again we have to prep design so as to update variables
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to display current value of variable SYNTH_STRATEGY
+echo $::env(SYNTH_STRATEGY)
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to display current value of variable SYNTH_BUFFERING to check whether it's enabled
+echo $::env(SYNTH_BUFFERING)
+
+# Command to display current value of variable SYNTH_SIZING
+echo $::env(SYNTH_SIZING)
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+```
+![asic73](https://github.com/user-attachments/assets/290526ce-3b07-4097-8a80-76c43d401b18)
+![asic74](https://github.com/user-attachments/assets/8db88b3d-1620-405c-b39c-ceaecc665163)
+![asic75](https://github.com/user-attachments/assets/255daffe-1783-42e5-9b2b-a67ea2a6398c)
+
+Once synthesis has accepted our custom inverter we can now run floorplan and placement and verify the cell is accepted in PnR flow.
+Now that our custom inverter is properly accepted in synthesis we can now run floorplan using following command:
+
+```
+# Now we can run floorplan
+run_floorplan
+```
+![asic76](https://github.com/user-attachments/assets/98c75ccd-84b7-408b-9eaf-8ea30971f9c8)
+![asic77](https://github.com/user-attachments/assets/ba3fe8eb-d072-4a39-9f50-650bbe71e2af)
+
+Since we are facing unexpected un-explainable error while using run_floorplan command, we can instead use the following set of commands available based on information from Desktop/work/tools/openlane_working_dir/openlane/scripts/tcl_commands/floorplan.tcl and also based on Floorplan Commands section in Desktop/work/tools/openlane_working_dir/openlane/docs/source/OpenLANE_commands.md
+```
+# Follwing commands are alltogather sourced in "run_floorplan" command
+init_floorplan
+place_io
+tap_decap_or
+```
+![asic78](https://github.com/user-attachments/assets/5a99f773-5767-4c58-a6a7-3e066591d50c)
+![asic79](https://github.com/user-attachments/assets/1611a896-a654-4d66-b704-9b538e754af6)
+![asic80](https://github.com/user-attachments/assets/58c55727-4936-49c4-ba07-8c7fc4bb7845)
+
+Now that floorplan is done we can do placement using following command
+```
+# Now we are ready to run placement
+run_placement
+```
+![asic82](https://github.com/user-attachments/assets/940f8d1f-e6c6-4645-b803-0c2d72bc0df0)
+![asic81](https://github.com/user-attachments/assets/b66fcd50-a7c0-44fd-af7e-6397acfe3b71)
+
+Commands to load placement def in magic in another terminal:
+```
+# Change directory to path containing generated placement def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-03_10-03/results/placement/
+
+# Command to load the placement def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+Screenshots:
+
+![asic83](https://github.com/user-attachments/assets/9b75732a-2634-4b5f-97e8-2625d4c4f7b2)
+
 
 
 
