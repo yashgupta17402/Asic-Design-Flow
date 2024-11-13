@@ -3683,8 +3683,257 @@ Screenshots:
 
 ![asic83](https://github.com/user-attachments/assets/9b75732a-2634-4b5f-97e8-2625d4c4f7b2)
 
+![asic84](https://github.com/user-attachments/assets/30866b5d-cbb6-4c88-9fdc-90594f3ab09a)
+
+Command for tkcon window to view internal layers of cells
+```
+expand
+```
+![asic85](https://github.com/user-attachments/assets/7cb4b49a-5e6f-4733-8011-9c6c708ceb9f)
+
+Post-Synthesis timing analysis with OpenSTA tool.
+
+Since we are having 0 wns after improved timing run we are going to do timing analysis on initial run of synthesis which has lots of violations and no parameters were added to improve timing
+
+Commands to invoke the OpenLANE flow include new lef and perform synthesis
+
+```
+# Change directory to openlane flow directory
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+# Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+docker
+```
+```
+# Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+./flow.tcl -interactive
+
+# Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+package require openlane 0.9
+
+# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+prep -design picorv32a
+
+# Adiitional commands to include newly added lef to openlane flow
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+```
+
+![asic86](https://github.com/user-attachments/assets/48dfbc4d-a060-4697-8b05-be69b0b2df00)
+
+Newly created pre_sta.conf for STA analysis in openlane directory
+
+Newly created my_base.sdc for STA analysis in openlane/designs/picorv32a/src directory based on the file openlane/scripts/base.sdc
+![asic87](https://github.com/user-attachments/assets/306b200e-8518-4066-bf75-58cbfd7bad0d)
+
+Commands to run STA in another terminal:
+```
+# Change directory to openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# Command to invoke OpenSTA tool with script
+sta pre_sta.conf
+```
+![asic89](https://github.com/user-attachments/assets/ebfb6eff-56fa-4335-b901-c6b0457f9222)
+![asic90](https://github.com/user-attachments/assets/e964e632-1f55-4a17-be91-8f8ffd8af1dd)
+
+Since more fanout is causing more delay we can add parameter to reduce fanout and do synthesis again
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+prep -design picorv32a -tag 25-03_18-52 -overwrite
+
+# Adiitional commands to include newly added lef to openlane flow
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Command to set new value for SYNTH_MAX_FANOUT
+set ::env(SYNTH_MAX_FANOUT) 4
+
+# Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+```
+![asic93](https://github.com/user-attachments/assets/eb0d7503-beb4-4994-b575-67d121f2dfdd)
+
+Commands to run STA in another terminal
+```
+# Change directory to openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# Command to invoke OpenSTA tool with script
+sta pre_sta.conf
+```
+![asic95](https://github.com/user-attachments/assets/2a7eb61c-5ba2-404a-9663-0d6e73531bb0)
 
 
+![asic94](https://github.com/user-attachments/assets/a6b6d10c-2892-48c2-9ca5-f4dc2cbb3871)
+
+
+Make timing ECO fixes to remove all violations.
+Basic timing ECO
+NOR gate of drive strength 2 is driving 5 fanouts
+![asic96](https://github.com/user-attachments/assets/06d841d9-c6a3-43b2-93b9-0db32347a129)
+Run the following commands to optimise timing:
+```
+report_net -connections _13111_
+replace_cell _16171_ sky130_fd_sc_hd__nor3_4
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+![asic98](https://github.com/user-attachments/assets/0ca86d64-df8b-4b90-8cc1-f468460d98ac)
+
+![asic97](https://github.com/user-attachments/assets/c2139010-fe34-479d-861c-846218b0c423)
+
+We can observe that the tns has reduced to -402.19 from -403.54 and wns has reduced to -5.44 from -5.59.
+
+### Generating custom timing report
+```
+report_checks -from _32389_  -to _32288_ -through _16171_
+```
+![asic99](https://github.com/user-attachments/assets/e2d2aa94-a39a-4584-a3fe-df3967fae402)
+![asic100](https://github.com/user-attachments/assets/a8b8e3d4-a939-43fe-af13-46c45edea77f)
+![asic101](https://github.com/user-attachments/assets/9e95eef8-f594-4cc1-9414-1774f5bf9caa)
+
+
+**Clock tree synthesis TritonCTS and signal integrity**
+
+Clock Tree Synthesis (CTS) techniques vary based on design needs:
+
+- Balanced Tree CTS: Uses a balanced binary-like tree for equal path lengths, minimizing clock skew but with moderate power efficiency.
+- H-tree CTS: Employs an "H"-shaped structure, good for large areas and power efficiency.
+
+   ![image](https://github.com/user-attachments/assets/d1b13f19-a87f-41b6-8f29-a4e00a8e7216)
+
+- Star CTS: Distributes the clock from a central point, minimizing skew but requiring more buffers near the source.
+- Global-Local CTS: Combines star and tree topologies, with a global tree for clock domains and local trees within domains, balancing global and local timing.
+- Mesh CTS: Uses a grid pattern ideal for structured designs, balancing simplicity and skew.
+- Adaptive CTS: Dynamically adjusts based on timing and congestion, offering flexibility but with added complexity.
+
+**Crosstalk**
+
+Crosstalk is interference from overlapping electromagnetic fields between adjacent circuits, causing unwanted signals. In VLSI, it can lead to data corruption, timing issues, and higher power consumption. Mitigation strategies include optimized layout and routing, shielding, and clock gating to reduce dynamic power and minimize crosstalk effects.
+
+![image](https://github.com/user-attachments/assets/21df4ac0-57aa-492e-adfa-7e04ce385680)
+
+**Clock Net Shielding**
+Clock net shielding prevents glitches by isolating the clock network, using shields connected to VDD or GND that don’t switch. It reduces interference by isolating clocks from other signals, often with dedicated routing layers and clock buffers. Additionally, clock domain isolation helps prevent cross-domain interference, avoiding metastability and maintaining synchronization.
+
+![image](https://github.com/user-attachments/assets/bf85dd84-dc29-4962-877a-ce4f535bab2c)
+
+### Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
+Now to insert this updated netlist to PnR flow and we can use write_verilog and overwrite the synthesis netlist but before that we are going to make a copy of the old old netlist
+```
+# Change from home directory to synthesis results directory
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/synthesis/
+
+# List contents of the directory
+ls
+
+# Copy and rename the netlist
+cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+
+# List contents of the directory
+ls
+```
+![asic102](https://github.com/user-attachments/assets/5c7f6611-2d8a-4897-a57d-3b78d33d1d90)
+
+Commands to write verilog
+```
+# Check syntax
+help write_verilog
+
+# Overwriting current synthesis netlist
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis.v
+
+# Exit from OpenSTA since timing analysis is done
+exit
+```
+
+Verified that the netlist is overwritten:
+![asic104](https://github.com/user-attachments/assets/a062a06c-b788-4b10-b765-8224d7adc032)
+
+Since we confirmed that netlist is replaced and will be loaded in PnR but since we want to follow up on the earlier 0 violation design we are continuing with the clean design to further stages
+
+Commands load the design and run necessary stages:
+```
+# Now once again we have to prep design so as to update variables
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+
+# Addiitional commands to include newly added lef to openlane flow merged.lef
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+# Command to set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+# Command to set new value for SYNTH_SIZING
+set ::env(SYNTH_SIZING) 1
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+
+# Follwing commands are alltogather sourced in "run_floorplan" command
+init_floorplan
+place_io
+tap_decap_or
+
+# Now we are ready to run placement
+run_placement
+
+# Incase getting error
+unset ::env(LIB_CTS)
+
+# With placement done we are now ready to run CTS
+run_cts
+```
+![asic105](https://github.com/user-attachments/assets/2f2e2b1f-1cc1-410a-a84e-8861f25cf64a)
+![asic106](https://github.com/user-attachments/assets/18c6a114-5ad5-41a2-83b5-ed08f02fff36)
+![asic108](https://github.com/user-attachments/assets/7b3aff16-9e8f-4f8f-8906-d20365281030)
+![asic107](https://github.com/user-attachments/assets/9a6b61a2-3b76-498f-be5b-f31fe248778b)
+
+**Setup timing analysis using real clocks**
+
+A real clock in timing analysis accounts for practical factors like clock skew and clock jitter. Clock skew is the difference in arrival times of the clock signal at different parts of the circuit due to physical delays, which affects setup and hold timing margins. Clock jitter is the variability in the clock period caused by power, temperature, and noise fluctuations, leading to uncertainty in clock edge timing. Both factors are crucial for accurate timing analysis, ensuring the design performs reliably in real-world conditions.
+
+![image](https://github.com/user-attachments/assets/3526c927-e1a9-445a-9dae-22bc7e0446c7)
+
+![image](https://github.com/user-attachments/assets/0c766405-5f9b-4700-a4cd-6fd19e9ea6cc)
+
+Now, enter the following commands for Post-CTS OpenROAD timing analysis:
+
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/25-03_18-52/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+![asic109](https://github.com/user-attachments/assets/415d33be-435e-4006-8a3d-68d1f4d34664)
+![asic110](https://github.com/user-attachments/assets/12725563-d656-4936-9689-92172220c657)
+![asic111](https://github.com/user-attachments/assets/542a54ac-f1ec-4d24-9135-4b1e8eda3060)
 
 
 
