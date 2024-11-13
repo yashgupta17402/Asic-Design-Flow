@@ -3584,6 +3584,29 @@ set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/sr
 ```
 
 
+Now, run openlane flow synthesis:
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
+
+```
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+```
+![asic69](https://github.com/user-attachments/assets/ce192094-ec69-4949-9af3-bdbe507d75f5)
+![asic70](https://github.com/user-attachments/assets/919dcc3f-a71c-46ad-8e34-14aa20c79661)
+
+![asic71](https://github.com/user-attachments/assets/551c6332-596a-484e-93ad-5835d51cff79)
+
+
+
+
 
 
 
