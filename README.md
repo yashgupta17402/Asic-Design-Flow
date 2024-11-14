@@ -18,6 +18,11 @@
 - [Assignment 12](#assignment-12)
 - [Assignment 13](#assignment-13)
 - [Assignment 14](#assignment-14)
+  - [Day_1](#Day-1)
+  - [Day 2](#Day-2)
+  - [Day 3](#Day-3)
+  - [Day 4](#Day-4)
+  - [Day 5](#Day-5)
 ## Assignment 1
 
 ## GCC Compilation: C Program
@@ -2961,7 +2966,8 @@ Graphs plotted in LibreOffice Calc using all values taken from txts.
 
 ## Assignment 14
 
-#### Day-1: Inception of open-source EDA, OpenLane and Sky130 PDK
+### Day-1
+### Inception of open-source EDA, OpenLane and Sky130 PDK
 
 **QFN-48 Package:** A Quad Flat No-leads (QFN) 48 package is a leadless IC package with 48 connection pads around the perimeter. It offers good thermal and electrical performance in a compact form, making it ideal for high-density applications.
 
@@ -3197,7 +3203,8 @@ Flop ratio = Number of D Flip flops = 1613  = 0.1084
 ```
 
 
-#### Day-2: Good floorplan vs bad floorplan and introduction to library cells
+### Day-2
+### Good floorplan vs bad floorplan and introduction to library cells
 
 **Utilization Factor and Aspect Ratio**: In IC floor planning, utilization factor and aspect ratio are key parameters. The utilization factor is the ratio of the area occupied by the netlist to the total core area. While a perfect utilization of 1 (100%) is ideal, practical designs target a factor of 0.5 to 0.6 to allow space for buffer zones, routing channels, and future adjustments. The aspect ratio, defined as height divided by width, indicates the chip’s shape; an aspect ratio of 1 denotes a square, while other values result in a rectangular layout. The aspect ratio is chosen based on functional, packaging, and manufacturing needs.
 
@@ -3343,7 +3350,8 @@ Fall transition time: time(slew_high_fall_thr) - time(slew_low_fall_thr)
 Rise transition time: time(slew_high_rise_thr) - time(slew_low_rise_thr)
 ```
 
-#### Day-3: Design Library Cell Using Magic Layout and Cell characterization
+### Day-3 
+### Design Library Cell Using Magic Layout and Cell characterization
 
 ```
 cd Desktop/work/tools/openlane_working_dir/openlane
@@ -3490,7 +3498,8 @@ drc why
 ![asic40](https://github.com/user-attachments/assets/088eb969-cf51-42c1-8cf1-1e42d03eee60)
 ![asic41](https://github.com/user-attachments/assets/7280c079-7f11-496f-8752-6e35cf5c0243)
 
-#### Day-4: Pre-layout timing analysis and importance of good clock tree
+### Day-4
+### Pre-layout timing analysis and importance of good clock tree
 
 
 Commands to extract tracks.info file:
@@ -4024,7 +4033,8 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 ![asic117](https://github.com/user-attachments/assets/59e1013b-d25c-407a-bcd9-fd94b362303d)
 ![asic118](https://github.com/user-attachments/assets/d104080c-2a78-49ca-b4a8-e95f32c84fea)
 
-## Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA 	
+### Day 5
+### Final steps for RTL2GDS using tritonRoute and openSTA 	
 #  Maze Routing and Lee's algorithm
 
  Routing is the process of establishing a physical connection between two pins. Algorithms designed for routing take source and target pins and aim to find the most efficient path between them, ensuring a valid connection exists.
