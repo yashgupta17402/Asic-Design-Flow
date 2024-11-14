@@ -1,4 +1,4 @@
-
+![asic145](https://github.com/user-attachments/assets/eeadad46-94c5-44ce-b753-df9048940032)
 ## Table of Contents
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
@@ -3400,6 +3400,10 @@ gedit sky130_inv.spice
 
 ![asic31](https://github.com/user-attachments/assets/5f69041c-2d0d-4794-ba1f-9283a5c3b2d6)
 
+Measuring unit distance in layout grid
+![asic145](https://github.com/user-attachments/assets/ffb40905-6eba-4e33-871b-3ed6548c933f)
+
+
 Modified `sky130_inv.spice` :
 ![asic32](https://github.com/user-attachments/assets/f1269a43-c87c-465a-8aae-293471182509)
 
@@ -3484,6 +3488,9 @@ magic -d XR &
 ![asic37](https://github.com/user-attachments/assets/8c7f2dc5-4bd6-434c-bbe9-ade97da0266d)
 Observation: We can see that Poly.9 is incorrect.
 
+Screenshot of poly rules:
+![asic146](https://github.com/user-attachments/assets/453be627-9f7a-4f6d-af53-94bc8d00fcc3)
+
 Adding commands in the sky130A.tech:
 ![asic38](https://github.com/user-attachments/assets/56a0bbf0-5c16-4c9d-8a69-13d0a65e4dae)
 ![asic39](https://github.com/user-attachments/assets/e191864c-0e61-4a9d-9155-d5b661f523e5)
@@ -3500,6 +3507,10 @@ drc why
 
 ### Day-414
 ### Day4:Pre-layout timing analysis and importance of good clock tree
+
+    Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
+    Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
+    Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
 
 
 Commands to extract tracks.info file:
@@ -3518,13 +3529,28 @@ Commands for tkcon window to set grid as tracks of locali layer
 grid 0.46um 0.34um 0.23um 0.17um
 ```
 ![asic60](https://github.com/user-attachments/assets/27fcd530-0dfc-42f5-812f-3fad507c2f2d)
+![asic147](https://github.com/user-attachments/assets/ee9cb28a-7e34-4540-a342-d7a657eb88b4)
 
 
 
 
+ Condition 1 verified:
 The grids show where the routing for the local-interconnet layer can only happen, the distance of the grid lines are the required pitch of the wire.
 ![asic61](https://github.com/user-attachments/assets/73b9bcc8-2a8d-4500-8ea0-64de995fa716)
 
+Condition 2 verified
+			Horizontal Track Pitch = 0.46 um 
+![asic148](https://github.com/user-attachments/assets/9c6c2068-01a1-49bb-8843-8f65bc2b82f8)
+
+		Width of the standard cell = 0.46 ∗ 3  = 1.38um 
+  Condition 3 verified
+  			Vertical track pitch = 0.34um
+     
+![asic149](https://github.com/user-attachments/assets/09b5b4df-a9fa-4f50-87ff-a07e739d6727)
+
+		Height of the standard cell = 0.34 ∗ 8 = 2.72um 
+
+   
 
 Now, save it by giving a custon name
 
