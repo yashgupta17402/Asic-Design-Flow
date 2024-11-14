@@ -4329,7 +4329,9 @@ Screenshots of commands
 ![asic142](https://github.com/user-attachments/assets/1034a8e6-463c-4621-9c36-c78bf03ec149)
 ![asic141](https://github.com/user-attachments/assets/1a4fdbe1-d7fc-459e-ba07-096ab62e91c3)
 
-
+Note:-
+To open the inverter in magic tool, which is created by you name just click on the magic and go to the cell manager their under picorv32a, you can find your inverter name their when you click on zoom you are able to see that block.
+Press 'z' for zoom-in, 'v' for zoom-out.
 
 
 
