@@ -1,4 +1,4 @@
-![asic145](https://github.com/user-attachments/assets/eeadad46-94c5-44ce-b753-df9048940032)
+
 ## Table of Contents
 - [Assignment 1](#assignment-1)
 - [Assignment 2](#assignment-2)
