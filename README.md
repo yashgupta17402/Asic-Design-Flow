@@ -5126,6 +5126,7 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 ![38](https://github.com/user-attachments/assets/40c9c379-b4a0-495a-b49a-11aaf6125219)
 
 ![39](https://github.com/user-attachments/assets/cf4db348-2839-409e-9de4-df91a61b4027)
+Heatmaps:
 ![40](https://github.com/user-attachments/assets/e3f9b114-e4e2-4b04-92f3-9031a7709337)
 
 ![41](https://github.com/user-attachments/assets/ece74c9f-9689-4e76-b121-a4db0825beb9)
@@ -5218,6 +5219,8 @@ CTS final report:
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ```
+
+**Placement Congestion,Routing Congestion,IO nets:** 
 ![48](https://github.com/user-attachments/assets/4c83591b-6176-490a-a91f-cdd63762850b)
 ![49](https://github.com/user-attachments/assets/2b7b530a-70fb-4266-8e93-2efecf2968b3)
 ![50](https://github.com/user-attachments/assets/aa385612-8f02-4092-ba63-2e550ab96fe2)
