@@ -4797,6 +4797,405 @@ BS-PDNs involve routing power supply rails on the backside of the chip, enabling
 
 By adopting BS-PDNs, semiconductor manufacturers can develop high-performance and energy-efficient integrated circuits that meet the demands of modern electronics.
 
+**Installing and setting up ORFS**
+
+```
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+![1](https://github.com/user-attachments/assets/1ae7a361-ca90-445a-8760-037a90779577)
+
+![2](https://github.com/user-attachments/assets/07abdd5f-3dcf-479c-aa79-9e9efa43c49f)
+
+```
+./build_openroad.sh --local
+```
+![3](https://github.com/user-attachments/assets/e3313a85-9389-4a29-99d3-18eeffc7d327)
+
+![4](https://github.com/user-attachments/assets/dade2d09-d6ad-4c5b-8ba7-dedad752817c)
+
+**Verify Installation**
+
+```
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+![7](https://github.com/user-attachments/assets/cc04b0f8-452f-4b0b-abb9-cd52026740a8)
+![6](https://github.com/user-attachments/assets/4af9f7cd-a013-4a3f-b403-e6f6d8265dd7)
+![5](https://github.com/user-attachments/assets/71666275-fdc5-4b02-9026-f77895a78065)
+![8](https://github.com/user-attachments/assets/e4be2e83-2210-4b76-b50a-c0373929c6e6)
+
+```
+make gui_final
+```
+![11](https://github.com/user-attachments/assets/dbcd61e2-b029-43a0-9fa9-33ed7371eed0)
+![9](https://github.com/user-attachments/assets/50976aac-e01b-42d9-a803-c7c070fa153b)
+![10](https://github.com/user-attachments/assets/b6e4e69f-3a95-4617-9f4c-dd435715cec8)
+
+ORFS Directory Structure and File formats:
+
+``` 
+├── OpenROAD-flow-scripts             
+│   ├── docker           -> It has Docker based installation, run scripts and all saved here
+│   ├── docs             -> Documentation for OpenROAD or its flow scripts.  
+│   ├── flow             -> Files related to run RTL to GDS flow  
+|   ├── jenkins          -> It contains the regression test designed for each build update
+│   ├── tools            -> It contains all the required tools to run RTL to GDS flow
+│   ├── etc              -> Has the dependency installer script and other things
+│   ├── setup_env.sh     -> Its the source file to source all our OpenROAD rules to run the RTL to GDS flow
+```
+
+Now, go to flow directory:
+![12](https://github.com/user-attachments/assets/17927331-d6ca-444e-b5ed-136b260d9a69)
+
+``` 
+├── flow           
+│   ├── design           -> It has built-in examples from RTL to GDS flow across different technology nodes
+│   ├── makefile         -> The automated flow runs through makefile setup
+│   ├── platform         -> It has different technology note libraries, lef files, GDS etc 
+|   ├── tutorials        
+│   ├── util            
+│   ├── scripts             
+```
+
+Automated RTL2GDS Flow for VSDBabySoC:
+
+- Create a directory named `vsdbabysoc` inside `OpenROAD-flow-scripts/flow/designs/sky130hd`.  
+- Copy the folders `gds`, `include`, `lef`, and `lib` from the `VSDBabySoC` folder on your system into this new directory.  
+
+- Ensure the following files are present in each folder:  
+  - **gds folder**: `avsddac.gds`, `avsdpll.gds`  
+  - **include folder**: `sandpiper.vh`, `sandpiper_gen.vh`, `sp_default.vh`, `sp_verilog.vh`  
+  - **lef folder**: `avsddac.lef`, `avsdpll.lef`  
+  - **lib folder**: `avsddac.lib`, `avsdpll.lib`  
+
+- Copy the constraints file `vsdbabysoc_synthesis.sdc` from the `VSDBabySoC` folder into the `vsdbabysoc` directory.  
+- Copy the files `macro.cfg` and `pin_order.cfg` from the `VSDBabySoC` folder into the same directory.  
+- Now, create a `config.mk` file whose contents are shown below:
+
+```
+export DESIGN_NICKNAME = vsdbabysoc
+export DESIGN_NAME = vsdbabysoc
+export PLATFORM    = sky130hd
+
+# export VERILOG_FILES_BLACKBOX = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/IPs/*.v
+# export VERILOG_FILES = $(sort $(wildcard $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/*.v))
+# Explicitly list the Verilog files for synthesis
+export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/vsdbabysoc.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/rvmyth.v \
+                       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/clk_gate.v
+
+export SDC_FILE      = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/vsdbabysoc_synthesis.sdc
+
+export vsdbabysoc_DIR = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)
+
+export VERILOG_INCLUDE_DIRS = $(wildcard $(vsdbabysoc_DIR)/include/)
+# export SDC_FILE      = $(wildcard $(vsdbabysoc_DIR)/sdc/*.sdc)
+export ADDITIONAL_GDS  = $(wildcard $(vsdbabysoc_DIR)/gds/*.gds.gz)
+export ADDITIONAL_LEFS  = $(wildcard $(vsdbabysoc_DIR)/lef/*.lef)
+export ADDITIONAL_LIBS = $(wildcard $(vsdbabysoc_DIR)/lib/*.lib)
+# export PDN_TCL = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/pdn.tcl
+
+# Clock Configuration (vsdbabysoc specific)
+# export CLOCK_PERIOD = 20.0
+export CLOCK_PORT = CLK
+export CLOCK_NET = $(CLOCK_PORT)
+
+# Floorplanning Configuration (vsdbabysoc specific)
+export FP_PIN_ORDER_CFG = $(wildcard $(DESIGN_DIR)/pin_order.cfg)
+# export FP_SIZING = absolute
+
+export DIE_AREA   = 0 0 1600 1600
+export CORE_AREA  = 20 20 1590 1590
+
+# Placement Configuration (vsdbabysoc specific)
+export MACRO_PLACEMENT_CFG = $(wildcard $(DESIGN_DIR)/macro.cfg)
+export PLACE_PINS_ARGS = -exclude left:0-600 -exclude left:1000-1600: -exclude right:* -exclude top:* -exclude bottom:*
+# export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
+
+export TNS_END_PERCENT = 100
+export REMOVE_ABC_BUFFERS = 1
+
+# Magic Tool Configuration
+export MAGIC_ZEROIZE_ORIGIN = 0
+export MAGIC_EXT_USE_GDS = 1
+
+# CTS tuning
+export CTS_BUF_DISTANCE = 600
+export SKIP_GATE_CLONING = 1
+
+# export CORE_UTILIZATION=0.1  # Reduce this value to allow more whitespace for routing.
+```
+### Synthesis and Floorplanning
+
+Floorplanning is a critical step in the VLSI physical design process. It involves arranging blocks and macros within the chip/core area to achieve optimal performance, power, and area efficiency while ensuring reliable routing.
+
+## **Key Objectives**
+- Minimize area, wire length, power consumption, and timing delays.
+- Ensure smooth routing and chip reliability.
+
+---
+## **Inputs for Floorplanning**
+- **Gate-level Netlist**: Describes the logical connectivity (`.v` file).
+- **Libraries**: Physical and logical libraries (`.lefs` and `.libs`) for standard cells, macros, and IO pads.
+- **Design Constraints**: Timing and power constraints (`.sdc` file).
+- **RC Tech File**: (`TLU+ file`) Provides resistance-capacitance values for interconnect delays.
+- **Technology File**: Describes process details (`.tf` file).
+- **Partitioning Info**: Logical separation of the design.
+- **Floorplanning Parameters**: Core dimensions (height, width, aspect ratio).
+
+---
+
+## **Outputs of Floorplanning**
+- **Core/Die Area**: Defined physical layout of the design.
+- **IO Placement**: Locations of input/output pins.
+- **Macro Placement**: Positioned macro locations.
+- **Cell Placement Areas**: Regions allocated for standard cells.
+- **Power Grid**: Power distribution layout.
+- **Blockages**: Restricted areas where components cannot be placed.
+
+---
+
+## **Control Parameters**
+- **Aspect Ratio**: Determines height-to-width ratio, impacting routing and congestion.
+- **Core Utilization**: Percentage of core area occupied by cells, macros, and blockages.
+
+---
+
+## **Floorplanning Steps**
+1. **Define Dimensions**: Set core/die size.
+2. **Place IO Pins**: Arrange input/output pins along chip boundaries.
+3. **Power Planning**: Design power grid and distribution.
+4. **Macro Placement**: Manually place macros using flylines for guidance.
+5. **Create Standard Cell Rows**: Allocate areas for standard cell placement.
+6. **Add Blockages**: Define regions to restrict placement or routing.
+
+---
+
+## **Key Concepts**
+- **Standard Cell Rows**: Pre-defined areas for cell placement, organized in rows.
+- **Flylines**: Virtual links guiding logical macro placement.
+- **Halo (Keep-Out Margin)**: Buffer zones around macros to prevent overlap.
+
+---
+
+## **Impact of Poor Floorplanning**
+- **Increased Area & Power**: Inefficiencies in layout can waste space and energy.
+- **Timing Challenges**: Poor placement can cause timing violations.
+- **Reliability Issues**: May compromise chip performance and durability.
+
+---
+
+## **Qualities of a Good Floorplan**
+- Meets timing and congestion goals.
+- Optimizes area and power usage.
+- Ensures smooth routing and placement.
+
+---
+
+## **Automation and Tips**
+- **Automatic Macro Placement**: Automated tools can generate floorplans but may need manual refinement.
+- **Macro Placement Tips**:
+  - Align with data flow and hierarchy.
+  - Ensure macros are properly oriented with pins facing the core.
+  - Maintain adequate routing channels.
+
+---
+
+## **Blockage Types**
+- **Soft Blockages**: Can be modified during placement.
+- **Hard Blockages**: Permanent restrictions.
+- **Partial Blockages**: Allow some modifications to mitigate congestion.
+
+
+Now run the following commands in terminal:
+
+```
+
+cd OpenROAD-flow-scripts
+
+source env.sh
+
+cd flow
+
+```
+
+### Commands for synthesis:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+```
+![14](https://github.com/user-attachments/assets/64fd54b2-b87b-4088-a57a-23f299141328)
+
+![15](https://github.com/user-attachments/assets/791bf7e3-27b8-42db-92ec-6d3ca9a68876)
+Synthesis Reports:
+![16](https://github.com/user-attachments/assets/99025dd6-a588-4495-9e7e-9cba9f4c0af7)
+![17](https://github.com/user-attachments/assets/031f4178-fe6c-4e3b-8d18-d19ddbf86948)
+![18](https://github.com/user-attachments/assets/c609171e-8ba2-4e53-968f-99cb54c489a6)
+![19](https://github.com/user-attachments/assets/cd9ed03b-55ba-408f-ae2b-ec54fe4f300b)
+![20](https://github.com/user-attachments/assets/4df3c590-745c-4704-b3db-f2a167b2e81e)
+![21](https://github.com/user-attachments/assets/5102e5ef-4ac2-46d9-9661-b6f8307ba138)
+![22](https://github.com/user-attachments/assets/78037bf9-aed2-4184-b514-63856b8d2a80)
+
+### Commands for floorplan:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
+
+![23](https://github.com/user-attachments/assets/d943c4d5-660e-4a76-9fce-7751a15939df)
+![24](https://github.com/user-attachments/assets/f87f2e30-f833-4246-8089-8bfbc03d5dd3)
+![25](https://github.com/user-attachments/assets/d1f98fc1-f4ff-4f42-b23e-cd1646e8cfb7)
+
+### Commands for floorplan GUI:
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
+```
+![26](https://github.com/user-attachments/assets/833d4f2c-f7ed-4247-822b-e4671decca15)
+![27](https://github.com/user-attachments/assets/1b97f085-92f9-4593-8315-c3445b2e116b)
+![28](https://github.com/user-attachments/assets/f6a305c9-4404-4101-a997-2e1b79e254bf)
+![29](https://github.com/user-attachments/assets/7510299e-22bc-4997-8f05-e01c586fbf67)
+### Report:
+
+![30](https://github.com/user-attachments/assets/e106df92-0ead-40a4-b53a-9e3ce2c39bdd)
+![31](https://github.com/user-attachments/assets/1d032454-7767-4d92-acb0-4519aee858a0)
+
+### Commands for placement:
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
+```
+![32](https://github.com/user-attachments/assets/75f15996-bec6-4860-a3e0-1ebb43b7c02f)
+
+![33](https://github.com/user-attachments/assets/6e1bb0db-774f-4ed2-83e8-e4f4563c7b83)
+
+### Commands for placement GUI:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
+```
+![38](https://github.com/user-attachments/assets/40c9c379-b4a0-495a-b49a-11aaf6125219)
+
+![39](https://github.com/user-attachments/assets/cf4db348-2839-409e-9de4-df91a61b4027)
+![40](https://github.com/user-attachments/assets/e3f9b114-e4e2-4b04-92f3-9031a7709337)
+
+![41](https://github.com/user-attachments/assets/ece74c9f-9689-4e76-b121-a4db0825beb9)
+![42](https://github.com/user-attachments/assets/b4dc11bc-9a22-48b4-9052-45e6ad4c112a)
+
+### place_report
+![34](https://github.com/user-attachments/assets/2f84ae1a-1387-44a4-81d4-0a1ec58598c2)
+![35](https://github.com/user-attachments/assets/c6d3f1e1-e560-49a1-8c66-ab268cbb52ea)
+
+![36](https://github.com/user-attachments/assets/17cbd10b-9868-4db7-a75a-817a9b819c2a)
+
+![37](https://github.com/user-attachments/assets/d101a468-8e53-4b22-a378-c5ce5573b730)
+
+### CTS:
+CTS involves connecting the clock signal from the clock port to the clock pins of sequential cells while minimizing insertion delay and balancing skew. The clock network is typically categorized as a high fanout net, which requires special handling due to its significant power consumption—often accounting for 30-40% of total chip power—and its susceptibility to electromigration (EM) effects.
+Key Objectives of CTS
+
+*	Minimize Insertion Delay: This is crucial for ensuring that the clock signal reaches all components in a timely manner, thus maintaining the overall performance of the design.
+
+*	Balance Skew: Skew refers to the difference in arrival times of the clock signal at different sequential elements. Balancing skew is vital to ensure synchronous operation of the circuit.
+
+*	Power Optimization: Since the clock network consumes a substantial amount of power, optimizing its design can lead to significant energy savings.
+
+**Steps in Clock Tree Synthesis:**
+
+The CTS process typically includes the following steps:
+
+*	Preparation: This involves checking the legality of the design, ensuring power connections are correct, and verifying that the timing quality of results (QoR) is acceptable.
+
+*	Clustering: Grouping sink pins based on their geometric locations to facilitate better skew management.
+
+*	Buffer Insertion: Automatically inserting buffers and inverters along the clock paths to manage load and reduce insertion delay.
+
+*	Balancing: Using clock buffers and inverters to achieve a balanced clock distribution across the design.
+
+*	Post-Conditioning: Final adjustments to ensure that all design rules are met and that the clock tree operates within specified parameters for skew and insertion delay.
+
+**Types of Clock Tree Structures:**
+--------
+
+Several structures can be utilized for building the clock tree, including:
+
+*	H-Tree Structure: A balanced tree structure that minimizes skew.
+*	X-Tree Structure: Similar to the H-tree but optimized for different geometries.
+*	Geometric Matching Algorithm (GMA): A method for optimizing the layout of the clock tree.
+*	Pi Tree Structure: A structure that balances loads effectively.
+*	Fishbone Structure: A more complex design that can handle varying loads and distances.
+
+**Inputs and Outputs of CTS:**
+-------
+**Inputs Required for CTS:**
+
+*	Placement Database (DB): Contains the netlist after placement, including various technology files and specifications.
+*	Clock Tree Specification File: Defines the requirements and constraints for the clock tree.
+*	Library Files: Include information on clock buffers and inverters used in the design.
+
+**Outputs of CTS:**
+After the CTS process, the outputs typically include:
+
+*	A netlist that reflects the clock tree configuration.
+*	Timing reports detailing setup and hold times.
+*	Skew and latency reports to assess clock performance.
+
+**Quality Checks Post-CTS:**
+
+After completing the CTS, several checks are necessary to ensure the clock tree meets design goals:
+
+*	Insertion Delay: Must meet target values.
+*	Skew Balancing: Should be within acceptable limits.
+*	Signal Integrity: Ensuring minimal crosstalk and other noise effects.
+*	Power Consumption: Evaluating the clock tree's power usage to ensure it aligns with design specifications.
+
+In summary, Clock Tree Synthesis is a fundamental aspect of VLSI design that directly impacts the performance, power efficiency, and reliability of integrated circuits. Proper execution of CTS ensures that the clock signal is effectively distributed, enabling synchronous operation of all components within the design.
+
+
+**Command to run Clock Tree Synthesis (CTS):**
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
+```
+
+![44](https://github.com/user-attachments/assets/28a7ad29-531d-4641-85b1-6ff013fd3256)
+![45](https://github.com/user-attachments/assets/41502752-f510-4050-9ce8-d4c183eede80)
+
+CTS final report:
+![46](https://github.com/user-attachments/assets/9f89f75f-9311-462c-91a1-589ccd680b12)
+![47](https://github.com/user-attachments/assets/04580568-c1fb-43c1-a04c-0b4aa591c67d)
+
+**Command to run GUI:**
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
+```
+![48](https://github.com/user-attachments/assets/4c83591b-6176-490a-a91f-cdd63762850b)
+![49](https://github.com/user-attachments/assets/2b7b530a-70fb-4266-8e93-2efecf2968b3)
+![50](https://github.com/user-attachments/assets/aa385612-8f02-4092-ba63-2e550ab96fe2)
+![51](https://github.com/user-attachments/assets/6a4d9a22-ea39-4f36-84f3-191fb8d34bb4)
+
+Route:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+```
+![52](https://github.com/user-attachments/assets/e489e568-e621-41b4-a936-69cde4a25ea2)
+
+Report:
+![53](https://github.com/user-attachments/assets/059fe7cb-7244-431e-ac12-9ff3a7167102)
+![54](https://github.com/user-attachments/assets/95491455-4322-4765-a75c-5e67d4f7dfef)
+![55](https://github.com/user-attachments/assets/555b94a7-2d24-498c-bab9-36a9256dc815)
+
+
+
+
+
+
+
+
 
 
 
